@@ -26,12 +26,12 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('dev.txt', 'docs.txt', 'prod.txt' 'test.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('dev.txt', 'docs.txt', 'prod.txt', 'test.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
             ${{ runner.os }}-
       - name: Install Ralph's python dependencies
-        run: pip3 install -r "${GITHUB_WORKSPACE}/requirements/code_style.txt"
+        run: pip3 install -r "${GITHUB_WORKSPACE}/requirements/dev.txt"
 
       - name: Run flake8
         run: make flake
@@ -105,7 +105,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('dev.txt', 'docs.txt', 'prod.txt' 'test.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('dev.txt', 'docs.txt', 'prod.txt', 'test.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
             ${{ runner.os }}-
@@ -154,7 +154,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('dev.txt', 'docs.txt', 'prod.txt' 'test.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('dev.txt', 'docs.txt', 'prod.txt', 'test.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
             ${{ runner.os }}-
@@ -162,7 +162,6 @@ jobs:
       - name: Install Ralph's python dependencies
         run: |
           pip3 install -r "${GITHUB_WORKSPACE}/requirements/test.txt"
-          pip3 install -r "${GITHUB_WORKSPACE}/requirements/openstack.txt"
 
       - name: Test Ralph's settings
         run:  ./scripts/test_settings.sh prod test >/dev/null
@@ -255,7 +254,6 @@ jobs:
       - name: Install Ralph's python dependencies
         run: |
           pip3 install -r "${GITHUB_WORKSPACE}/requirements/test.txt"
-          pip3 install -r "${GITHUB_WORKSPACE}/requirements/openstack.txt"
 
       - name: Install PostgreSQL driver
         if: ${{ matrix.db-engine == 'psql' }}
