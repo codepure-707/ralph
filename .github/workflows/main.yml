@@ -246,7 +246,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('dev.txt', 'docs.txt', 'prod.txt' 'test.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('dev.txt', 'docs.txt', 'prod.txt', 'test.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
             ${{ runner.os }}-
