@@ -1,0 +1,70 @@
+[env]
+_.python.venv = ".venv"
+LDFLAGS = "-L/opt/homebrew/opt/openssl/lib"
+CPPFLAGS = "-I/opt/homebrew/opt/openssl/include"
+DJANGO_SETTINGS_MODULE = "ralph.settings.local"
+TEST_DB_ENGINE = "psql"
+DATABASE_PORT = 54320
+
+[tools]
+docker-compose = "latest"
+node = "11.7.0"
+uv = "latest"
+
+[tasks.install]
+run = [
+    "uv pip sync requirements/dev.txt",
+    "uv pip install -e ."
+]
+description = "Install requirements and entrypoints"
+
+[tasks.init]
+depends = ["install"]
+run = [
+    "python setup.py develop",
+    "dev_ralph migrate",
+    "make menu",
+]
+description = "Bootstrap new local ralph installation"
+
+[tasks.up]
+run = "docker-cli-plugin-docker-compose -f docker/docker-compose-dev.yml up -d"
+description = "Start required containers"
+
+[tasks.server]
+depends = ['up']
+run = "dev_ralph runserver"
+alias = "s"
+description = "Run local server"
+
+[tasks.requirements]
+run = [
+    "uv pip compile pyproject.toml --all-extras -o requirements/dev.txt",
+    "uv pip compile pyproject.toml --extra docs -o requirements/docs.txt",
+    "uv pip compile pyproject.toml --extra dev --extra test -o requirements/test.txt",
+    "uv pip compile pyproject.toml --extra prod -o requirements/prod.txt",
+]
+alias = "i"
+description = "Compile requirements"
+
+[tasks.lint]
+run = "ruff check"
+description = "Format code"
+
+[tasks.clean]
+run = [
+    "find . -name '*.py[cod]' -delete",
+    "rm .coverage || :"
+]
+hide = true
+
+[tasks.coverage]
+depends = ['clean']
+run = [
+    """DJANGO_SETTINGS_MODULE='ralph.settings.test' coverage run $(command -v test_ralph) \
+    test {{arg(name='apps',default='ralph.admin ralph.access_cards ralph.accounts ralph.accessories ralph.assets ralph.attachments ralph.back_office ralph.configuration_management ralph.dashboards ralph.data_center ralph.dhcp ralph.deployment ralph.licences ralph.domains ralph.trade_marks ralph.sim_cards ralph.supports ralph.security ralph.lib.foundation ralph.lib.table ralph.networks ralph.data_importer ralph.dc_view ralph.reports ralph.virtual ralph.operations ralph.lib.external_services ralph.lib.transitions ralph.lib.permissions ralph.lib.custom_fields ralph.lib.hooks ralph.notifications ralph.ssl_certificates ralph.lib.mixins ralph.tests ralph.lib.custom_fields.tests ralph.lib.permissions.tests ralph.lib.polymorphic.tests ralph.lib.mixins.tests')}} \
+    --keepdb """,
+    "coverage report"
+]
+description = "Run tests and report coverage"
+
