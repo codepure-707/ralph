@@ -19,9 +19,9 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.6
-      - name: Downgrade pip
-        run: pip3 install pip==19.3.1
+          python-version: 3.8
+      - name: Upgrade pip
+        run: pip3 install -U pip
       - name: Cache pip dependencies
         uses: actions/cache@v2
         with:
@@ -93,10 +93,9 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.6
-
-      - name: Downgrade pip
-        run: pip3 install pip==19.3.1
+          python-version: 3.8
+      - name: Upgrade pip
+        run: pip3 install -U pip
 
       - name: Install Ralph
         run: pip3 install "${GITHUB_WORKSPACE}"
@@ -142,13 +141,10 @@ jobs:
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
-          python-version: 3.6
+          python-version: ${{ matrix.python-version }}
 
-      - name: Downgrade pip
-        run: pip3 install pip==19.3.1
-
-      - name: Install Ralph
-        run: pip3 install "${GITHUB_WORKSPACE}"
+      - name: Upgrade pip
+        run: pip3 install -U pip
 
       - name: Cache pip dependencies
         uses: actions/cache@v2
@@ -171,7 +167,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        python-version: [3.6]
+        python-version: [3.8]
         db-engine: ["psql", "mysql"]
     env:
       TEST_DB_ENGINE: ${{ matrix.db-engine }}

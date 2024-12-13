@@ -4,6 +4,12 @@ DJANGO_SETTINGS_MODULE = "ralph.settings.local"
 TEST_DB_ENGINE = "psql"
 DATABASE_PORT = 54320
 
+[settings]
+experimental = true
+
+[settings.python]
+uv_venv_auto = true
+
 [tools]
 docker-compose = "latest"
 node = "11.7.0"
@@ -16,19 +22,27 @@ run = [
 ]
 description = "Install requirements and entrypoints"
 
-[tasks.init]
-depends = ["install"]
-run = [
-    "python setup.py develop",
-    "dev_ralph migrate",
-    "make menu",
-]
-description = "Bootstrap new local ralph installation"
-alias = "i"
-
 [tasks.up]
 run = "docker-cli-plugin-docker-compose -f docker/docker-compose-dev.yml up -d"
 description = "Start required containers"
+
+[tasks.manage]
+run = "dev_ralph"
+
+[tasks.init]
+depends = ["install", "up"]
+run = [
+    """ls 'src/ralph/settings/local.py' ||
+        (echo 'please create settings file:\ncp src/ralph/settings/local.template src/ralph/settings/local.py' \
+        && exit 1)
+    """,
+    "python setup.py develop",
+    "dev_ralph migrate",
+    "make menu",
+    """echo "Installation finished. Run 'mise manage createsuperuser' to be able to log in"""",
+    """echo "Or just start server with 'mise run server'"""",
+]
+description = "Bootstrap new local ralph installation"
 
 [tasks.server]
 depends = ['up']
