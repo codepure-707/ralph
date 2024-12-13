@@ -62,6 +62,7 @@ dependencies = [
     "typing==3.6.6",
     "psycopg2==2.9.10",
     "pyhermes==0.3.0",
+    "statsd==3.2.1",
     # openstack,
     "python-keystoneclient",
     "python-novaclient==3.2.0",
@@ -121,7 +122,6 @@ prod = [
     "django-redis-sessions==0.5.6",
     "django-redis-cache==2.0.0",
     "hiredis==1.0.0",
-    "statsd==3.2.1",
 ]
 
 docs = [

@@ -404,6 +404,8 @@ sqlparse==0.2.3
     # via
     #   ralph (pyproject.toml)
     #   django
+statsd==3.2.1
+    # via ralph (pyproject.toml)
 stevedore==5.3.0
     # via
     #   ralph (pyproject.toml)
