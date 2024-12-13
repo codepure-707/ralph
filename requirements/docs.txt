@@ -379,8 +379,9 @@ rq==1.0
     # via
     #   ralph (pyproject.toml)
     #   django-rq
-setuptools==75.3.0
+setuptools==65.7.0
     # via
+    #   ralph (pyproject.toml)
     #   django-money
     #   markdown
 simplejson==3.8.2

@@ -502,8 +502,9 @@ rq==1.0
     #   django-rq
 ruff==0.8.2
     # via ralph (pyproject.toml)
-setuptools==75.3.0
+setuptools==65.7.0
     # via
+    #   ralph (pyproject.toml)
     #   django-money
     #   django-plainpasswordhasher
     #   markdown

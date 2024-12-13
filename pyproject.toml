@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools<66.0"]
 build-backend = "setuptools.build_meta"
 
 [tools.coverage.run]
@@ -84,6 +84,7 @@ dependencies = [
     "simplejson==3.8.2",
     "stevedore",
     "wrapt==1.10.6",
+    "setuptools<66.0",
 ]
 
 [project.optional-dependencies]
