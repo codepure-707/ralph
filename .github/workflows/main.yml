@@ -26,7 +26,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.8.19
 
       - name: Upgrade pip
         run: pip3 install -U pip
@@ -103,7 +103,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.8.19
       - name: Upgrade pip
         run: pip3 install -U pip
 
@@ -177,7 +177,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        python-version: [3.8]
+        python-version: [3.8.19]
         db-engine: ["psql", "mysql"]
     env:
       TEST_DB_ENGINE: ${{ matrix.db-engine }}
