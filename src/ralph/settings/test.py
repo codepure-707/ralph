@@ -1,5 +1,3 @@
-import sys
-
 from ralph.settings import *  # noqa
 
 DEBUG = False

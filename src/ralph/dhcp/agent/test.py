@@ -2,13 +2,14 @@ import logging
 import unittest
 from optparse import Values
 
+from mock import MagicMock, Mock, patch
+
 from ralph.dhcp.agent.dhcp_agent import (
-    Cache,
-    DHCPConfigManager,
     _check_params,
     _get_cmd_params_from_parser,
+    Cache,
+    DHCPConfigManager
 )
-from mock import MagicMock, Mock, patch
 
 logger = logging.getLogger(__file__)
 mocked_parser = MagicMock()
@@ -23,8 +24,11 @@ def mocked_urlopen(*args):
     }
     return type('response', (object,), attrs)
 
+
 def mocked_error(msg):
     raise Exception(msg)
+
+
 mocked_parser.error = mocked_error
 
 default_params = {
