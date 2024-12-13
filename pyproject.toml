@@ -3,7 +3,7 @@ requires = ["setuptools<66.0"]
 build-backend = "setuptools.build_meta"
 
 [tools.coverage.run]
-source = ralph
+source = ["ralph"]
 branch = 1
 
 [tools.coverage.report]
