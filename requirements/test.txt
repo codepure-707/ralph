@@ -116,6 +116,10 @@ django-mptt==0.11.0
     # via ralph (pyproject.toml)
 django-plainpasswordhasher==0.3
     # via ralph (pyproject.toml)
+django-redis-cache==2.0.0
+    # via ralph (pyproject.toml)
+django-redis-sessions==0.5.6
+    # via ralph (pyproject.toml)
 django-reversion==3.0.5
     # via ralph (pyproject.toml)
 django-rq==2.0
@@ -175,6 +179,8 @@ gnureadline==8.2.13
     # via cmd2
 gprof2dot==2024.6.6
     # via django-silk
+hiredis==1.0.0
+    # via ralph (pyproject.toml)
 idna==2.7
     # via requests
 imagesize==1.4.1
@@ -416,6 +422,8 @@ pyyaml==6.0.2
 redis==3.2.1
     # via
     #   ralph (pyproject.toml)
+    #   django-redis-cache
+    #   django-redis-sessions
     #   django-rq
     #   rq
 referencing==0.35.1
