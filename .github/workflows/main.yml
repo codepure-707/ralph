@@ -16,12 +16,21 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
 
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev libssl-dev
+        env:
+          DEBIAN_FRONDEND: NONINTERACTIVE
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
+
       - name: Upgrade pip
         run: pip3 install -U pip
+
       - name: Cache pip dependencies
         uses: actions/cache@v2
         with:
@@ -30,6 +39,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
             ${{ runner.os }}-
+
       - name: Install Ralph's python dependencies
         run: pip3 install -r "${GITHUB_WORKSPACE}/requirements/dev.txt"
 
@@ -86,7 +96,7 @@ jobs:
       - name: Install system packages
         run: |
           sudo apt-get update
-          sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev
+          sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev libssl-dev
         env:
           DEBIAN_FRONDEND: NONINTERACTIVE
 
@@ -134,7 +144,7 @@ jobs:
       - name: Install system packages
         run: |
           sudo apt-get update
-          sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev
+          sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev libssl-dev
         env:
           DEBIAN_FRONDEND: NONINTERACTIVE
 
@@ -223,7 +233,7 @@ jobs:
       - name: Install system packages
         run: |
           sudo apt-get update
-          sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev
+          sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev libssl-dev
         env:
           DEBIAN_FRONDEND: NONINTERACTIVE
 
