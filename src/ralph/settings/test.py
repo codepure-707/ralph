@@ -2,9 +2,6 @@ import sys
 
 from ralph.settings import *  # noqa
 
-# for dhcp agent test
-sys.path.append(os.path.join(BASE_DIR, "..", "..", "contrib", "dhcp_agent"))
-
 DEBUG = False
 
 TEST_DB_ENGINE = os.environ.get("TEST_DB_ENGINE", "mysql")

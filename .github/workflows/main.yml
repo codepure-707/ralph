@@ -262,10 +262,6 @@ jobs:
         run: |
           pip3 install -r "${GITHUB_WORKSPACE}/requirements/test.txt"
 
-      - name: Install PostgreSQL driver
-        if: ${{ matrix.db-engine == 'psql' }}
-        run: pip3 install psycopg2-binary
-
       - name: Test ralph_dchp_agent using python-${{ matrix.python-version }}
         run: python contrib/dhcp_agent/test.py
 
