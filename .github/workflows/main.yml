@@ -168,6 +168,7 @@ jobs:
       - name: Install Ralph's python dependencies
         run: |
           pip3 install -r "${GITHUB_WORKSPACE}/requirements/test.txt"
+          pip3 install -e .
 
       - name: Test Ralph's settings
         run:  ./scripts/test_settings.sh prod test >/dev/null
