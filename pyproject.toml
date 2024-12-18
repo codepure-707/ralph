@@ -2,13 +2,6 @@
 requires = ["setuptools<66.0"]
 build-backend = "setuptools.build_meta"
 
-[tools.coverage.run]
-source = ["ralph"]
-branch = 1
-
-[tools.coverage.report]
-omit = "*migrations*,*tests*,*__init__*,*wsgi.py,*__main__*,*settings*,*manage.py"
-
 [project]
 name = "Ralph"
 version = "20241127.1"
