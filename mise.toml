@@ -15,12 +15,19 @@ docker-compose = "latest"
 node = "11.7.0"
 uv = "latest"
 
+[tasks.venv]
+run = [
+    "uv venv",
+    "source .venv/bin/activate"
+]
+
 [tasks.install]
 run = [
     "uv pip sync requirements/dev.txt",
     "uv pip install -e ."
 ]
 description = "Install requirements and entrypoints"
+alias = "deps"
 
 [tasks.up]
 run = "docker-cli-plugin-docker-compose -f docker/docker-compose-dev.yml up -d"
@@ -28,6 +35,7 @@ description = "Start required containers"
 
 [tasks.manage]
 run = "dev_ralph"
+description = "dev_ralph [...]"
 
 [tasks.init]
 depends = ["install", "up"]
@@ -47,7 +55,7 @@ description = "Bootstrap new local ralph installation"
 [tasks.server]
 depends = ['up']
 run = "dev_ralph runserver"
-alias = "s"
+alias = ["s", "default"]
 description = "Run local server"
 
 [tasks.requirements]
