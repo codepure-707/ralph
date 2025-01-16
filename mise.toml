@@ -41,7 +41,7 @@ description = "dev_ralph [...]"
 depends = ["install", "up"]
 run = [
     """ls 'src/ralph/settings/local.py' ||
-        (echo 'please create settings file:\ncp src/ralph/settings/local.template src/ralph/settings/local.py' \
+        (echo 'please create your settings file:\ncp src/ralph/settings/local.template src/ralph/settings/local.py' \
         && exit 1)
     """,
     "python setup.py develop",
