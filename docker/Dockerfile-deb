@@ -23,7 +23,7 @@ RUN apt-get update && \
 
 RUN apt-get update && \
     apt-get -y install build-essential debhelper devscripts equivs dh-virtualenv \
-    libmysqlclient-dev libmysqlclient21 \
+    libmysqlclient-dev libmysqlclient21 libldap2-dev libsasl2-dev \
     python3.8 python3.8-dev libffi-dev nodejs npm git-buildpackage vim-tiny git && \
     rm -rf /var/lib/apt/lists/* && \
     git config --global user.name "$GIT_USER_NAME" && \
