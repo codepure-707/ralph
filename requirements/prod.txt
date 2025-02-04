@@ -85,6 +85,8 @@ django-money==0.12.3
     # via ralph (pyproject.toml)
 django-mptt==0.11.0
     # via ralph (pyproject.toml)
+django-prometheus==2.2.0
+    # via ralph (pyproject.toml)
 django-redis-cache==2.0.0
     # via ralph (pyproject.toml)
 django-redis-sessions==0.5.6
@@ -263,6 +265,8 @@ prettytable==0.7.2
     #   ralph (pyproject.toml)
     #   cliff
     #   python-novaclient
+prometheus-client==0.21.1
+    # via django-prometheus
 psycopg2==2.9.10
     # via ralph (pyproject.toml)
 py-moneyed==1.2
