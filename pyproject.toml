@@ -124,3 +124,9 @@ docs = [
     "mkdocs-bootswatch",
     "mkdocs_bootstrap",
 ]
+
+[tool.ruff]
+exclude = [
+    "*local.py"
+]
+
