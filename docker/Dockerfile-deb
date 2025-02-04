@@ -17,9 +17,9 @@ ENV RALPH_DIR=/opt/ralph
 # in pip's dependency resolver (pip 20.2: https://pip.pypa.io/en/latest/user_guide/#changes-to-the-pip-dependency-resolver-in-20-3-2020).
 # Until it's fixed on our side we need to fix to specific pip version.
 # To do this we need newer version of dh-virtualenv (upgrade-pip-to option added in version 1.2).
-RUN apt-get update && \
-    apt-get -y install software-properties-common && \
-    add-apt-repository ppa:jyrki-pulliainen/dh-virtualenv
+RUN echo "deb https://deb.debian.org/debian unstable main contrib" > /etc/apt/sources.list.d/debian-unstable.list && \
+    apt-get install -y debian-archive-keyring && \
+    ln -s /usr/share/keyrings/debian-archive-keyring.gpg /etc/apt/trusted.gpg.d/
 
 RUN apt-get update && \
     apt-get -y install build-essential debhelper devscripts equivs dh-virtualenv \
