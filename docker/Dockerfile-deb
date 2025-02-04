@@ -17,13 +17,15 @@ ENV RALPH_DIR=/opt/ralph
 # in pip's dependency resolver (pip 20.2: https://pip.pypa.io/en/latest/user_guide/#changes-to-the-pip-dependency-resolver-in-20-3-2020).
 # Until it's fixed on our side we need to fix to specific pip version.
 # To do this we need newer version of dh-virtualenv (upgrade-pip-to option added in version 1.2).
-RUN echo "deb https://deb.debian.org/debian unstable main contrib" > /etc/apt/sources.list.d/debian-unstable.list && \
-    apt-get install -y debian-archive-keyring && \
-    ln -s /usr/share/keyrings/debian-archive-keyring.gpg /etc/apt/trusted.gpg.d/
+RUN apt-get update && \
+    apt-get -y install software-properties-common && \
+    add-apt-repository ppa:jyrki-pulliainen/dh-virtualenv
 
 RUN apt-get update && \
     apt-get -y install build-essential debhelper devscripts equivs dh-virtualenv \
     libmysqlclient-dev libmysqlclient21 libldap2-dev libsasl2-dev \
+    libwebp-dev libbrotli-dev liblzma-dev libjpeg-dev libssl-dev libkrb5-dev \
+    libcom-err2 libkeyutils-dev libxau-dev libfreetype6-dev libpcre3-dev libselinux1-dev libtinfo-dev libpng-dev \
     python3.8 python3.8-dev libffi-dev nodejs npm git-buildpackage vim-tiny git && \
     rm -rf /var/lib/apt/lists/* && \
     git config --global user.name "$GIT_USER_NAME" && \
