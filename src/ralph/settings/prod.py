@@ -1,7 +1,16 @@
+from ralph.settings import *  # noqa
 import json
 import os
-
-from ralph.settings import *  # noqa
+from ralph.settings import (
+    REDIS_CONNECTION,
+    INSTALLED_APPS,
+    MIDDLEWARE,
+    bool_from_env,
+    REDIS_SENTINEL_ENABLED,
+    REDIS_SENTINEL_HOSTS,
+    REDIS_CLUSTER_NAME,
+    REST_FRAMEWORK,
+)
 
 DEBUG = bool_from_env("RALPH_DEBUG", False)
 

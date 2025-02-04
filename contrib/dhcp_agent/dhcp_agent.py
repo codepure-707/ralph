@@ -27,7 +27,7 @@ try:
 except:  # noqa
     from urllib import urlencode
     from urllib2 import HTTPError, Request, urlopen
-    string_types = (basestring,)
+    string_types = (basestring,)  # noqa
 
 
 APP_DIR = os.path.expanduser('~/.ralph-dhcp-agent')

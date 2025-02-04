@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import include, url
-from django.urls import path
 from rest_framework import permissions, routers, serializers, viewsets
 
 from ralph.lib.permissions.api import (

@@ -230,7 +230,7 @@ class PolymorphicTestCaseNew(TestCase):
 
     def test_polymorphics_objects_filter_with_prefetch(self):
         z1 = PolymorphicModelTest.objects.create(sth_related=self.sth_related)
-        z2 = PolymorphicModelTest.objects.create(sth_related=self.sth_related)
+        _ = PolymorphicModelTest.objects.create(sth_related=self.sth_related)
 
         with self.assertNumQueries(4):
             (item,) = [

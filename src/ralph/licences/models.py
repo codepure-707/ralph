@@ -310,7 +310,7 @@ class Licence(Regionalizable, AdminAbsoluteUrlMixin, PriceMixin, BaseObject):
         # filter by ids of licences which could be assigned (are not fully
         # used)
         return cls.objects_used_free.filter(
-            pk__in=[l.id for l in cls.objects_used_free.all() if l.free > 0]
+            pk__in=[licence.id for licence in cls.objects_used_free.all() if licence.free > 0]
         )
 
 

@@ -1,5 +1,10 @@
 from ralph.settings import *  # noqa
-
+from ralph.settings import (
+    bool_from_env,
+    INSTALLED_APPS,
+    LOGGING,
+    MIDDLEWARE,
+)
 
 def only_true(request):
     """For django debug toolbar."""

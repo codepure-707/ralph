@@ -1,5 +1,4 @@
 from django.core.checks import Error
-from django.test import TestCase
 
 from ralph.lib.transitions.checks import check_transition_templates
 from ralph.lib.transitions.tests import TransitionTestCase

@@ -78,7 +78,7 @@ from ralph.supports.models import BaseObjectsSupport
 
 def generate_list_filter_with_common_fields(prefix=None, postfix=None):
     result = []
-    if type(prefix) == list:
+    if type(prefix) is list:
         result.extend(prefix)
     result.extend(
         [
@@ -101,7 +101,7 @@ def generate_list_filter_with_common_fields(prefix=None, postfix=None):
             "securityscan__is_patched",
         ]
     )
-    if type(postfix) == list:
+    if type(postfix) is list:
         result.extend(postfix)
     return result
 

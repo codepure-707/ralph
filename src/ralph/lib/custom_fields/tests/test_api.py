@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import Group
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from ralph.accounts.models import RalphUser
 from ralph.accounts.tests.factories import GroupFactory
-from ralph.tests.factories import UserFactory
 
 from ..models import CustomField, CustomFieldTypes, CustomFieldValue
 from ..signals import api_post_create, api_post_update
