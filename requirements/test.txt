@@ -354,7 +354,7 @@ prometheus-client==0.21.1
     # via django-prometheus
 prompt-toolkit==3.0.48
     # via ipython
-psycopg2==2.9.10
+psycopg2-binary==2.9.10
     # via ralph (pyproject.toml)
 ptyprocess==0.7.0
     # via pexpect

@@ -55,7 +55,7 @@ dependencies = [
     "sqlparse==0.2.3",
     "tablib==0.11.5",
     "typing==3.6.6",
-    "psycopg2==2.9.10",
+    "psycopg2-binary==2.9.10",
     "pyhermes==0.3.0",
     "statsd==3.2.1",
     "django-redis-sessions==0.5.6",

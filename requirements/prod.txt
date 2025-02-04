@@ -267,7 +267,7 @@ prettytable==0.7.2
     #   python-novaclient
 prometheus-client==0.21.1
     # via django-prometheus
-psycopg2==2.9.10
+psycopg2-binary==2.9.10
     # via ralph (pyproject.toml)
 py-moneyed==1.2
     # via
