@@ -79,3 +79,16 @@ if bool_from_env("COLLECT_METRICS"):
     ALLOW_PUSH_GRAPHS_DATA_TO_STATSD = bool_from_env("ALLOW_PUSH_GRAPHS_DATA_TO_STATSD")
     if ALLOW_PUSH_GRAPHS_DATA_TO_STATSD:
         STATSD_GRAPHS_PREFIX = os.environ.get("STATSD_GRAPHS_PREFIX", "ralph.graphs")
+
+if bool_from_env('PROMETHEUS_METRICS_ENABLED', True):
+    PROMETHEUS_METRICS_ENABLED = True
+    PROMETHEUS_EXPORT_MIGRATIONS = False
+    MIDDLEWARE = (
+        'django_prometheus.middleware.PrometheusBeforeMiddleware',
+    ) + MIDDLEWARE
+    MIDDLEWARE = MIDDLEWARE + (
+        'django_prometheus.middleware.PrometheusAfterMiddleware',
+    )
+    INSTALLED_APPS += (
+        'django_prometheus',
+    )

@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ValidationError
 from django.db.models import Count, Prefetch
+from django.forms import BaseInlineFormSet
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
@@ -194,6 +195,11 @@ class VirtualServerAdmin(
             return "-"
 
 
+class CloudHostInlineFormset(BaseInlineFormSet):
+    def get_queryset(self):
+        return super().get_queryset()[:]
+
+
 class CloudHostTabularInline(RalphTabularInline):
     can_delete = False
     model = CloudHost
@@ -207,6 +213,7 @@ class CloudHostTabularInline(RalphTabularInline):
         "remarks",
     ]
     readonly_fields = fields
+    formset = CloudHostInlineFormset
 
     @mark_safe
     def get_hostname(self, obj):

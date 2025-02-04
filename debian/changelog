@@ -1,3 +1,13 @@
+ralph (20241211.1) bionic; urgency=medium
+
+  [ Olga Matyla ]
+  * Fix CloudHost Tabular Inline (#3871)
+
+  [ Aleksander Więckowski ]
+  * Add prometheus integration (#3876)
+
+ -- Olga Matyla <olga.matyla@allegro.com>  Wed, 11 Dec 2024 10:52:54 +0000
+
 ralph (20241128.1) bionic; urgency=medium
 
   * Django 2.1 (#3863)
