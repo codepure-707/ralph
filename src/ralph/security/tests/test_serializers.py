@@ -4,10 +4,7 @@ from rest_framework import serializers
 from ralph.api.tests._base import RalphAPITestCase
 from ralph.networks.tests.factories import IPAddressFactory
 from ralph.security.api import SaveSecurityScanSerializer
-from ralph.security.tests.factories import (
-    SecurityScanFactory,
-    VulnerabilityFactory
-)
+from ralph.security.tests.factories import SecurityScanFactory, VulnerabilityFactory
 
 
 class SaveSecurityScanSerializerTests(RalphAPITestCase):

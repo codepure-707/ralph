@@ -12,15 +12,12 @@ from ralph.api.filters import (
     ImportedIdFilterBackend,
     LookupFilterBackend,
     PolymorphicDescendantsFilterBackend,
-    TagsFilterBackend
+    TagsFilterBackend,
 )
 from ralph.api.serializers import RalphAPISaveSerializer, ReversedChoiceField
 from ralph.api.utils import QuerysetRelatedMixin
 from ralph.lib.custom_fields.api import CustomFieldsFilterBackend
-from ralph.lib.permissions.api import (
-    PermissionsForObjectFilter,
-    RalphPermission
-)
+from ralph.lib.permissions.api import PermissionsForObjectFilter, RalphPermission
 
 
 class AdminSearchFieldsMixin(object):

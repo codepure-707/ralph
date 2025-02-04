@@ -14,7 +14,7 @@ from ralph.assets.models.assets import (
     ManufacturerKind,
     ProfitCenter,
     Service,
-    ServiceEnvironment
+    ServiceEnvironment,
 )
 from ralph.assets.models.base import BaseObject
 from ralph.assets.models.choices import ComponentType, ObjectModelType
@@ -24,12 +24,9 @@ from ralph.assets.models.components import (
     Ethernet,
     FibreChannelCard,
     Memory,
-    Processor
+    Processor,
 )
-from ralph.assets.models.configuration import (
-    ConfigurationClass,
-    ConfigurationModule
-)
+from ralph.assets.models.configuration import ConfigurationClass, ConfigurationModule
 
 
 def next_mac(n):

@@ -11,7 +11,7 @@ from ralph.data_center.api.views import (
     RackAccessoryViewSet,
     RackViewSet,
     ServerRoomViewSet,
-    VIPViewSet
+    VIPViewSet,
 )
 
 router.register(r"accessories", AccessoryViewSet)

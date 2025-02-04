@@ -9,7 +9,7 @@ from ralph.api.fields import StrField
 from ralph.api.serializers import (
     AdditionalLookupRelatedField,
     RalphAPISaveSerializer,
-    ReversionHistoryAPISerializerMixin
+    ReversionHistoryAPISerializerMixin,
 )
 from ralph.api.utils import PolymorphicSerializer
 from ralph.assets.models import (
@@ -27,14 +27,14 @@ from ralph.assets.models import (
     ManufacturerKind,
     ProfitCenter,
     Service,
-    ServiceEnvironment
+    ServiceEnvironment,
 )
 from ralph.assets.models.components import (
     Disk,
     Ethernet,
     FibreChannelCard,
     Memory,
-    Processor
+    Processor,
 )
 from ralph.configuration_management.api import SCMInfoSerializer
 from ralph.lib.custom_fields.api import WithCustomFieldsSerializerMixin

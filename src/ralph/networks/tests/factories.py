@@ -10,7 +10,7 @@ from ralph.networks.models.networks import (
     IPAddress,
     Network,
     NetworkEnvironment,
-    NetworkKind
+    NetworkKind,
 )
 
 

@@ -8,7 +8,7 @@ from django.contrib.auth import get_user_model
 from django.core.validators import (
     MaxLengthValidator,
     MinLengthValidator,
-    RegexValidator
+    RegexValidator,
 )
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -17,11 +17,7 @@ from ralph.assets.models import AssetHolder
 from ralph.attachments.utils import send_transition_attachments_to_user
 from ralph.back_office.models import autocomplete_user, Warehouse
 from ralph.lib.hooks import get_hook
-from ralph.lib.mixins.models import (
-    AdminAbsoluteUrlMixin,
-    NamedMixin,
-    TimeStampMixin
-)
+from ralph.lib.mixins.models import AdminAbsoluteUrlMixin, NamedMixin, TimeStampMixin
 from ralph.lib.transitions.conf import get_report_name_for_transition_id
 from ralph.lib.transitions.decorators import transition_action
 from ralph.lib.transitions.fields import TransitionField

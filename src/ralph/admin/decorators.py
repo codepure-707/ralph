@@ -6,12 +6,7 @@ from django.contrib.admin.filters import ListFilter
 from django.db.models import Model
 
 from ralph.admin.sites import ralph_site
-from ralph.admin.views.extra import (
-    CHANGE,
-    LIST,
-    RalphExtraViewMixin,
-    VIEW_TYPES
-)
+from ralph.admin.views.extra import CHANGE, LIST, RalphExtraViewMixin, VIEW_TYPES
 
 register = partial(django_register, site=ralph_site)
 

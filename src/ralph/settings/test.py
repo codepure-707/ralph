@@ -1,6 +1,14 @@
 from ralph.settings import *  # noqa
 import os
-from ralph.settings import DATABASES, REDIS_CONNECTION, INSTALLED_APPS, HERMES, RQ_QUEUES, RALPH_INTERNAL_SERVICES
+from ralph.settings import (
+    DATABASES,
+    REDIS_CONNECTION,
+    INSTALLED_APPS,
+    HERMES,
+    RQ_QUEUES,
+    RALPH_INTERNAL_SERVICES,
+)
+
 DEBUG = False
 
 TEST_DB_ENGINE = os.environ.get("TEST_DB_ENGINE", "mysql")

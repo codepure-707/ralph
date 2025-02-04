@@ -4,11 +4,7 @@ from ralph.api import RalphAPISerializer, RalphAPIViewSet, router
 from ralph.assets.api.serializers import AssetSerializer
 from ralph.assets.api.views import base_object_descendant_prefetch_related
 from ralph.back_office.admin import BackOfficeAssetAdmin
-from ralph.back_office.models import (
-    BackOfficeAsset,
-    OfficeInfrastructure,
-    Warehouse
-)
+from ralph.back_office.models import BackOfficeAsset, OfficeInfrastructure, Warehouse
 
 
 class WarehouseSerializer(RalphAPISerializer):

@@ -19,7 +19,7 @@ from ralph.assets.models.assets import (
     ManufacturerKind,
     ProfitCenter,
     Service,
-    ServiceEnvironment
+    ServiceEnvironment,
 )
 from ralph.assets.models.base import BaseObject
 from ralph.assets.models.components import (
@@ -29,12 +29,9 @@ from ralph.assets.models.components import (
     FibreChannelCard,
     GenericComponent,
     Memory,
-    Processor
+    Processor,
 )
-from ralph.assets.models.configuration import (
-    ConfigurationClass,
-    ConfigurationModule
-)
+from ralph.assets.models.configuration import ConfigurationClass, ConfigurationModule
 from ralph.data_importer import resources
 from ralph.lib.custom_fields.admin import CustomFieldValueAdminMixin
 from ralph.lib.table.table import Table, TableWithUrl

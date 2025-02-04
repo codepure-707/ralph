@@ -7,11 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from ralph.assets.models import AssetHolder, BaseObject
 from ralph.attachments.helpers import get_file_path
 from ralph.domains.models import Domain
-from ralph.lib.mixins.models import (
-    AdminAbsoluteUrlMixin,
-    NamedMixin,
-    TimeStampMixin
-)
+from ralph.lib.mixins.models import AdminAbsoluteUrlMixin, NamedMixin, TimeStampMixin
 
 
 def verbose_names(**kwargs):

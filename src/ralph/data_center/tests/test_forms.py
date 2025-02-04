@@ -7,10 +7,7 @@ from django.urls import reverse
 from ralph.assets.models import Ethernet, ObjectModelType
 from ralph.assets.tests.factories import DataCenterAssetModelFactory
 from ralph.data_center.models import DataCenterAsset
-from ralph.data_center.tests.factories import (
-    DataCenterAssetFactory,
-    RackFactory
-)
+from ralph.data_center.tests.factories import DataCenterAssetFactory, RackFactory
 from ralph.networks.forms import validate_is_management
 from ralph.networks.models import IPAddress
 from ralph.networks.tests.factories import IPAddressFactory

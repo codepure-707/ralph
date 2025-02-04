@@ -13,7 +13,7 @@ from ralph.supports.models import (
     BaseObjectsSupport,
     Support,
     SupportStatus,
-    SupportType
+    SupportType,
 )
 
 date_now = datetime.now().date()

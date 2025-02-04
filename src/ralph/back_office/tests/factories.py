@@ -9,13 +9,9 @@ from ralph.accounts.tests.factories import RegionFactory
 from ralph.assets.tests.factories import (
     AssetHolderFactory,
     BackOfficeAssetModelFactory,
-    BudgetInfoFactory
+    BudgetInfoFactory,
 )
-from ralph.back_office.models import (
-    BackOfficeAsset,
-    OfficeInfrastructure,
-    Warehouse
-)
+from ralph.back_office.models import BackOfficeAsset, OfficeInfrastructure, Warehouse
 from ralph.security.tests.factories import SecurityScanFactory
 
 date_now = datetime.now().date()

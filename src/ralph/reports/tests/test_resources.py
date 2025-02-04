@@ -1,14 +1,8 @@
 from random import randint
 
-from ralph.assets.tests.factories import (
-    DataCenterAssetModelFactory,
-    EthernetFactory
-)
+from ralph.assets.tests.factories import DataCenterAssetModelFactory, EthernetFactory
 from ralph.data_center.models import Orientation, RackOrientation
-from ralph.data_center.tests.factories import (
-    DataCenterAssetFactory,
-    RackFactory
-)
+from ralph.data_center.tests.factories import DataCenterAssetFactory, RackFactory
 from ralph.networks.tests.factories import IPAddressFactory
 from ralph.reports.resources import DataCenterAssetTextResource
 from ralph.tests import RalphTestCase

@@ -16,10 +16,7 @@ from ralph.attachments.helpers import add_attachment_from_disk
 from ralph.attachments.models import Attachment, AttachmentItem
 from ralph.back_office.models import BackOfficeAsset
 from ralph.data_center.models.physical import DataCenterAsset
-from ralph.data_importer.models import (
-    ImportedObjectDoesNotExist,
-    ImportedObjects
-)
+from ralph.data_importer.models import ImportedObjectDoesNotExist, ImportedObjects
 from ralph.lib.transitions.models import TransitionsHistory
 from ralph.licences.models import Licence
 from ralph.supports.models import Support

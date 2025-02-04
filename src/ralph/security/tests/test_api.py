@@ -7,10 +7,7 @@ from rest_framework import status
 from ralph.api.tests._base import RalphAPITestCase
 from ralph.networks.tests.factories import IPAddressFactory
 from ralph.security.models import Risk, ScanStatus, SecurityScan, Vulnerability
-from ralph.security.tests.factories import (
-    SecurityScanFactory,
-    VulnerabilityFactory
-)
+from ralph.security.tests.factories import SecurityScanFactory, VulnerabilityFactory
 
 
 class SecurityScanAPITests(RalphAPITestCase):

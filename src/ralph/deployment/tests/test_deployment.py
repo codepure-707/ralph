@@ -7,14 +7,11 @@ from django.test import override_settings, TestCase
 
 from ralph.assets.models import Ethernet
 from ralph.assets.tests.factories import ServiceEnvironmentFactory
-from ralph.data_center.tests.factories import (
-    DataCenterAssetFactory,
-    RackFactory
-)
+from ralph.data_center.tests.factories import DataCenterAssetFactory, RackFactory
 from ralph.deployment.deployment import (
     autocomplete_service_env,
     check_if_network_environment_exists,
-    validate_ip_address
+    validate_ip_address,
 )
 from ralph.deployment.tests.factories import _get_deployment
 from ralph.deployment.utils import _render_configuration
@@ -23,7 +20,7 @@ from ralph.networks.models.networks import IPAddress, IPAddressStatus, Network
 from ralph.networks.tests.factories import (
     IPAddressFactory,
     NetworkEnvironmentFactory,
-    NetworkFactory
+    NetworkFactory,
 )
 from ralph.virtual.tests.factories import VirtualServerFactory
 

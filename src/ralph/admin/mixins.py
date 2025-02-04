@@ -34,7 +34,7 @@ from ralph.lib.mixins.forms import RequestFormMixin
 from ralph.lib.mixins.models import AdminAbsoluteUrlMixin
 from ralph.lib.permissions.admin import (
     PermissionAdminMixin,
-    PermissionsPerObjectFormMixin
+    PermissionsPerObjectFormMixin,
 )
 from ralph.lib.permissions.models import PermByFieldMixin
 from ralph.lib.permissions.views import PermissionViewMetaClass

@@ -3,10 +3,7 @@ from datetime import datetime, timedelta
 import factory
 from factory.django import DjangoModelFactory
 
-from ralph.assets.tests.factories import (
-    ManufacturerFactory,
-    ServiceEnvironmentFactory
-)
+from ralph.assets.tests.factories import ManufacturerFactory, ServiceEnvironmentFactory
 from ralph.ssl_certificates.models import CertificateType, SSLCertificate
 
 date_now = datetime.now().date()

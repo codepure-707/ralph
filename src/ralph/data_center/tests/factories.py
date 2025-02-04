@@ -17,7 +17,7 @@ from ralph.assets.tests.factories import (
     FibreChannelCardFactory,
     MemoryFactory,
     ProcessorFactory,
-    ServiceEnvironmentFactory
+    ServiceEnvironmentFactory,
 )
 from ralph.data_center.models import BaseObjectCluster
 from ralph.data_center.models.choices import ConnectionType
@@ -30,14 +30,14 @@ from ralph.data_center.models.physical import (
     DataCenterAsset,
     Rack,
     RackAccessory,
-    ServerRoom
+    ServerRoom,
 )
 from ralph.data_center.models.virtual import (
     Cluster,
     ClusterType,
     Database,
     VIP,
-    VIPProtocol
+    VIPProtocol,
 )
 from ralph.security.tests.factories import SecurityScanFactory
 

@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from ralph.admin.filters import (
     ChoicesListFilter,
     SEARCH_OR_SEPARATORS_REGEX,
-    TextListFilter
+    TextListFilter,
 )
 
 PRIVATE_NETWORK_CIDRS = [

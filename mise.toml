@@ -68,8 +68,12 @@ run = [
 description = "Compile requirements"
 
 [tasks.lint]
-run = "ruff check"
-description = "Format code"
+run = "ruff check src"
+description = "Check code formatting and linting"
+
+[tasks.format]
+run = "ruff format src"
+description = "Format the code"
 
 [tasks.clean]
 run = [

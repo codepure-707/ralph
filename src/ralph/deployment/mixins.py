@@ -1,10 +1,7 @@
 from django.contrib import messages
 from django.utils.safestring import mark_safe
 
-from ralph.lib.transitions.models import (
-    TransitionJob,
-    TransitionJobActionStatus
-)
+from ralph.lib.transitions.models import TransitionJob, TransitionJobActionStatus
 
 
 def get_actions_statuses_as_html(transition):

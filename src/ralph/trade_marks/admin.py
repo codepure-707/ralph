@@ -8,7 +8,7 @@ from ralph.admin.filters import (
     ChoicesListFilter,
     custom_title_filter,
     DateListFilter,
-    RelatedAutocompleteFieldListFilter
+    RelatedAutocompleteFieldListFilter,
 )
 from ralph.admin.mixins import RalphAdmin, RalphTabularInline
 from ralph.admin.views.extra import RalphDetailViewAdmin
@@ -17,7 +17,7 @@ from ralph.trade_marks.forms import (
     DesignForm,
     PatentForm,
     TradeMarkForm,
-    UtilityModelForm
+    UtilityModelForm,
 )
 from ralph.trade_marks.models import (
     Design,
@@ -35,7 +35,7 @@ from ralph.trade_marks.models import (
     TradeMarksLinkedDomains,
     UtilityModel,
     UtilityModelAdditionalCountry,
-    UtilityModelLinkedDomains
+    UtilityModelLinkedDomains,
 )
 
 

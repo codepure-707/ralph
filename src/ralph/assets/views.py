@@ -7,7 +7,7 @@ from ralph.assets.models.components import (
     Ethernet,
     FibreChannelCard,
     Memory,
-    Processor
+    Processor,
 )
 from ralph.networks.forms import EthernetLockDeleteForm, NetworkInlineFormset
 

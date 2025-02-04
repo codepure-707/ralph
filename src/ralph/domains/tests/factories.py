@@ -10,7 +10,7 @@ from ralph.domains.models import (
     DomainCategory,
     DomainContract,
     DomainRegistrant,
-    DomainStatus
+    DomainStatus,
 )
 from ralph.domains.models.domains import DomainProviderAdditionalServices
 

@@ -9,7 +9,7 @@ from ralph.assets.api.serializers import (
     BaseObjectSerializer,
     ComponentSerializerMixin,
     NetworkComponentSerializerMixin,
-    OwnersFromServiceEnvSerializerMixin
+    OwnersFromServiceEnvSerializerMixin,
 )
 from ralph.configuration_management.api import SCMInfoSerializer
 from ralph.data_center.models import (
@@ -23,7 +23,7 @@ from ralph.data_center.models import (
     Rack,
     RackAccessory,
     ServerRoom,
-    VIP
+    VIP,
 )
 from ralph.security.api import SecurityScanSerializer
 

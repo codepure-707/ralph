@@ -10,20 +10,14 @@ from django.urls import reverse
 from rest_framework import status
 
 from ralph.accounts.ldap import manager_country_attribute_populate
-from ralph.accounts.management.commands.ldap_sync import (
-    _truncate,
-    ldap_module_exists
-)
+from ralph.accounts.management.commands.ldap_sync import _truncate, ldap_module_exists
 from ralph.accounts.models import RalphUser, Region
 from ralph.api.tests._base import RalphAPITestCase
 from ralph.assets.tests.factories import (
     BackOfficeAssetModelFactory,
-    ServiceEnvironmentFactory
+    ServiceEnvironmentFactory,
 )
-from ralph.back_office.tests.factories import (
-    BackOfficeAssetFactory,
-    WarehouseFactory
-)
+from ralph.back_office.tests.factories import BackOfficeAssetFactory, WarehouseFactory
 from ralph.licences.models import LicenceUser
 from ralph.licences.tests.factories import LicenceFactory
 from ralph.tests import factories

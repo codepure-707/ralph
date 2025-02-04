@@ -9,12 +9,9 @@ from ralph.assets.models.components import ComponentModel
 from ralph.assets.tests.factories import (
     EnvironmentFactory,
     EthernetFactory,
-    ServiceFactory
+    ServiceFactory,
 )
-from ralph.data_center.tests.factories import (
-    ClusterFactory,
-    DataCenterAssetFactory
-)
+from ralph.data_center.tests.factories import ClusterFactory, DataCenterAssetFactory
 from ralph.lib.custom_fields.models import CustomField, CustomFieldTypes
 from ralph.networks.tests.factories import IPAddressFactory
 from ralph.virtual.models import (
@@ -24,7 +21,7 @@ from ralph.virtual.models import (
     CloudProvider,
     VirtualComponent,
     VirtualServer,
-    VirtualServerType
+    VirtualServerType,
 )
 from ralph.virtual.tests.factories import (
     CloudFlavorFactory,
@@ -32,7 +29,7 @@ from ralph.virtual.tests.factories import (
     CloudHostFullFactory,
     CloudProjectFactory,
     CloudProviderFactory,
-    VirtualServerFullFactory
+    VirtualServerFullFactory,
 )
 
 

@@ -3,13 +3,10 @@ from django.test import TestCase
 from ralph.assets.models import BaseObject
 from ralph.data_importer.widgets import (
     ExportManyToManyStrTroughWidget,
-    ManyToManyThroughWidget
+    ManyToManyThroughWidget,
 )
 from ralph.licences.models import BaseObjectLicence
-from ralph.licences.tests.factories import (
-    DataCenterAssetLicenceFactory,
-    LicenceFactory
-)
+from ralph.licences.tests.factories import DataCenterAssetLicenceFactory, LicenceFactory
 
 
 class ManyToManyThroughWidgetTestCase(TestCase):

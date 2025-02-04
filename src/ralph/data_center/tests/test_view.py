@@ -9,21 +9,18 @@ from ralph.data_center.models import BaseObjectCluster, Cluster, DataCenterAsset
 from ralph.data_center.tests.factories import (
     ClusterFactory,
     DataCenterAssetFactory,
-    DataCenterAssetFullFactory
+    DataCenterAssetFullFactory,
 )
 from ralph.data_center.views import RelationsView
 from ralph.security.models import ScanStatus
-from ralph.security.tests.factories import (
-    SecurityScanFactory,
-    VulnerabilityFactory
-)
+from ralph.security.tests.factories import SecurityScanFactory, VulnerabilityFactory
 from ralph.tests.mixins import ClientMixin
 from ralph.virtual.models import CloudHost, VirtualServer
 from ralph.virtual.tests.factories import (
     CloudHostFactory,
     CloudHostFullFactory,
     VirtualServerFactory,
-    VirtualServerFullFactory
+    VirtualServerFullFactory,
 )
 
 

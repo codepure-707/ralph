@@ -9,7 +9,7 @@ from ralph.assets.tests.factories import (
     DataCenterAssetModelFactory,
     EnvironmentFactory,
     ServiceEnvironment,
-    ServiceFactory
+    ServiceFactory,
 )
 from ralph.data_center.models.choices import Orientation
 from ralph.data_center.tests.factories import (
@@ -17,12 +17,9 @@ from ralph.data_center.tests.factories import (
     DataCenterAssetFactory,
     RackAccessoryFactory,
     RackFactory,
-    ServerRoomFactory
+    ServerRoomFactory,
 )
-from ralph.dc_view.serializers.models_serializer import (
-    TYPE_ACCESSORY,
-    TYPE_ASSET
-)
+from ralph.dc_view.serializers.models_serializer import TYPE_ACCESSORY, TYPE_ASSET
 
 
 class TestRestAssetInfoPerRack(TestCase):

@@ -8,11 +8,7 @@ from dj.choices import Choices, Country
 from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError
-from django.core.validators import (
-    MaxValueValidator,
-    MinValueValidator,
-    RegexValidator
-)
+from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
 from django.db import models, transaction
 from django.db.models import Q
 from django.urls import reverse
@@ -35,7 +31,7 @@ from ralph.data_center.models.choices import (
     ConnectionType,
     DataCenterAssetStatus,
     Orientation,
-    RackOrientation
+    RackOrientation,
 )
 from ralph.data_center.models.mixins import WithManagementIPMixin
 from ralph.data_center.publishers import publish_host_update

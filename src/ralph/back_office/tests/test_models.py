@@ -20,14 +20,14 @@ from ralph.assets.tests.factories import (
     BackOfficeAssetModelFactory,
     CategoryFactory,
     DataCenterAssetModelFactory,
-    ServiceEnvironmentFactory
+    ServiceEnvironmentFactory,
 )
 from ralph.attachments.models import Attachment
 from ralph.back_office.helpers import EmailContext
 from ralph.back_office.models import (
     _check_assets_owner,
     BackOfficeAsset,
-    BackOfficeAssetStatus
+    BackOfficeAssetStatus,
 )
 from ralph.back_office.tests.factories import BackOfficeAssetFactory
 from ralph.data_center.models import DataCenterAsset, DataCenterAssetStatus
@@ -38,7 +38,7 @@ from ralph.lib.transitions.models import (
     run_field_transition,
     Transition,
     TransitionModel,
-    TransitionNotAllowedError
+    TransitionNotAllowedError,
 )
 from ralph.lib.transitions.tests import TransitionTestCase
 from ralph.licences.tests.factories import LicenceFactory

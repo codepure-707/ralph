@@ -5,7 +5,7 @@ from django.http import (
     HttpResponse,
     HttpResponseBadRequest,
     HttpResponseNotFound,
-    HttpResponseNotModified
+    HttpResponseNotModified,
 )
 from django.utils.http import http_date, parse_http_date_safe
 from django.views.generic.base import TemplateView
@@ -16,11 +16,7 @@ from ralph.assets.models.components import Ethernet
 from ralph.data_center.models import DataCenter
 from ralph.deployment.models import Deployment
 from ralph.dhcp.models import DHCPEntry, DHCPServer, DNSServer
-from ralph.networks.models.networks import (
-    IPAddress,
-    Network,
-    NetworkEnvironment
-)
+from ralph.networks.models.networks import IPAddress, Network, NetworkEnvironment
 
 logger = logging.getLogger(__name__)
 

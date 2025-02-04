@@ -11,11 +11,7 @@ from django.core.management import call_command
 from django.core.management.base import BaseCommand
 
 from ralph.accounts.models import RalphUser
-from ralph.accounts.tests.factories import (
-    GroupFactory,
-    RegionFactory,
-    UserFactory
-)
+from ralph.accounts.tests.factories import GroupFactory, RegionFactory, UserFactory
 from ralph.assets.tests.factories import (
     BackOfficeAssetModelFactory,
     BusinessSegmentFactory,
@@ -23,7 +19,7 @@ from ralph.assets.tests.factories import (
     DataCenterAssetModelFactory,
     DataCenterCategoryFactory,
     ProfitCenterFactory,
-    ServiceEnvironmentFactory
+    ServiceEnvironmentFactory,
 )
 from ralph.back_office.models import BackOfficeAsset, BackOfficeAssetStatus
 from ralph.back_office.tests.factories import BackOfficeAssetFactory
@@ -34,15 +30,16 @@ from ralph.data_center.tests.factories import (
     DataCenterAssetFactory,
     RackAccessoryFactory,
     RackFactory,
-    ServerRoomFactory
+    ServerRoomFactory,
 )
-from ralph.data_importer.management.commands.create_transitions import \
-    Command as TransitionCommand
+from ralph.data_importer.management.commands.create_transitions import (
+    Command as TransitionCommand,
+)
 from ralph.licences.models import LicenceUser
 from ralph.licences.tests.factories import (
     BaseObjectLicenceFactory,
     DataCenterAssetLicenceFactory,
-    LicenceFactory
+    LicenceFactory,
 )
 from ralph.reports.models import Report, ReportLanguage, ReportTemplate
 from ralph.supports.tests.factories import BaseObjectsSupportFactory

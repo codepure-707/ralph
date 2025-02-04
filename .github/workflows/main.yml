@@ -43,8 +43,8 @@ jobs:
       - name: Install Ralph's python dependencies
         run: pip3 install -r "${GITHUB_WORKSPACE}/requirements/dev.txt"
 
-      - name: Run flake8
-        run: make flake
+      - name: Check formatting
+        run: make lint
 
   missing_migrations:
     name: Missing migrations

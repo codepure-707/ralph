@@ -21,7 +21,7 @@ from ralph.operations.models import (
     Operation,
     OperationStatus,
     OperationType,
-    Problem
+    Problem,
 )
 
 

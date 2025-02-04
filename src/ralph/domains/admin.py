@@ -14,7 +14,7 @@ from ralph.domains.models.domains import (
     DomainCategory,
     DomainContract,
     DomainProviderAdditionalServices,
-    DomainRegistrant
+    DomainRegistrant,
 )
 
 

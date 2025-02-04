@@ -10,7 +10,7 @@ from ralph.assets.models.assets import (
     Environment,
     ProfitCenter,
     Service,
-    ServiceEnvironment
+    ServiceEnvironment,
 )
 from ralph.assets.models.base import BaseObject
 

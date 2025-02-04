@@ -16,7 +16,7 @@ from ralph.lib.mixins.models import AdminAbsoluteUrlMixin, NamedMixin
 from ralph.lib.permissions.models import (
     PermByFieldMixin,
     PermissionsForObjectMixin,
-    user_permission
+    user_permission,
 )
 
 

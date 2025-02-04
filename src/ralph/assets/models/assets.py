@@ -13,23 +13,14 @@ from mptt.models import MPTTModel, TreeForeignKey
 from ralph.accounts.models import Team
 from ralph.admin.autocomplete import AutocompleteTooltipMixin
 from ralph.assets.models.base import BaseObject
-from ralph.assets.models.choices import (
-    ModelVisualizationLayout,
-    ObjectModelType
-)
-from ralph.lib.custom_fields.models import (
-    CustomFieldMeta,
-    WithCustomFieldsMixin
-)
-from ralph.lib.mixins.fields import (
-    NullableCharField,
-    NullableCharFieldWithAutoStrip
-)
+from ralph.assets.models.choices import ModelVisualizationLayout, ObjectModelType
+from ralph.lib.custom_fields.models import CustomFieldMeta, WithCustomFieldsMixin
+from ralph.lib.mixins.fields import NullableCharField, NullableCharFieldWithAutoStrip
 from ralph.lib.mixins.models import (
     AdminAbsoluteUrlMixin,
     NamedMixin,
     PriceMixin,
-    TimeStampMixin
+    TimeStampMixin,
 )
 from ralph.lib.permissions.models import PermByFieldMixin, PermissionsBase
 

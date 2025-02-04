@@ -5,10 +5,7 @@ from ralph.accounts.tests.factories import UserFactory
 from ralph.assets.models import BaseObject
 from ralph.back_office.tests.factories import BackOfficeAssetFactory
 from ralph.data_importer.fields import ThroughField
-from ralph.data_importer.widgets import (
-    ManyToManyThroughWidget,
-    UserManyToManyWidget
-)
+from ralph.data_importer.widgets import ManyToManyThroughWidget, UserManyToManyWidget
 from ralph.licences.models import BaseObjectLicence, LicenceUser
 from ralph.licences.tests.factories import LicenceFactory
 

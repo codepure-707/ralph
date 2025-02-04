@@ -6,16 +6,13 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from ralph.attachments.models import AttachmentItem
-from ralph.lib.custom_fields.models import (
-    CustomFieldMeta,
-    WithCustomFieldsMixin
-)
+from ralph.lib.custom_fields.models import CustomFieldMeta, WithCustomFieldsMixin
 from ralph.lib.mixins.models import TaggableMixin, TimeStampMixin
 from ralph.lib.permissions.models import PermByFieldMixin, PermissionsBase
 from ralph.lib.polymorphic.models import (
     Polymorphic,
     PolymorphicBase,
-    PolymorphicQuerySet
+    PolymorphicQuerySet,
 )
 from ralph.lib.transitions.models import TransitionWorkflowBase
 

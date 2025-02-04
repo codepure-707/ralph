@@ -9,7 +9,7 @@ from ralph.dc_view.serializers.models_serializer import (
     RackAccessorySerializer,
     RackBaseSerializer,
     RackSerializer,
-    SRSerializer
+    SRSerializer,
 )
 
 

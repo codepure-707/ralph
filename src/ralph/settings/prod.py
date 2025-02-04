@@ -53,8 +53,8 @@ if os.environ.get("USE_REDIS_CACHE"):
     CACHES = {
         "default": {
             "OPTIONS": (
-                json.loads(
-                    os.environ.get("REDIS_CACHE_OPTIONS", "{}")) or DEFAULT_CACHE_OPTIONS
+                json.loads(os.environ.get("REDIS_CACHE_OPTIONS", "{}"))
+                or DEFAULT_CACHE_OPTIONS
             ),
         },
     }
@@ -89,15 +89,13 @@ if bool_from_env("COLLECT_METRICS"):
     if ALLOW_PUSH_GRAPHS_DATA_TO_STATSD:
         STATSD_GRAPHS_PREFIX = os.environ.get("STATSD_GRAPHS_PREFIX", "ralph.graphs")
 
-if bool_from_env('PROMETHEUS_METRICS_ENABLED', True):
+if bool_from_env("PROMETHEUS_METRICS_ENABLED", True):
     PROMETHEUS_METRICS_ENABLED = True
     PROMETHEUS_EXPORT_MIGRATIONS = False
     MIDDLEWARE = (
-        'django_prometheus.middleware.PrometheusBeforeMiddleware',
+        "django_prometheus.middleware.PrometheusBeforeMiddleware",
     ) + MIDDLEWARE
     MIDDLEWARE = MIDDLEWARE + (
-        'django_prometheus.middleware.PrometheusAfterMiddleware',
+        "django_prometheus.middleware.PrometheusAfterMiddleware",
     )
-    INSTALLED_APPS += (
-        'django_prometheus',
-    )
+    INSTALLED_APPS += ("django_prometheus",)

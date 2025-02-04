@@ -6,7 +6,7 @@ from ralph.api import RalphAPISerializer, RalphAPIViewSet, router
 from ralph.assets.api.serializers import (
     ServiceEnvironmentSimpleSerializer,
     StrField,
-    TypeFromContentTypeSerializerMixin
+    TypeFromContentTypeSerializerMixin,
 )
 from ralph.assets.models import BaseObject
 from ralph.supports.models import BaseObjectsSupport, Support, SupportType

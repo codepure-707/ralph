@@ -18,19 +18,19 @@ from ralph.virtual.models import (
     CloudHost,
     CloudProject,
     CloudProvider,
-    VirtualComponent
+    VirtualComponent,
 )
 from ralph.virtual.tests.factories import (
     CloudFlavorFactory,
     CloudHostFactory,
     CloudHostFullFactory,
     CloudProjectFactory,
-    CloudProviderFactory
+    CloudProviderFactory,
 )
 from ralph.virtual.tests.samples.openstack_data import (
     OPENSTACK_DATA,
     OPENSTACK_FLAVORS,
-    OPENSTACK_INSTANCES
+    OPENSTACK_INSTANCES,
 )
 
 

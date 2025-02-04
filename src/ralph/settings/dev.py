@@ -6,6 +6,7 @@ from ralph.settings import (
     MIDDLEWARE,
 )
 
+
 def only_true(request):
     """For django debug toolbar."""
     return True

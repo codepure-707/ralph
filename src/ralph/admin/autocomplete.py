@@ -14,7 +14,7 @@ from django.views.generic import View
 from ralph.admin.helpers import (
     get_admin_url,
     get_field_by_relation_path,
-    get_value_by_relation_path
+    get_value_by_relation_path,
 )
 from ralph.admin.sites import ralph_site
 from ralph.lib.permissions.models import PermissionsForObjectMixin

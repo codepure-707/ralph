@@ -14,7 +14,7 @@ from ralph.accounts.admin import (
     AssetList,
     AssignedLicenceList,
     AssignedSimcardsList,
-    UserInfoMixin
+    UserInfoMixin,
 )
 from ralph.accounts.helpers import (
     ACCEPTANCE_LOAN_TRANSITION_ID,
@@ -24,7 +24,7 @@ from ralph.accounts.helpers import (
     get_assets_to_accept,
     get_assets_to_accept_loan,
     get_loan_acceptance_url,
-    loan_transition_exists
+    loan_transition_exists,
 )
 from ralph.admin.mixins import RalphBaseTemplateView, RalphTemplateView
 from ralph.back_office.models import BackOfficeAsset

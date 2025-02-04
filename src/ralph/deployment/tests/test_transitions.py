@@ -7,16 +7,13 @@ from rest_framework.test import APIClient
 from ralph.assets.models import AssetLastHostname
 from ralph.assets.tests.factories import EthernetFactory
 from ralph.data_center.models import DataCenterAsset
-from ralph.data_center.tests.factories import (
-    DataCenterAssetFactory,
-    RackFactory
-)
+from ralph.data_center.tests.factories import DataCenterAssetFactory, RackFactory
 from ralph.lib.transitions.conf import TRANSITION_ORIGINAL_STATUS
 from ralph.lib.transitions.tests import TransitionTestCase
 from ralph.networks.tests.factories import (
     IPAddressFactory,
     NetworkEnvironmentFactory,
-    NetworkFactory
+    NetworkFactory,
 )
 from ralph.virtual.models import VirtualServer
 from ralph.virtual.tests.factories import VirtualServerFactory

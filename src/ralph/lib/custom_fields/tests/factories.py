@@ -1,10 +1,7 @@
 from factory import DjangoModelFactory
 from factory.fuzzy import FuzzyText
 
-from ralph.lib.custom_fields.models import (
-    CustomField,
-    CustomFieldTypes
-)
+from ralph.lib.custom_fields.models import CustomField, CustomFieldTypes
 
 
 class CustomFieldFactory(DjangoModelFactory):

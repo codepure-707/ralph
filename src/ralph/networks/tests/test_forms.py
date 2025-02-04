@@ -7,7 +7,7 @@ from ralph.networks.models import IPAddress
 from ralph.networks.tests.factories import (
     IPAddressFactory,
     NetworkEnvironmentFactory,
-    NetworkFactory
+    NetworkFactory,
 )
 from ralph.tests import RalphTestCase
 from ralph.tests.models import PolymorphicTestModel
@@ -420,9 +420,7 @@ class NetworkInlineWithDHCPExposeTestCase(RalphTestCase):
             ),
         )
         name = "some.hostname"
-        IPAddressFactory(
-            dhcp_expose=True, hostname=name, address="192.168.0.7"
-        ).save()
+        IPAddressFactory(dhcp_expose=True, hostname=name, address="192.168.0.7").save()
         self.ip1.hostname = name
         self.ip1.address = "192.168.0.12"
         self.ip1.save()

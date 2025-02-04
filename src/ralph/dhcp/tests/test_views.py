@@ -121,9 +121,7 @@ class DHCPEntriesViewTest(TestCase):
         asset = DataCenterAssetFactory()
         ethernet = EthernetFactory(base_object=asset)
         ethernet.save()
-        IPAddressFactory(
-            address="192.168.1.2", base_object=asset, ethernet=ethernet
-        )
+        IPAddressFactory(address="192.168.1.2", base_object=asset, ethernet=ethernet)
         ethernet.save()
         returned = self.view.get_last_modified(
             Network.objects.filter(id__in=[network.id])

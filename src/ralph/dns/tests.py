@@ -4,19 +4,12 @@ from unittest.mock import patch
 from django.db import transaction
 from django.test import override_settings, TestCase, TransactionTestCase
 
-from ralph.assets.tests.factories import (
-    ConfigurationClassFactory,
-    EthernetFactory
-)
+from ralph.assets.tests.factories import ConfigurationClassFactory, EthernetFactory
 from ralph.data_center.models import BaseObjectCluster, DataCenterAsset
 from ralph.dns.dnsaas import DNSaaS
 from ralph.dns.forms import DNSRecordForm, RecordType
 from ralph.dns.publishers import _get_txt_data_to_publish_to_dnsaas
-from ralph.dns.views import (
-    add_errors,
-    DNSaaSIntegrationNotEnabledError,
-    DNSView
-)
+from ralph.dns.views import add_errors, DNSaaSIntegrationNotEnabledError, DNSView
 from ralph.networks.tests.factories import IPAddressFactory
 from ralph.virtual.models import VirtualServer
 from ralph.virtual.tests.factories import VirtualServerFactory

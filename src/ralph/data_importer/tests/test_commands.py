@@ -15,7 +15,7 @@ from ralph.assets.models.assets import (
     Environment,
     Manufacturer,
     Service,
-    ServiceEnvironment
+    ServiceEnvironment,
 )
 from ralph.assets.models.choices import ObjectModelType
 from ralph.back_office.models import BackOfficeAsset, Warehouse
@@ -26,15 +26,11 @@ from ralph.data_importer.management.commands import importer
 from ralph.data_importer.management.commands.create_server_model import (
     DEFAULT_MODEL_CATEGORY,
     DEFAULT_MODEL_MANUFACTURER,
-    DEFAULT_MODEL_NAME
+    DEFAULT_MODEL_NAME,
 )
 from ralph.data_importer.models import ImportedObjects
 from ralph.data_importer.resources import AssetModelResource
-from ralph.deployment.models import (
-    Preboot,
-    PrebootConfiguration,
-    PrebootItemType
-)
+from ralph.deployment.models import Preboot, PrebootConfiguration, PrebootItemType
 from ralph.dhcp.models import DNSServerGroup
 from ralph.lib.transitions.conf import DEFAULT_ASYNC_TRANSITION_SERVICE_NAME
 from ralph.lib.transitions.models import Transition, TransitionModel

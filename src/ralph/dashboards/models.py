@@ -9,11 +9,7 @@ from django_extensions.db.fields.json import JSONField
 
 from ralph.dashboards.filter_parser import FilterParser
 from ralph.dashboards.renderers import HorizontalBar, PieChart, VerticalBar
-from ralph.lib.mixins.models import (
-    AdminAbsoluteUrlMixin,
-    NamedMixin,
-    TimeStampMixin
-)
+from ralph.lib.mixins.models import AdminAbsoluteUrlMixin, NamedMixin, TimeStampMixin
 
 
 def _unpack_series(series):

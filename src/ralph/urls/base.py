@@ -79,7 +79,7 @@ urlpatterns = [
 if getattr(settings, "ENABLE_HERMES_INTEGRATION", False):
     urlpatterns += (url(r"^hermes/", include("pyhermes.apps.django.urls")),)
 
-if getattr(settings, 'PROMETHEUS_METRICS_ENABLED', False):
+if getattr(settings, "PROMETHEUS_METRICS_ENABLED", False):
     urlpatterns += [
         path(
             "status/prometheus",

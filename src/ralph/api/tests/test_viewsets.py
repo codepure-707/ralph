@@ -10,7 +10,7 @@ from ralph.api.tests.api import (
     CarSerializer,
     CarViewSet,
     ManufacturerSerializer2,
-    ManufacturerViewSet
+    ManufacturerViewSet,
 )
 from ralph.api.viewsets import RalphAPIViewSet
 from ralph.tests import RalphTestCase

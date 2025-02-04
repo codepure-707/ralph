@@ -8,7 +8,7 @@ from ralph.deployment.models import (
     Preboot,
     PrebootConfiguration,
     PrebootFile,
-    PrebootItem
+    PrebootItem,
 )
 
 
