@@ -22,7 +22,7 @@ run = [
     "source .venv/bin/activate"
 ]
 
-[tasks.install]
+[tasks.install-reqs]
 run = [
     "uv pip sync requirements/dev.txt",
     "uv pip install -e ."
@@ -34,15 +34,11 @@ alias = "deps"
 run = "docker-cli-plugin-docker-compose -f docker/docker-compose-dev.yml up -d"
 description = "Start required containers"
 
-[tasks.manage]
-run = "dev_ralph"
-description = "dev_ralph [...]"
-
 [tasks.init]
-depends = ["install", "up"]
+depends = ["install-reqs", "up"]
 run = [
     """ls 'src/ralph/settings/local.py' ||
-        (echo 'please create your settings file:\ncp src/ralph/settings/local.template src/ralph/settings/local.py' \
+        (echo 'please create your settings file e.g.:\ncp src/ralph/settings/local.template src/ralph/settings/local.py' \
         && exit 1)
     """,
     "python setup.py develop",
@@ -52,6 +48,9 @@ run = [
     """echo "Or just start server with 'mise run server'"""",
 ]
 description = "Bootstrap new local ralph installation"
+
+[tasks.manage]
+run = "dev_ralph"
 
 [tasks.server]
 depends = ['up']
@@ -68,7 +67,7 @@ run = [
 ]
 description = "Compile requirements"
 
-[tasks.lint]
+[tasks.checks]
 run = "ruff check src"
 description = "Check code formatting and linting"
 
