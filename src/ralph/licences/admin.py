@@ -74,7 +74,7 @@ class LicenceAdmin(
 ):
     """Licence admin class."""
 
-    actions = ["bulk_edit_action"]
+    actions = ["bulk_edit_action", "invoice_report"]
     form = LicenseAdminForm
     change_views = [
         BaseObjectLicenceView,

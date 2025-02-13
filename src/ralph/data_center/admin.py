@@ -380,7 +380,8 @@ class DataCenterAssetAdmin(
     """Data Center Asset admin class."""
 
     add_form_template = "data_center/datacenterasset/add_form.html"
-    actions = ["bulk_edit_action"]
+    actions = ["bulk_edit_action", "invoice_report"]
+
     change_views = [
         DataCenterAssetComponents,
         DataCenterAssetNetworkView,

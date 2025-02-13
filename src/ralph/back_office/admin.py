@@ -94,7 +94,8 @@ class BackOfficeAssetAdmin(
 
     add_form_template = "backofficeasset/add_form.html"
     form = BackOfficeAssetAdminForm
-    actions = ["bulk_edit_action"]
+    actions = ["bulk_edit_action", "invoice_report"]
+
     show_transition_history = True
     change_views = [
         BackOfficeAssetLicence,
