@@ -81,7 +81,7 @@ class BaseObject(
         blank=True,
         verbose_name=_("configuration path"),
         help_text=_(
-            "path to configuration for this object, for example path to puppet " "class"
+            "path to configuration for this object, for example path to puppet class"
         ),
         on_delete=models.PROTECT,
     )

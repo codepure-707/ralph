@@ -213,7 +213,7 @@ class Licence(Regionalizable, AdminAbsoluteUrlMixin, PriceMixin, BaseObject):
         null=True,
         blank=True,
         help_text=_(
-            "Any value to help your accounting department " "identify this licence"
+            "Any value to help your accounting department identify this licence"
         ),
     )
     base_objects = models.ManyToManyField(

@@ -129,6 +129,16 @@ docs = [
 
 [tool.ruff]
 exclude = [
-    "*local.py"
+    "*local.py",
+    "*migrations*"
 ]
+
+[tools.ruff.format]
+line-length = 88
+line-ending = "auto"
+
+[tool.ruff.lint]
+# Add "B" (bugbear) in the future
+select = ["E4", "E7", "E9", "F"]
+ignore = []
 

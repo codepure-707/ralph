@@ -86,7 +86,7 @@ class MultivalueFormMixin(object):
             for field in self.multivalue_fields:
                 if field in cleaned_data:
                     msg = _(
-                        ("Fields: %(fields)s " "- require the same number of items")
+                        ("Fields: %(fields)s - require the same number of items")
                     ) % {"fields": ", ".join(self.multivalue_fields)}
                     self.errors.setdefault(field, []).append(msg)
 

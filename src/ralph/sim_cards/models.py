@@ -180,7 +180,7 @@ class SIMCard(
             "accept": {
                 "field": forms.BooleanField(
                     label=_(
-                        "I have read and fully understand and " "accept the agreement."
+                        "I have read and fully understand and accept the agreement."
                     )
                 )
             },

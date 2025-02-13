@@ -26,7 +26,7 @@ def validate_is_management(forms):
     count_management_ip = is_management.count(True)
     if is_management and count_management_ip > 1:
         raise ValidationError(
-            ("Only one management IP address can be assigned " "to this asset")
+            ("Only one management IP address can be assigned to this asset")
         )
 
 

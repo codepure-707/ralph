@@ -134,8 +134,7 @@ class Command(BaseCommand):
     def _validate_configuration_path(self, configuration_path):
         if len(configuration_path.split("/")) != 2:
             raise CommandError(
-                "Configuration path must be a string with no spaces including"
-                "one slash."
+                "Configuration path must be a string with no spaces includingone slash."
             )
 
     def create_users(self, region):

@@ -15,11 +15,11 @@ def only_true(request):
 DEBUG = False
 
 INSTALLED_APPS = INSTALLED_APPS + (
-    # "debug_toolbar",
+    "debug_toolbar",
     "django_extensions",
 )
 
-# MIDDLEWARE = MIDDLEWARE + ("debug_toolbar.middleware.DebugToolbarMiddleware",)
+MIDDLEWARE = MIDDLEWARE + ("debug_toolbar.middleware.DebugToolbarMiddleware",)
 
 DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK": "%s.only_true" % __name__,

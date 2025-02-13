@@ -1,8 +1,11 @@
 [env]
 _.python.venv = ".venv"
 DJANGO_SETTINGS_MODULE = "ralph.settings.local"
+DB_ENGINE = "psql"
 TEST_DB_ENGINE = "psql"
 DATABASE_PORT = 54320
+MISE_PROJECT_ROOT = "."
+MISE_PROJECT_NAME = "ralph"
 
 [settings]
 experimental = true
@@ -15,6 +18,7 @@ docker-compose = "latest"
 node = "11.7.0"
 uv = "latest"
 python = "3.8"
+ruff = "latest"
 
 [tasks.venv]
 run = [
@@ -28,11 +32,19 @@ run = [
     "uv pip install -e ."
 ]
 description = "Install requirements and entrypoints"
-alias = "deps"
+alias = ["deps", "i"]
 
 [tasks.up]
 run = "docker-cli-plugin-docker-compose -f docker/docker-compose-dev.yml up -d"
 description = "Start required containers"
+
+[tasks.down]
+run = "docker-cli-plugin-docker-compose -f docker/docker-compose-dev.yml down"
+description = "Stop and remove containers"
+
+[tasks.rebuild]
+run = "docker-cli-plugin-docker-compose -f docker/docker-compose-dev.yml build"
+description = "Rebuild Docker images"
 
 [tasks.init]
 depends = ["install-reqs", "up"]
@@ -44,8 +56,8 @@ run = [
     "python setup.py develop",
     "dev_ralph migrate",
     "make menu",
-    """echo "Installation finished. Run 'mise manage createsuperuser' to be able to log in"""",
-    """echo "Or just start server with 'mise run server'"""",
+    "echo \"Installation finished. Run 'mise manage createsuperuser' to be able to log in\"",
+    "echo \"Or just start server with 'mise run server'\"",
 ]
 description = "Bootstrap new local ralph installation"
 
@@ -53,7 +65,7 @@ description = "Bootstrap new local ralph installation"
 run = "dev_ralph"
 
 [tasks.server]
-depends = ['up']
+depends = ["up"]
 run = "dev_ralph runserver"
 alias = ["s", "default"]
 description = "Run local server"
@@ -91,4 +103,33 @@ run = [
     "coverage report"
 ]
 description = "Run tests and report coverage"
+
+[tasks.db-backup-mysql]
+run = """
+mysqldump \
+  -h 127.0.0.1 \
+  -u root \
+  -p'ralph_ng' \
+  ralph_ng > backup.sql
+"""
+description = "Backup the mysql database"
+hide = true
+
+[tasks.db-backup-psql]
+run = """
+PGPASSWORD=ralph_ng pg_dump \
+  -h 127.0.0.1 \
+  -p 54320 \
+  -U ralph_ng \
+  -F c \
+  -b \
+  -v \
+  -f backup.sql \
+"""
+description = "Backup the psql database"
+hide = true
+
+[tasks.db-backup]
+depends = ["{% if env.DB_ENGINE == 'psql' %}db-backup-psql{% else %}db-backup-mysql{% endif %}"]
+description = "Backup the database"
 

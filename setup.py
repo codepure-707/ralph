@@ -6,7 +6,7 @@ import sys
 
 from setuptools import find_packages, setup
 
-assert sys.version_info >= (3, 3), 'Python 3.3+ required.'
+assert sys.version_info >= (3, 8), 'Python 3.8+ required.'
 
 
 def read(fname):
@@ -65,7 +65,7 @@ setup(
         'Operating System :: Microsoft :: Windows :: Windows NT/2000',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.8',
         'Topic :: Internet :: WWW/HTTP',
     ]
 )

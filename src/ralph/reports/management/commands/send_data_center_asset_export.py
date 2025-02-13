@@ -42,7 +42,7 @@ class Command(BaseCommand):
             attachment_mimetype = mimetypes.types_map[output_format]
             attachment_filename = "report" + output_format
             subject = "Ralph Data Center Asset Export"
-            body = "Attached to this message is a dump " "of Ralph Data Center Assets"
+            body = "Attached to this message is a dump of Ralph Data Center Assets"
             send_email_with_attachment(
                 sender_email,
                 recipient_email,

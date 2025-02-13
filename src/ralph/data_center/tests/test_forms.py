@@ -32,7 +32,7 @@ class NetworkLineFormsetTest(RalphTestCase):
         }
         with self.assertRaisesRegex(
             ValidationError,
-            ("Only one management IP address can be assigned " "to this asset"),
+            ("Only one management IP address can be assigned to this asset"),
         ):
             validate_is_management([form_1, form_2])
 

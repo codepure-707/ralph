@@ -87,7 +87,7 @@ class InventoryTagView(View):
 
     def _post_no(self, request, asset):
         tags = [settings.INVENTORY_TAG_MISSING]
-        missing_asset_info = "Please contact person responsible " "for asset management"
+        missing_asset_info = "Please contact person responsible for asset management"
         if settings.MISSING_ASSET_REPORT_URL is not None:
             missing_asset_info += "\n" + settings.MISSING_ASSET_REPORT_URL
 
