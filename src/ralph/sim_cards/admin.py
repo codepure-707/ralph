@@ -20,11 +20,6 @@ class SIMCardAdmin(
     BulkEditChangeListMixin,
     RalphAdminMixin,
 ):
-    # NOTE(Anna Gabler): list_display - list on top page
-    #                    raw_id_fields - fancy autocomplete
-    #                    list_select_related - join to database (DJANGO)
-    #                    list_filter  - list of filters on simcard list
-    #                    fieldsets - configuration of editor layout
     form = SIMCardForm
     actions = ["bulk_edit_action"]
     show_transition_history = True
