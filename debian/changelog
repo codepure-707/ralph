@@ -1,3 +1,15 @@
+ralph (20250214.1) bionic; urgency=medium
+
+  * Fix invoice report action missing because of changes in django 2.2
+
+ -- Paweł Szulc <pawel.szulc@allegro.com>  Fri, 14 Feb 2025 11:56:16 +0000
+
+ralph (20250214.1) bionic; urgency=medium
+
+  * Fix invoice report action missing because of changes in django 2.2
+
+ -- Paweł Szulc <pawel.szulc@allegro.com>  Fri, 14 Feb 2025 11:55:20 +0000
+
 ralph (20250205.1) bionic; urgency=medium
 
   [ Olga Matyla ]
