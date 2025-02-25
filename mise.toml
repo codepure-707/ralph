@@ -1,5 +1,5 @@
 [env]
-_.python.venv = ".venv"
+_.python.venv = { path = ".venv", create = true }
 DJANGO_SETTINGS_MODULE = "ralph.settings.local"
 DB_ENGINE = "psql"
 TEST_DB_ENGINE = "psql"
@@ -14,50 +14,41 @@ experimental = true
 uv_venv_auto = true
 
 [tools]
-docker-compose = "latest"
+podman = "latest"
 node = "11.7.0"
 uv = "latest"
 python = "3.8"
 ruff = "latest"
 
-[tasks.venv]
-run = [
-    "uv venv",
-    "source .venv/bin/activate"
-]
-
-[tasks.install-reqs]
-run = [
-    "uv pip sync requirements/dev.txt",
-    "uv pip install -e ."
-]
+[tasks.install]
+run = ["uv pip sync requirements/dev.txt", "uv pip install -e ."]
 description = "Install requirements and entrypoints"
 alias = ["deps", "i"]
 
 [tasks.up]
-run = "docker-cli-plugin-docker-compose -f docker/docker-compose-dev.yml up -d"
+run = "podman compose -f docker/docker-compose-dev.yml -p ralph up -d"
 description = "Start required containers"
 
 [tasks.down]
-run = "docker-cli-plugin-docker-compose -f docker/docker-compose-dev.yml down"
+run = "podman compose -f docker/docker-compose-dev.yml -p ralph down"
 description = "Stop and remove containers"
 
 [tasks.rebuild]
-run = "docker-cli-plugin-docker-compose -f docker/docker-compose-dev.yml build"
-description = "Rebuild Docker images"
+run = "podman compose -f docker/docker-compose-dev.yml -p ralph build"
+description = "Rebuild images"
 
 [tasks.init]
-depends = ["install-reqs", "up"]
+depends = ["install", "up"]
 run = [
-    """ls 'src/ralph/settings/local.py' ||
+  """ls 'src/ralph/settings/local.py' ||
         (echo 'please create your settings file e.g.:\ncp src/ralph/settings/local.template src/ralph/settings/local.py' \
         && exit 1)
     """,
-    "python setup.py develop",
-    "dev_ralph migrate",
-    "make menu",
-    "echo \"Installation finished. Run 'mise manage createsuperuser' to be able to log in\"",
-    "echo \"Or just start server with 'mise run server'\"",
+  "python setup.py develop",
+  "dev_ralph migrate",
+  "make menu",
+  "echo \"Installation finished. Run 'mise manage createsuperuser' to be able to log in\"",
+  "echo \"Or just start server with 'mise run server'\"",
 ]
 description = "Bootstrap new local ralph installation"
 
@@ -72,10 +63,10 @@ description = "Run local server"
 
 [tasks.requirements]
 run = [
-    "uv pip compile pyproject.toml --all-extras -o requirements/dev.txt",
-    "uv pip compile pyproject.toml --extra docs -o requirements/docs.txt",
-    "uv pip compile pyproject.toml --extra dev --extra test -o requirements/test.txt",
-    "uv pip compile pyproject.toml --extra prod -o requirements/prod.txt",
+  "uv pip compile pyproject.toml --all-extras -o requirements/dev.txt",
+  "uv pip compile pyproject.toml --extra docs -o requirements/docs.txt",
+  "uv pip compile pyproject.toml --extra dev --extra test -o requirements/test.txt",
+  "uv pip compile pyproject.toml --extra prod -o requirements/prod.txt",
 ]
 description = "Compile requirements"
 
@@ -88,19 +79,16 @@ run = "ruff format src"
 description = "Format the code"
 
 [tasks.clean]
-run = [
-    "find . -name '*.py[cod]' -delete",
-    "rm .coverage || :"
-]
+run = ["find . -name '*.py[cod]' -delete", "rm .coverage || :"]
 hide = true
 
 [tasks.coverage]
 depends = ['clean']
 run = [
-    """DJANGO_SETTINGS_MODULE='ralph.settings.test' coverage run $(command -v test_ralph) \
+  """DJANGO_SETTINGS_MODULE='ralph.settings.test' coverage run $(command -v test_ralph) \
     test {{arg(name='apps',default='ralph.admin ralph.access_cards ralph.accounts ralph.accessories ralph.assets ralph.attachments ralph.back_office ralph.configuration_management ralph.dashboards ralph.data_center ralph.dhcp ralph.deployment ralph.licences ralph.domains ralph.trade_marks ralph.sim_cards ralph.supports ralph.security ralph.lib.foundation ralph.lib.table ralph.networks ralph.data_importer ralph.dc_view ralph.reports ralph.virtual ralph.operations ralph.lib.external_services ralph.lib.transitions ralph.lib.permissions ralph.lib.custom_fields ralph.lib.hooks ralph.notifications ralph.ssl_certificates ralph.lib.mixins ralph.tests ralph.lib.custom_fields.tests ralph.lib.permissions.tests ralph.lib.polymorphic.tests ralph.lib.mixins.tests')}} \
     --keepdb """,
-    "coverage report"
+  "coverage report",
 ]
 description = "Run tests and report coverage"
 
@@ -130,6 +118,8 @@ description = "Backup the psql database"
 hide = true
 
 [tasks.db-backup]
-depends = ["{% if env.DB_ENGINE == 'psql' %}db-backup-psql{% else %}db-backup-mysql{% endif %}"]
+depends = [
+  "{% if env.DB_ENGINE == 'psql' %}db-backup-psql{% else %}db-backup-mysql{% endif %}",
+]
 description = "Backup the database"
 

@@ -1,4 +1,3 @@
-version: "3"
 services:
   db:
     platform: linux/amd64
@@ -34,11 +33,11 @@ services:
     ports:
       - "6379:6379"
   inkpy:
+    depends_on:
+     - redis
     platform: linux/amd64
     image: allegro/inkpy:latest
     restart: always
-    links:
-      - redis:redis
     environment:
         REDIS_HOST: redis
         REDIS_PASSWORD: ""
