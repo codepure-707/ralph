@@ -43,6 +43,7 @@ from ralph.configuration_management.views import (
     SCMCheckInfo,
     SCMStatusCheckInChangeListMixin
 )
+from ralph.data_center.admin_actions import assign_management_hostname_and_ip
 from ralph.data_center.forms import DataCenterAssetForm
 from ralph.data_center.models.components import DiskShare, DiskShareMount
 from ralph.data_center.models.hosts import DCHost
@@ -378,7 +379,7 @@ class DataCenterAssetAdmin(
     """Data Center Asset admin class."""
 
     add_form_template = "data_center/datacenterasset/add_form.html"
-    actions = ["bulk_edit_action", "invoice_report"]
+    actions = ["bulk_edit_action", "invoice_report", "assign_mgmt_hostname"]
 
     change_views = [
         DataCenterAssetComponents,
@@ -571,6 +572,9 @@ class DataCenterAssetAdmin(
             },
         ),
     )
+
+    def assign_mgmt_hostname(self, *args, **kwargs):
+        return assign_management_hostname_and_ip(self, *args, **kwargs)
 
     def get_export_queryset(self, request):
         qs = (

@@ -167,6 +167,15 @@ class DataCenter(AdminAbsoluteUrlMixin, NamedMixin, models.Model):
         verbose_name=_("shortcut"), max_length=256, blank=True, null=True
     )
 
+    management_hostname_suffix = models.CharField(
+        verbose_name=_("management hostname suffix"), max_length=256, blank=True, null=True
+    )
+
+    management_ip_prefix = models.CharField(
+        verbose_name=_("management IP prefix"), max_length=256, blank=True, null=True,
+        help_text=_("First 16 bits e.g. 12.345")
+    )
+
     @property
     def rack_set(self):
         return Rack.objects.select_related("server_room").filter(
