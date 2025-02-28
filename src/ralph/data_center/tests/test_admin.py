@@ -256,5 +256,5 @@ class DataCenterAssetAdminAssignManagementHostnameTest(TransactionTestCase):
         self.dca.save()
         request = self.build_request(self.dca)
         admin.assign_mgmt_hostname(request, DataCenterAsset.objects.filter(pk=self.dca.id))
-        self.assertIsNone(self.dca.management_hostname)
-        self.assertIsNone(self.dca.management_ip)
+        self.assertEqual(self.dca.management_hostname, '')
+        self.assertEqual(self.dca.management_ip, '')
