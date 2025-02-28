@@ -8,7 +8,6 @@ from django.db import connection, transaction
 from django.test import override_settings, RequestFactory, TransactionTestCase
 from django.urls import reverse
 
-
 from ralph.accounts.tests.factories import UserFactory
 from ralph.assets.tests.factories import (
     ServiceEnvironmentFactory,
@@ -18,7 +17,10 @@ from ralph.data_center.admin import DataCenterAssetAdmin
 from ralph.data_center.models import DataCenterAsset
 from ralph.data_center.tests.factories import (
     DataCenterAssetFactory,
-    RackFactory, DataCenterFactory, ServerRoomFactory, DataCenterAssetFullFactory
+    DataCenterAssetFullFactory,
+    DataCenterFactory,
+    RackFactory,
+    ServerRoomFactory
 )
 from ralph.lib.custom_fields.models import (
     CustomField,
