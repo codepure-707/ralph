@@ -1,3 +1,19 @@
+ralph (20250303.1) bionic; urgency=medium
+
+  [ ✪ vi4m Marcin Kliks ]
+  * Clear out project active status (#3883)
+
+  [ Paweł Szulc ]
+  * Assign automagical hostname and IP
+  * Flake fixes
+  * Update hostname and IP related help and name
+  * Fix tests
+
+  [ Olga Matyla ]
+  * Disable vips and security scans (#3878)
+
+ -- Paweł Szulc <pawel.szulc@allegro.com>  Mon, 03 Mar 2025 14:15:17 +0000
+
 ralph (20250214.1) bionic; urgency=medium
 
   * Fix invoice report action missing because of changes in django 2.2
