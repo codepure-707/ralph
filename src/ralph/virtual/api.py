@@ -19,12 +19,10 @@ from ralph.assets.api.views import (
     BaseObjectViewSetMixin
 )
 from ralph.assets.models import Ethernet
-from ralph.configuration_management.api import SCMInfoSerializer
 from ralph.data_center.api.serializers import DataCenterAssetSimpleSerializer
 from ralph.data_center.models import DCHost
 from ralph.lib.api.exceptions import Conflict
 from ralph.lib.api.utils import renderer_classes_without_form
-from ralph.security.api import SecurityScanSerializer
 from ralph.virtual.admin import VirtualServerAdmin
 from ralph.virtual.models import (
     CloudFlavor,
@@ -112,8 +110,6 @@ class CloudHostSerializer(NetworkComponentSerializerMixin, BaseObjectSerializer)
     parent = CloudProjectSimpleSerializer(source="cloudproject")
     cloudflavor = CloudFlavorSimpleSerializer()
     service_env = ServiceEnvironmentSimpleSerializer()
-    scmstatuscheck = SCMInfoSerializer()
-    securityscan = SecurityScanSerializer()
 
     class Meta(BaseObjectSerializer.Meta):
         model = CloudHost
@@ -160,8 +156,6 @@ class VirtualServerSerializer(ComponentSerializerMixin, BaseObjectSerializer):
     # TODO: cast BaseObject to DataCenterAsset for hypervisor field
     hypervisor = DataCenterAssetSimpleSerializer(source="parent")
     # TODO: clusters
-    scmstatuscheck = SCMInfoSerializer()
-    securityscan = SecurityScanSerializer()
 
     class Meta(BaseObjectSerializer.Meta):
         model = VirtualServer
@@ -248,6 +242,7 @@ class CloudHostViewSet(BaseObjectViewSetMixin, RalphAPIViewSet):
         "service_env__environment",
         "content_type",
         "configuration_path__module",
+        "securityscan",
     ]
     prefetch_related = base_object_descendant_prefetch_related + [
         "tags",
@@ -297,6 +292,7 @@ class VirtualServerViewSet(BaseObjectViewSetMixin, RalphAPIViewSet):
         "configuration_path",
         "content_type",
         "parent__cluster__type",
+        "securityscan",
     ]
     prefetch_related = base_object_descendant_prefetch_related + [
         "tags",
