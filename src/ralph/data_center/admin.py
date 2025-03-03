@@ -11,7 +11,6 @@ from django.urls import reverse
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
-from ralph.admin import filters
 from ralph.admin.decorators import register
 from ralph.admin.filters import (
     BaseObjectHostnameFilter,
@@ -21,8 +20,7 @@ from ralph.admin.filters import (
     MacAddressFilter,
     RelatedAutocompleteFieldListFilter,
     TagsListFilter,
-    TreeRelatedAutocompleteFilterWithDescendants,
-    VulnerabilitesByPatchDeadline
+    TreeRelatedAutocompleteFilterWithDescendants
 )
 from ralph.admin.helpers import generate_html_link
 from ralph.admin.mixins import (
@@ -39,10 +37,7 @@ from ralph.assets.models.base import BaseObject, BaseObjectPolymorphicQuerySet
 from ralph.assets.models.components import Ethernet
 from ralph.assets.views import ComponentsAdminView
 from ralph.attachments.admin import AttachmentsMixin
-from ralph.configuration_management.views import (
-    SCMCheckInfo,
-    SCMStatusCheckInChangeListMixin
-)
+from ralph.configuration_management.views import SCMCheckInfo
 from ralph.data_center.forms import DataCenterAssetForm
 from ralph.data_center.models.components import DiskShare, DiskShareMount
 from ralph.data_center.models.hosts import DCHost
@@ -59,8 +54,7 @@ from ralph.data_center.models.virtual import (
     BaseObjectCluster,
     Cluster,
     ClusterType,
-    Database,
-    VIP
+    Database
 )
 from ralph.data_center.views import RelationsView
 from ralph.data_importer import resources
@@ -72,7 +66,7 @@ from ralph.licences.models import BaseObjectLicence
 from ralph.networks.forms import SimpleNetworkWithManagementIPForm
 from ralph.networks.views import NetworkWithTerminatorsView
 from ralph.operations.views import OperationViewReadOnlyForExisiting
-from ralph.security.views import ScanStatusInChangeListMixin, SecurityInfo
+from ralph.security.views import SecurityInfo
 from ralph.supports.models import BaseObjectsSupport
 
 
@@ -90,15 +84,6 @@ def generate_list_filter_with_common_fields(prefix=None, postfix=None):
             ),
             MacAddressFilter,
             IPFilter,
-            (
-                "securityscan__vulnerabilities__patch_deadline",
-                VulnerabilitesByPatchDeadline,
-            ),
-            (
-                "securityscan__vulnerabilities",
-                filters.RelatedAutocompleteFieldListFilter,
-            ),
-            "securityscan__is_patched",
         ]
     )
     if type(postfix) == list:
@@ -364,8 +349,6 @@ class DataCenterAssetRelationsView(RelationsView):
 
 @register(DataCenterAsset)
 class DataCenterAssetAdmin(
-    SCMStatusCheckInChangeListMixin,
-    ScanStatusInChangeListMixin,
     ActiveDeploymentMessageMixin,
     MulitiAddAdminMixin,
     TransitionAdminMixin,
@@ -383,8 +366,6 @@ class DataCenterAssetAdmin(
     change_views = [
         DataCenterAssetComponents,
         DataCenterAssetNetworkView,
-        DataCenterAssetSecurityInfo,
-        DataCenterAssetSCMInfo,
         DataCenterAssetRelationsView,
         DataCenterAssetLicence,
         DataCenterAssetSupport,
@@ -406,8 +387,6 @@ class DataCenterAssetAdmin(
         "show_location",
         "service_env",
         "configuration_path",
-        "scan_status",
-        "scm_status_check",
         "property_of",
         "order_no",
     ]
@@ -703,7 +682,7 @@ class DatabaseAdmin(RalphAdmin):
     pass
 
 
-@register(VIP)
+# @register(VIP)
 class VIPAdmin(RalphAdmin):
     search_fields = ["name", "ip__address"]
     list_display = ["name", "ip", "port", "protocol", "service_env"]
@@ -748,9 +727,7 @@ class DCHostSCMInfo(SCMCheckInfo):
 
 
 @register(DCHost)
-class DCHostAdmin(
-    SCMStatusCheckInChangeListMixin, ScanStatusInChangeListMixin, RalphAdmin
-):
+class DCHostAdmin(RalphAdmin):
     change_list_template = "admin/data_center/dchost/change_list.html"
     search_fields = [
         "remarks",
@@ -768,8 +745,6 @@ class DCHostAdmin(
         "configuration_path",
         "show_location",
         "remarks",
-        "scan_status",
-        "scm_status_check",
     ]
     # TODO: sn
     # TODO: hostname, DC
