@@ -13,7 +13,7 @@ class WithManagementIPMixin(object):
     * if there is change in address value, existing management ip (IPAddress)
       is removed (unless it's reserved IP - then it's detached from current
       host) - it's done to not accidentally duplicate existing IPAddress
-    * then, there is check is IPAddres with new mgmt value already exist
+    * then, there is check is IPAddress with new mgmt value already exist
       * if yes, there is validation if it's not assigned to any other host -
         if yes, then ValidationError is raised
       * if no, it's attached to current object and marked as management ip
@@ -80,8 +80,8 @@ class WithManagementIPMixin(object):
             return
 
         current_mgmt = self.management_ip
-        # if new management ip value is different than previous, remove previous
-        # IP entry to not try to change it's value
+        # if new management ip value is different from previous, remove previous
+        # IP entry to not try to change its value
         if current_mgmt and current_mgmt != value:
             del self.management_ip
         ip = self._get_or_create_management_ip(value)
