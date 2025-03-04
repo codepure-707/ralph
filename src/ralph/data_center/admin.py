@@ -555,6 +555,8 @@ class DataCenterAssetAdmin(
     def assign_mgmt_hostname(self, *args, **kwargs):
         return assign_management_hostname_and_ip(self, *args, **kwargs)
 
+    assign_mgmt_hostname.short_description = "Assign management hostname and IP"
+
     def get_export_queryset(self, request):
         qs = (
             super(RalphAdminImportExportMixin, self)
