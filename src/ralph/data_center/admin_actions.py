@@ -30,6 +30,7 @@ def assign_management_hostname_and_ip(modeladmin, request, queryset):
                 modeladmin.message_user(
                     request, f"Updated management hostname for asset id: {dca.id}", level="INFO"
                 )
+                continue
             else:
                 ip = _infer_ip(dca, rack_number)  # others (i.e. server rack)
                 if ip:
@@ -39,6 +40,7 @@ def assign_management_hostname_and_ip(modeladmin, request, queryset):
                         request,
                         f"Updated management hostname and IP for asset id: {dca.id}", level="INFO"
                     )
+                    continue
             raise RuntimeError("unknown error")
         except Exception as e:  # noqa
             modeladmin.message_user(request, f"Can't update asset id: {dca.id}: {e}", level="ERROR")
