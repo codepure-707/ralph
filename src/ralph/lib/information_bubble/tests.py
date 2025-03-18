@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
-from django.test import TestCase
+from django.test import TransactionTestCase
 from django.urls import reverse
 from factory import DjangoModelFactory
 from rest_framework.test import APITestCase
@@ -24,7 +24,7 @@ class ServiceBasedInformationBubbleFactory(DjangoModelFactory):
         django_get_or_create = ["name"]
 
 
-class TestServiceBasedInformationBubbleCreation(TestCase):
+class TestServiceBasedInformationBubbleCreation(TransactionTestCase):
     def test_create_information_bubble(self):
         ib = ServiceBasedInformationBubbleFactory(name="foo")
         ib.services.set([ServiceFactory(), ServiceFactory()])
