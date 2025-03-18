@@ -1,3 +1,4 @@
+import factory
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
@@ -19,6 +20,8 @@ from ralph.virtual.models import VirtualServer
 
 
 class ServiceBasedInformationBubbleFactory(DjangoModelFactory):
+    name = factory.sequence(lambda n: "Information Bubble {}".format(n))
+
     class Meta:
         model = ServiceBasedInformationBubble
         django_get_or_create = ["name"]
