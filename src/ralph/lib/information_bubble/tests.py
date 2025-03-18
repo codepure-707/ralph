@@ -92,7 +92,7 @@ class TestDataCenterAssetVisibilityInInformationBubble(
         )
 
         permissions = Permission.objects.filter(
-            content_type__in=ContentType.objects.get_for_model(DataCenterAsset)
+            content_type=ContentType.objects.get_for_model(DataCenterAsset)
         )
         for user in (self.user_in_information_bubble, self.user_outside_information_bubble):
             user.user_permissions.add(*permissions)
