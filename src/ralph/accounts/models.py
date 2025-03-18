@@ -121,7 +121,11 @@ class RalphUser(
         blank=True,
     )
     regions = models.ManyToManyField(Region, related_name="users", blank=True)
-    service_information_bubbles = models.ManyToManyField(ServiceBasedInformationBubble, related_name="users", blank=True)
+    service_information_bubbles = models.ManyToManyField(
+        ServiceBasedInformationBubble,
+        related_name="users",
+        blank=True
+    )
     team = models.ForeignKey(
         Team,
         null=True,

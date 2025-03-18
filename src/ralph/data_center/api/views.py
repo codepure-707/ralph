@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.contenttypes.models import ContentType
-from django.db.models import Prefetch, Q
+from django.db.models import Prefetch
 
 from ralph.api import RalphAPIViewSet
 from ralph.assets.api.filters import NetworkableObjectFilters

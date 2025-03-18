@@ -10,7 +10,8 @@ from ralph.assets.api.serializers import (
     TypeFromContentTypeSerializerMixin
 )
 from ralph.assets.models import BaseObject
-from ralph.lib.information_bubble.filters import information_bubble_asset_support_filter
+from ralph.lib.information_bubble.filters import \
+    information_bubble_asset_support_filter
 from ralph.lib.permissions.api import PermissionsForObjectFilter
 from ralph.supports.models import BaseObjectsSupport, Support, SupportType
 
@@ -63,7 +64,10 @@ class BaseObjectsFilter(django_filters.FilterSet):
     e.g. /?base_objects=1,2,3
 
     """
-    base_objects = django_filters.CharFilter(field_name="base_objects", method='filter_base_objects')
+    base_objects = django_filters.CharFilter(
+        field_name="base_objects",
+        method='filter_base_objects'
+    )
 
     class Meta:
         model = Support
@@ -82,7 +86,10 @@ class BaseObjectsFilter(django_filters.FilterSet):
 class SupportViewSet(RalphAPIViewSet):
     queryset = Support.objects.all()
     serializer_class = SupportSerializer
-    filter_backends = (django_filters.rest_framework.DjangoFilterBackend, PermissionsForObjectFilter)
+    filter_backends = (
+        django_filters.rest_framework.DjangoFilterBackend,
+        PermissionsForObjectFilter
+    )
     filterset_class = BaseObjectsFilter
     select_related = [
         "region",
@@ -119,7 +126,10 @@ class BaseObjectSupportViewSet(RalphAPIViewSet):
     }
 
     def get_queryset(self):
-        return super().get_queryset().filter(information_bubble_asset_support_filter(self.request.user))
+        return (
+            super().get_queryset().
+            filter(information_bubble_asset_support_filter(self.request.user))
+        )
 
 
 router.register(r"base-objects-supports", BaseObjectSupportViewSet)

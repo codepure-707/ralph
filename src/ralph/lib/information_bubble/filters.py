@@ -31,4 +31,6 @@ def information_bubble_asset_support_filter(user):
     if not bubbles:
         return Q()
 
-    return Q(baseobject__service_env__service__in=Service.objects.filter(information_bubbles__in=bubbles))
+    return Q(
+        baseobject__service_env__service__in=Service.objects.filter(information_bubbles__in=bubbles)
+    )
