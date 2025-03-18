@@ -61,6 +61,7 @@ from ralph.data_center.views import RelationsView
 from ralph.data_importer import resources
 from ralph.deployment.mixins import ActiveDeploymentMessageMixin
 from ralph.lib.custom_fields.admin import CustomFieldValueAdminMixin
+from ralph.lib.information_bubble.filters import information_bubble_filter
 from ralph.lib.table.table import Table
 from ralph.lib.transitions.admin import TransitionAdminMixin
 from ralph.licences.models import BaseObjectLicence
@@ -557,6 +558,9 @@ class DataCenterAssetAdmin(
 
     assign_mgmt_hostname.short_description = "Assign management hostname and IP"
 
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(information_bubble_filter(request.user))
+
     def get_export_queryset(self, request):
         qs = (
             super(RalphAdminImportExportMixin, self)
@@ -808,7 +812,7 @@ class DCHostAdmin(RalphAdmin):
     show_location.short_description = _("Location")
 
     def get_queryset(self, request):
-        qs = super().get_queryset(request)
+        qs = super().get_queryset(request).filter(information_bubble_filter(request.user))
         # location
         polymorphic_select_related = dict(
             DataCenterAsset=["rack__server_room__data_center", "model"],

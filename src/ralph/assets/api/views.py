@@ -14,6 +14,7 @@ from ralph.assets.api.filters import NetworkableObjectFilters
 from ralph.assets.models import BaseObject
 from ralph.data_center.models import Cluster, DataCenterAsset
 from ralph.lib.api.utils import renderer_classes_without_form
+from ralph.lib.information_bubble.filters import information_bubble_filter
 from ralph.licences.api import BaseObjectLicenceViewSet
 from ralph.licences.models import BaseObjectLicence
 from ralph.networks.models import IPAddress
@@ -333,6 +334,7 @@ class DCHostViewSet(BaseObjectViewSetMixin, RalphAPIViewSet):
     def get_queryset(self):
         return (
             self.queryset.dc_hosts()
+            .filter(information_bubble_filter(self.request.user))
             .select_related(*self.select_related)
             .polymorphic_select_related(Cluster=["type"], CloudHost=["hypervisor"])
             .polymorphic_prefetch_related(

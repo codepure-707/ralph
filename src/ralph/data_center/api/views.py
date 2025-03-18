@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.contenttypes.models import ContentType
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Q
 
 from ralph.api import RalphAPIViewSet
 from ralph.assets.api.filters import NetworkableObjectFilters
@@ -42,6 +42,7 @@ from ralph.data_center.models import (
     ServerRoom,
     VIP
 )
+from ralph.lib.information_bubble.filters import information_bubble_filter
 from ralph.virtual.models import CloudHost, VirtualServer
 
 
@@ -106,7 +107,7 @@ class DataCenterAssetViewSet(BaseObjectViewSetMixin, RalphAPIViewSet):
             DataCenterAsset, ConfigurationClass, ConfigurationModule, ServiceEnvironment
         )
         qs = super().get_queryset()
-        return qs
+        return qs.filter(information_bubble_filter(self.request.user))
 
 
 class AccessoryViewSet(RalphAPIViewSet):

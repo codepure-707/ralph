@@ -297,6 +297,7 @@ class RalphUserAdmin(UserAdmin, RalphAdmin):
                     "groups",
                     "user_permissions",
                     "regions",
+                    "service_information_bubbles"
                 )
             },
         ),

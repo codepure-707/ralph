@@ -105,6 +105,7 @@ INSTALLED_APPS = (
     "ralph.lib.transitions",
     "ralph.lib.permissions",
     "ralph.lib.custom_fields",
+    "ralph.lib.information_bubble",
     "ralph.lib.hooks",
     "ralph.notifications",
     "ralph.ssl_certificates",
