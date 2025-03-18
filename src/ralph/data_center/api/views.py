@@ -188,3 +188,6 @@ class ClusterViewSet(BaseObjectViewSetMixin, RalphAPIViewSet):
         Prefetch("ethernet_set", queryset=Ethernet.objects.select_related("ipaddress")),
     ]
     additional_filter_class = ClusterFilterSet
+
+    def get_queryset(self):
+        return super().get_queryset().filter(information_bubble_filter(self.request.user))

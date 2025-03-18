@@ -220,6 +220,9 @@ class ClusterAdmin(CustomFieldValueAdminMixin, RalphAdmin):
 
     inlines = [ClusterBaseObjectInline, ClusterNetworkInline]
 
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(information_bubble_filter(request.user))
+
     def get_fieldsets(self, request, obj=None):
         """
         Attach master info fieldset only if show_master_summary option checked
