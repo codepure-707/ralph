@@ -41,11 +41,20 @@ class HistoryForObjectNode(template.Node):
     def render(self, context):
         job = context[self.job]
         obj = context[self.obj]
-        history = job.params['history_kwargs']
-        context[self.var_name] = history[obj.pk].items()
-        if not context[self.var_name]:
-            return '&ndash;'
-        return ''
+        try:
+            # !! All _dumped_params are restored unnecessarily,
+            # we need only history_kwargs for history
+            history = job.params['history_kwargs']
+            context[self.var_name] = history[obj.pk].items()
+            if not context[self.var_name]:
+                return '&ndash;'
+            return ''
+        except:
+            history = job._dumped_params['history_kwargs'] # noqa
+            context[self.var_name] = history[str(obj.pk)].items()
+            if not context[self.var_name]:
+                return '&ndash;'
+            return ''
 
 
 @register.tag(name='history_for_object')
