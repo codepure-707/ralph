@@ -49,7 +49,7 @@ class HistoryForObjectNode(template.Node):
             if not context[self.var_name]:
                 return '&ndash;'
             return ''
-        except:
+        except: # noqa
             history = job._dumped_params['history_kwargs'] # noqa
             context[self.var_name] = history[str(obj.pk)].items()
             if not context[self.var_name]:
