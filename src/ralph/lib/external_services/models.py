@@ -44,9 +44,7 @@ class JobStatus(Choices):
     KILLED = _('killed')
 
 
-JOB_NOT_ENDED_STATUSES = set(
-    [JobStatus.QUEUED, JobStatus.STARTED, JobStatus.FROZEN]
-)
+JOB_NOT_ENDED_STATUSES = {JobStatus.QUEUED, JobStatus.STARTED, JobStatus.FROZEN}
 
 
 class JobQuerySet(models.QuerySet):

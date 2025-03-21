@@ -173,7 +173,7 @@ class DataCenter(AdminAbsoluteUrlMixin, NamedMixin, models.Model):
 
     management_ip_prefix = models.CharField(
         verbose_name=_("management IP prefix"), max_length=256, blank=True, null=True,
-        help_text=_("First 16 bits e.g. 12.345")
+        help_text=_("First 16 bits e.g. 12.34")
     )
 
     @property
