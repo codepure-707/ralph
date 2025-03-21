@@ -15,7 +15,10 @@ def assign_management_hostname_and_ip(modeladmin, request, queryset):
                 raise RuntimeError("dc doesn't have hostname suffix configured")
             if not dca.rack.server_room.data_center.management_ip_prefix:
                 raise RuntimeError("dc doesn't have IP prefix configured")
-            if dca.status not in {DataCenterAssetStatus.used.id, DataCenterAssetStatus.to_deploy.id}:
+            if dca.status not in {
+                DataCenterAssetStatus.used.id,
+                DataCenterAssetStatus.to_deploy.id
+            }:
                 raise RuntimeError("asset should be in status 'in use' or 'to deploy'")
             try:
                 rack_number_int = int(re.match(r'.*?(\d+).*?', dca.rack.name).groups()[0])
