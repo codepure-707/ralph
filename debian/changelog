@@ -1,3 +1,10 @@
+ralph (20250321.1) bionic; urgency=medium
+
+  * Fix auto hostname - limit statuses and fix help
+  * Fix flake
+
+ -- Paweł Szulc <pawel.szulc@allegro.com>  Fri, 21 Mar 2025 10:27:58 +0000
+
 ralph (20250320.1) bionic; urgency=medium
 
   * Fix current transitions tab
