@@ -14,7 +14,7 @@ from ralph.assets.tests.factories import (
     ServiceFactory
 )
 from ralph.data_center.admin import DataCenterAssetAdmin
-from ralph.data_center.models import DataCenterAsset
+from ralph.data_center.models import DataCenterAsset, DataCenterAssetStatus
 from ralph.data_center.tests.factories import (
     DataCenterAssetFactory,
     DataCenterAssetFullFactory,
@@ -216,7 +216,11 @@ class DataCenterAssetAdminAssignManagementHostnameTest(TransactionTestCase):
         )
         room = ServerRoomFactory(data_center=dc)
         rack = RackFactory(name="Rack 123", server_room=room)
-        self.dca = DataCenterAssetFullFactory(rack=rack, position=18)  # type: DataCenterAsset
+        self.dca = DataCenterAssetFullFactory(  # type: DataCenterAsset
+            rack=rack,
+            position=18,
+            status=DataCenterAssetStatus.to_deploy.id
+        )
         self.dca.management_hostname = None
         self.dca.management_ip = None
         self.dca.save()
