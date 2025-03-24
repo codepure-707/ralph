@@ -308,9 +308,9 @@ sitetrees = [
                     section(_("Groups list"), "auth", "Group"),
                     section(_("Regions"), "accounts", "Region"),
                     section(
-                        _("Information bubbles"),
-                        "information_bubble",
-                        "ServiceBasedInformationBubble"
+                        _("Visibility scopes"),
+                        "visibility_scope",
+                        "ServiceBasedVisibilityScopes"
                     ),
                     section(_("Access Zones"), "access_cards", "AccessZone"),
                     section(_("Transitions"), "transitions", "TransitionModel"),

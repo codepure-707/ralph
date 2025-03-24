@@ -20,7 +20,7 @@ from ralph.data_center.models.physical import DataCenterAsset
 from ralph.data_center.models.virtual import BaseObjectCluster
 from ralph.deployment.mixins import ActiveDeploymentMessageMixin
 from ralph.lib.custom_fields.admin import CustomFieldValueAdminMixin
-from ralph.lib.information_bubble.filters import information_bubble_filter
+from ralph.lib.visibility_scope.filters import visibility_scope_filter
 from ralph.lib.transitions.admin import TransitionAdminMixin
 from ralph.licences.models import BaseObjectLicence
 from ralph.networks.forms import SimpleNetworkForm
@@ -171,7 +171,7 @@ class VirtualServerAdmin(
     inlines = [ClusterBaseObjectInline]
 
     def get_queryset(self, request):
-        qs = super().get_queryset(request).filter(information_bubble_filter(request.user))
+        qs = super().get_queryset(request).filter(visibility_scope_filter(request.user))
         return qs.prefetch_related(
             Prefetch("parent", queryset=BaseObject.polymorphic_objects.all()),
         )
@@ -244,7 +244,7 @@ class CloudHostTabularInline(RalphTabularInline):
         return (
             super()
             .get_queryset(request)
-            .filter(information_bubble_filter(request.user))
+            .filter(visibility_scope_filter(request.user))
             .select_related(
                 "hypervisor",
             )
@@ -373,7 +373,7 @@ class CloudHostAdmin(
         return (
             super()
             .get_queryset(request)
-            .filter(information_bubble_filter(request.user))
+            .filter(visibility_scope_filter(request.user))
             .prefetch_related("tags", "ethernet_set__ipaddress")
         )
 

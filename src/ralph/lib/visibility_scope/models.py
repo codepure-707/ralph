@@ -5,19 +5,19 @@ from django.utils.translation import ugettext_lazy as _
 from ralph.lib.mixins.models import AdminAbsoluteUrlMixin, NamedMixin
 
 
-class ServiceBasedInformationBubble(AdminAbsoluteUrlMixin, NamedMixin):
+class ServiceBasedVisibilityScope(AdminAbsoluteUrlMixin, NamedMixin):
     services = models.ManyToManyField(
         "assets.Service",
-        related_name="information_bubbles",
+        related_name="visibility_scopes",
         blank=True
     )
     group = models.ForeignKey(
         Group,
-        related_name="information_bubbles",
+        related_name="visibility_scopes",
         blank=True,
         null=True,
         on_delete=models.SET_NULL
     )
 
     class Meta:
-        verbose_name = _("Service-based Information Bubble")
+        verbose_name = _("Service-based Visibility Scope")

@@ -42,7 +42,7 @@ from ralph.data_center.models import (
     ServerRoom,
     VIP
 )
-from ralph.lib.information_bubble.filters import information_bubble_filter
+from ralph.lib.visibility_scope.filters import visibility_scope_filter
 from ralph.virtual.models import CloudHost, VirtualServer
 
 
@@ -107,7 +107,7 @@ class DataCenterAssetViewSet(BaseObjectViewSetMixin, RalphAPIViewSet):
             DataCenterAsset, ConfigurationClass, ConfigurationModule, ServiceEnvironment
         )
         qs = super().get_queryset()
-        return qs.filter(information_bubble_filter(self.request.user))
+        return qs.filter(visibility_scope_filter(self.request.user))
 
 
 class AccessoryViewSet(RalphAPIViewSet):
@@ -190,4 +190,4 @@ class ClusterViewSet(BaseObjectViewSetMixin, RalphAPIViewSet):
     additional_filter_class = ClusterFilterSet
 
     def get_queryset(self):
-        return super().get_queryset().filter(information_bubble_filter(self.request.user))
+        return super().get_queryset().filter(visibility_scope_filter(self.request.user))

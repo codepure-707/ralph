@@ -10,8 +10,8 @@ from ralph.assets.api.serializers import (
     TypeFromContentTypeSerializerMixin
 )
 from ralph.assets.models import BaseObject
-from ralph.lib.information_bubble.filters import \
-    information_bubble_asset_support_filter
+from ralph.lib.visibility_scope.filters import \
+    visibility_scope_asset_support_filter
 from ralph.lib.permissions.api import PermissionsForObjectFilter
 from ralph.supports.models import BaseObjectsSupport, Support, SupportType
 
@@ -128,7 +128,7 @@ class BaseObjectSupportViewSet(RalphAPIViewSet):
     def get_queryset(self):
         return (
             super().get_queryset().
-            filter(information_bubble_asset_support_filter(self.request.user))
+            filter(visibility_scope_asset_support_filter(self.request.user))
         )
 
 

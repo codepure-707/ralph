@@ -23,7 +23,7 @@ from ralph.data_center.api.serializers import DataCenterAssetSimpleSerializer
 from ralph.data_center.models import DCHost
 from ralph.lib.api.exceptions import Conflict
 from ralph.lib.api.utils import renderer_classes_without_form
-from ralph.lib.information_bubble.filters import information_bubble_filter
+from ralph.lib.visibility_scope.filters import visibility_scope_filter
 from ralph.virtual.admin import VirtualServerAdmin
 from ralph.virtual.models import (
     CloudFlavor,
@@ -259,7 +259,7 @@ class CloudHostViewSet(BaseObjectViewSetMixin, RalphAPIViewSet):
     ]
 
     def get_queryset(self):
-        return super().get_queryset().filter(information_bubble_filter(self.request.user))
+        return super().get_queryset().filter(visibility_scope_filter(self.request.user))
 
 
 class CloudProjectViewSet(RalphAPIViewSet):

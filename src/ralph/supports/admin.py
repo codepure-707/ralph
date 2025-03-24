@@ -17,8 +17,8 @@ from ralph.admin.views.extra import RalphDetailViewAdmin
 from ralph.attachments.admin import AttachmentsMixin
 from ralph.data_importer import resources
 from ralph.lib.custom_fields.admin import CustomFieldValueAdminMixin
-from ralph.lib.information_bubble.filters import \
-    information_bubble_asset_support_filter
+from ralph.lib.visibility_scope.filters import \
+    visibility_scope_asset_support_filter
 from ralph.lib.mixins.forms import PriceFormMixin
 from ralph.supports.models import BaseObjectsSupport, Support, SupportType
 
@@ -222,7 +222,7 @@ class BaseObjectsSupportAdmin(RalphAdmin):
         return (
             super()
             .get_queryset(request)
-            .filter(information_bubble_asset_support_filter(request.user))
+            .filter(visibility_scope_asset_support_filter(request.user))
             .annotate(objects_count=Count("support__baseobjectssupport"))
         )
 
