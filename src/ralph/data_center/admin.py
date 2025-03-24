@@ -61,9 +61,9 @@ from ralph.data_center.views import RelationsView
 from ralph.data_importer import resources
 from ralph.deployment.mixins import ActiveDeploymentMessageMixin
 from ralph.lib.custom_fields.admin import CustomFieldValueAdminMixin
-from ralph.lib.visibility_scope.filters import visibility_scope_filter
 from ralph.lib.table.table import Table
 from ralph.lib.transitions.admin import TransitionAdminMixin
+from ralph.lib.visibility_scope.filters import visibility_scope_filter
 from ralph.licences.models import BaseObjectLicence
 from ralph.networks.forms import SimpleNetworkWithManagementIPForm
 from ralph.networks.views import NetworkWithTerminatorsView

@@ -20,8 +20,8 @@ from ralph.data_center.models.physical import DataCenterAsset
 from ralph.data_center.models.virtual import BaseObjectCluster
 from ralph.deployment.mixins import ActiveDeploymentMessageMixin
 from ralph.lib.custom_fields.admin import CustomFieldValueAdminMixin
-from ralph.lib.visibility_scope.filters import visibility_scope_filter
 from ralph.lib.transitions.admin import TransitionAdminMixin
+from ralph.lib.visibility_scope.filters import visibility_scope_filter
 from ralph.licences.models import BaseObjectLicence
 from ralph.networks.forms import SimpleNetworkForm
 from ralph.networks.views import NetworkView

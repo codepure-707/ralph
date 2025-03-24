@@ -12,13 +12,13 @@ from django.utils.translation import ugettext_lazy as _
 from rest_framework.authtoken.models import Token
 
 from ralph.admin.autocomplete import AutocompleteTooltipMixin
-from ralph.lib.visibility_scope.models import ServiceBasedVisibilityScope
 from ralph.lib.mixins.models import AdminAbsoluteUrlMixin, NamedMixin
 from ralph.lib.permissions.models import (
     PermByFieldMixin,
     PermissionsForObjectMixin,
     user_permission
 )
+from ralph.lib.visibility_scope.models import ServiceBasedVisibilityScope
 
 
 @user_permission

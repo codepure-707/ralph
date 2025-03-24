@@ -10,9 +10,9 @@ from ralph.assets.api.serializers import (
     TypeFromContentTypeSerializerMixin
 )
 from ralph.assets.models import BaseObject
+from ralph.lib.permissions.api import PermissionsForObjectFilter
 from ralph.lib.visibility_scope.filters import \
     visibility_scope_asset_support_filter
-from ralph.lib.permissions.api import PermissionsForObjectFilter
 from ralph.supports.models import BaseObjectsSupport, Support, SupportType
 
 
