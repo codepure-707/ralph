@@ -63,6 +63,7 @@ from ralph.deployment.mixins import ActiveDeploymentMessageMixin
 from ralph.lib.custom_fields.admin import CustomFieldValueAdminMixin
 from ralph.lib.table.table import Table
 from ralph.lib.transitions.admin import TransitionAdminMixin
+from ralph.lib.visibility_scope.filters import visibility_scope_filter
 from ralph.licences.models import BaseObjectLicence
 from ralph.networks.forms import SimpleNetworkWithManagementIPForm
 from ralph.networks.views import NetworkWithTerminatorsView
@@ -218,6 +219,9 @@ class ClusterAdmin(CustomFieldValueAdminMixin, RalphAdmin):
         verbose_name = _("Base Object")
 
     inlines = [ClusterBaseObjectInline, ClusterNetworkInline]
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(visibility_scope_filter(request.user))
 
     def get_fieldsets(self, request, obj=None):
         """
@@ -557,6 +561,9 @@ class DataCenterAssetAdmin(
 
     assign_mgmt_hostname.short_description = "Assign management hostname and IP"
 
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(visibility_scope_filter(request.user))
+
     def get_export_queryset(self, request):
         qs = (
             super(RalphAdminImportExportMixin, self)
@@ -808,7 +815,7 @@ class DCHostAdmin(RalphAdmin):
     show_location.short_description = _("Location")
 
     def get_queryset(self, request):
-        qs = super().get_queryset(request)
+        qs = super().get_queryset(request).filter(visibility_scope_filter(request.user))
         # location
         polymorphic_select_related = dict(
             DataCenterAsset=["rack__server_room__data_center", "model"],

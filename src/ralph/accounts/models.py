@@ -18,6 +18,7 @@ from ralph.lib.permissions.models import (
     PermissionsForObjectMixin,
     user_permission
 )
+from ralph.lib.visibility_scope.models import ServiceBasedVisibilityScope
 
 
 @user_permission
@@ -120,6 +121,11 @@ class RalphUser(
         blank=True,
     )
     regions = models.ManyToManyField(Region, related_name="users", blank=True)
+    service_visibility_scopes = models.ManyToManyField(
+        ServiceBasedVisibilityScope,
+        related_name="users",
+        blank=True
+    )
     team = models.ForeignKey(
         Team,
         null=True,

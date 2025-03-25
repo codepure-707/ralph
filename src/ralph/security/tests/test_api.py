@@ -13,6 +13,7 @@ from ralph.security.tests.factories import (
     VulnerabilityFactory
 )
 
+
 @skip('Security Scans are disabled')
 class SecurityScanAPITests(RalphAPITestCase):
     def setUp(self):

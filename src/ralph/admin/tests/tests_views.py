@@ -71,6 +71,7 @@ FACTORY_MAP = {
     "ralph.domains.models.domains.DomainRegistrant": "ralph.domains.tests.factories.DomainRegistrantFactory",  # noqa
     "ralph.domains.models.domains.DomainProviderAdditionalServices": "ralph.domains.tests.factories.DomainProviderAdditionalServicesFactory",  # noqa
     "ralph.lib.custom_fields.models.CustomField": "ralph.lib.custom_fields.tests.factories.CustomFieldFactory",  # noqa
+    "ralph.lib.visibility_scope.models.ServiceBasedVisibilityScope": "ralph.lib.visibility_scope.tests.ServiceBasedVisibilityScopeFactory",  # noqa
     "ralph.lib.transitions.models.Transition": "ralph.lib.transitions.tests.factories.TransitionFactory",  # noqa
     "ralph.lib.transitions.models.TransitionJob": "ralph.lib.transitions.tests.factories.TransitionJobFactory",  # noqa
     "ralph.lib.transitions.models.TransitionModel": "ralph.lib.transitions.tests.factories.TransitionModelFactory",  # noqa

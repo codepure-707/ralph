@@ -40,6 +40,7 @@ api_urls = list(
             "ralph.virtual.api",
             "ralph.lib.custom_fields.api.custom_fields_api",
             "ralph.lib.transitions.api.routers",
+            "ralph.lib.visibility_scope.api",
         ],
     )
 )
