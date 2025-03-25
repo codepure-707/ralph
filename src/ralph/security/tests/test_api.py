@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
+from unittest import skip
 
 from django.urls import reverse
 from rest_framework import status
@@ -10,6 +11,7 @@ from ralph.security.models import Risk, ScanStatus, SecurityScan, Vulnerability
 from ralph.security.tests.factories import SecurityScanFactory, VulnerabilityFactory
 
 
+@skip('Security Scans are disabled')
 class SecurityScanAPITests(RalphAPITestCase):
     def setUp(self):
         super().setUp()
@@ -216,7 +218,7 @@ class SecurityScanAPITests(RalphAPITestCase):
             scan.id,
         )
 
-
+@skip("Vulnerabilities are disabled")
 class VulnerabilityAPITests(RalphAPITestCase):
     def setUp(self):
         super().setUp()
@@ -302,7 +304,7 @@ class VulnerabilityAPITests(RalphAPITestCase):
             data["external_vulnerability_id"],
         )
 
-
+@skip("Vulnerabilities are disabled")
 class TestExternalVulnerability(RalphAPITestCase):
     def setUp(self):
         super().setUp()

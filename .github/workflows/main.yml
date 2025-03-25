@@ -32,7 +32,7 @@ jobs:
         run: pip3 install -U pip
 
       - name: Cache pip dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('dev.txt', 'docs.txt', 'prod.txt', 'test.txt') }}
@@ -111,7 +111,7 @@ jobs:
         run: pip3 install "${GITHUB_WORKSPACE}"
 
       - name: Cache pip dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('dev.txt', 'docs.txt', 'prod.txt', 'test.txt') }}
@@ -157,7 +157,7 @@ jobs:
         run: pip3 install -U pip
 
       - name: Cache pip dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('dev.txt', 'docs.txt', 'prod.txt', 'test.txt') }}
@@ -250,7 +250,7 @@ jobs:
         run: pip3 install "${GITHUB_WORKSPACE}"
 
       - name: Cache pip dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('dev.txt', 'docs.txt', 'prod.txt', 'test.txt') }}

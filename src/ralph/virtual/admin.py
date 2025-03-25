@@ -14,20 +14,18 @@ from ralph.admin.mixins import RalphAdmin, RalphAdminForm, RalphTabularInline
 from ralph.assets.models import BaseObject
 from ralph.assets.models.components import Ethernet
 from ralph.assets.views import ComponentsAdminView, RalphDetailViewAdmin
-from ralph.configuration_management.views import (
-    SCMCheckInfo,
-    SCMStatusCheckInChangeListMixin,
-)
+from ralph.configuration_management.views import SCMCheckInfo
 from ralph.data_center.admin import generate_list_filter_with_common_fields
 from ralph.data_center.models.physical import DataCenterAsset
 from ralph.data_center.models.virtual import BaseObjectCluster
 from ralph.deployment.mixins import ActiveDeploymentMessageMixin
 from ralph.lib.custom_fields.admin import CustomFieldValueAdminMixin
 from ralph.lib.transitions.admin import TransitionAdminMixin
+from ralph.lib.visibility_scope.filters import visibility_scope_filter
 from ralph.licences.models import BaseObjectLicence
 from ralph.networks.forms import SimpleNetworkForm
 from ralph.networks.views import NetworkView
-from ralph.security.views import ScanStatusInChangeListMixin, SecurityInfo
+from ralph.security.views import SecurityInfo
 from ralph.virtual.forms import CloudProviderForm
 from ralph.virtual.models import (
     CloudFlavor,
@@ -113,8 +111,6 @@ class VirtualServerSCMInfo(SCMCheckInfo):
 
 @register(VirtualServer)
 class VirtualServerAdmin(
-    SCMStatusCheckInChangeListMixin,
-    ScanStatusInChangeListMixin,
     ActiveDeploymentMessageMixin,
     CustomFieldValueAdminMixin,
     TransitionAdminMixin,
@@ -134,8 +130,6 @@ class VirtualServerAdmin(
         "service_env",
         "configuration_path",
         "parent_",
-        "scan_status",
-        "scm_status_check",
     ]
     raw_id_fields = ["parent", "service_env", "configuration_path"]
     fields = [
@@ -159,8 +153,6 @@ class VirtualServerAdmin(
     change_views = [
         VirtualServerComponentsView,
         VirtualServerNetworkView,
-        VirtualServerSCMInfo,
-        VirtaulServerSecurityInfoView,
         VirtualServerLicencesView,
     ]
     if settings.ENABLE_DNSAAS_INTEGRATION:
@@ -179,7 +171,7 @@ class VirtualServerAdmin(
     inlines = [ClusterBaseObjectInline]
 
     def get_queryset(self, request):
-        qs = super().get_queryset(request)
+        qs = super().get_queryset(request).filter(visibility_scope_filter(request.user))
         return qs.prefetch_related(
             Prefetch("parent", queryset=BaseObject.polymorphic_objects.all()),
         )
@@ -248,10 +240,11 @@ class CloudHostTabularInline(RalphTabularInline):
     def has_add_permission(self, request, obj=None):
         return False
 
-    def get_queryset(self, *args, **kwargs):
+    def get_queryset(self, request):
         return (
             super()
-            .get_queryset(*args, **kwargs)
+            .get_queryset(request)
+            .filter(visibility_scope_filter(request.user))
             .select_related(
                 "hypervisor",
             )
@@ -288,8 +281,6 @@ class CloudHostSCMInfo(SCMCheckInfo):
 
 @register(CloudHost)
 class CloudHostAdmin(
-    SCMStatusCheckInChangeListMixin,
-    ScanStatusInChangeListMixin,
     CustomFieldValueAdminMixin,
     RalphAdmin,
 ):
@@ -303,8 +294,6 @@ class CloudHostAdmin(
         "created",
         "image_name",
         "get_tags",
-        "scan_status",
-        "scm_status_check",
     ]
     list_filter_prefix = [BaseObjectHostnameFilter]
     list_filter_postfix = ["cloudprovider", "cloudflavor", TagsListFilter, "hypervisor"]
@@ -344,7 +333,7 @@ class CloudHostAdmin(
     ]
     raw_id_override_parent = {"parent": CloudProject}
     inlines = [CloudNetworkInline]
-    change_views = [CloudHostNetworkView, CloudHostSCMInfo, CloudHostSecurityInfoView]
+    change_views = [CloudHostNetworkView]
     fieldsets = (
         (
             None,
@@ -384,6 +373,7 @@ class CloudHostAdmin(
         return (
             super()
             .get_queryset(request)
+            .filter(visibility_scope_filter(request.user))
             .prefetch_related("tags", "ethernet_set__ipaddress")
         )
 

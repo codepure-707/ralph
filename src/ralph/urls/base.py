@@ -33,13 +33,14 @@ api_urls = list(
             "ralph.domains.api",
             "ralph.operations.api",
             "ralph.supports.api",
-            "ralph.security.api",
+            # "ralph.security.api",
             "ralph.sim_cards.api",
             "ralph.ssl_certificates.api",
             "ralph.networks.api",
             "ralph.virtual.api",
             "ralph.lib.custom_fields.api.custom_fields_api",
             "ralph.lib.transitions.api.routers",
+            "ralph.lib.visibility_scope.api",
         ],
     )
 )

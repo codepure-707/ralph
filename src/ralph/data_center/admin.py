@@ -11,7 +11,6 @@ from django.urls import reverse
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
-from ralph.admin import filters
 from ralph.admin.decorators import register
 from ralph.admin.filters import (
     BaseObjectHostnameFilter,
@@ -21,8 +20,7 @@ from ralph.admin.filters import (
     MacAddressFilter,
     RelatedAutocompleteFieldListFilter,
     TagsListFilter,
-    TreeRelatedAutocompleteFilterWithDescendants,
-    VulnerabilitesByPatchDeadline,
+    TreeRelatedAutocompleteFilterWithDescendants
 )
 from ralph.admin.helpers import generate_html_link
 from ralph.admin.mixins import (
@@ -39,10 +37,8 @@ from ralph.assets.models.base import BaseObject, BaseObjectPolymorphicQuerySet
 from ralph.assets.models.components import Ethernet
 from ralph.assets.views import ComponentsAdminView
 from ralph.attachments.admin import AttachmentsMixin
-from ralph.configuration_management.views import (
-    SCMCheckInfo,
-    SCMStatusCheckInChangeListMixin,
-)
+from ralph.configuration_management.views import SCMCheckInfo
+from ralph.data_center.admin_actions import assign_management_hostname_and_ip
 from ralph.data_center.forms import DataCenterAssetForm
 from ralph.data_center.models.components import DiskShare, DiskShareMount
 from ralph.data_center.models.hosts import DCHost
@@ -59,8 +55,7 @@ from ralph.data_center.models.virtual import (
     BaseObjectCluster,
     Cluster,
     ClusterType,
-    Database,
-    VIP,
+    Database
 )
 from ralph.data_center.views import RelationsView
 from ralph.data_importer import resources
@@ -68,11 +63,12 @@ from ralph.deployment.mixins import ActiveDeploymentMessageMixin
 from ralph.lib.custom_fields.admin import CustomFieldValueAdminMixin
 from ralph.lib.table.table import Table
 from ralph.lib.transitions.admin import TransitionAdminMixin
+from ralph.lib.visibility_scope.filters import visibility_scope_filter
 from ralph.licences.models import BaseObjectLicence
 from ralph.networks.forms import SimpleNetworkWithManagementIPForm
 from ralph.networks.views import NetworkWithTerminatorsView
 from ralph.operations.views import OperationViewReadOnlyForExisiting
-from ralph.security.views import ScanStatusInChangeListMixin, SecurityInfo
+from ralph.security.views import SecurityInfo
 from ralph.supports.models import BaseObjectsSupport
 
 dupa = 1
@@ -92,15 +88,6 @@ def generate_list_filter_with_common_fields(prefix=None, postfix=None):
             ),
             MacAddressFilter,
             IPFilter,
-            (
-                "securityscan__vulnerabilities__patch_deadline",
-                VulnerabilitesByPatchDeadline,
-            ),
-            (
-                "securityscan__vulnerabilities",
-                filters.RelatedAutocompleteFieldListFilter,
-            ),
-            "securityscan__is_patched",
         ]
     )
     if type(postfix) is list:
@@ -235,6 +222,9 @@ class ClusterAdmin(CustomFieldValueAdminMixin, RalphAdmin):
 
     inlines = [ClusterBaseObjectInline, ClusterNetworkInline]
 
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(visibility_scope_filter(request.user))
+
     def get_fieldsets(self, request, obj=None):
         """
         Attach master info fieldset only if show_master_summary option checked
@@ -366,8 +356,6 @@ class DataCenterAssetRelationsView(RelationsView):
 
 @register(DataCenterAsset)
 class DataCenterAssetAdmin(
-    SCMStatusCheckInChangeListMixin,
-    ScanStatusInChangeListMixin,
     ActiveDeploymentMessageMixin,
     MulitiAddAdminMixin,
     TransitionAdminMixin,
@@ -380,13 +368,11 @@ class DataCenterAssetAdmin(
     """Data Center Asset admin class."""
 
     add_form_template = "data_center/datacenterasset/add_form.html"
-    actions = ["bulk_edit_action", "invoice_report"]
+    actions = ["bulk_edit_action", "invoice_report", "assign_mgmt_hostname"]
 
     change_views = [
         DataCenterAssetComponents,
         DataCenterAssetNetworkView,
-        DataCenterAssetSecurityInfo,
-        DataCenterAssetSCMInfo,
         DataCenterAssetRelationsView,
         DataCenterAssetLicence,
         DataCenterAssetSupport,
@@ -408,8 +394,6 @@ class DataCenterAssetAdmin(
         "show_location",
         "service_env",
         "configuration_path",
-        "scan_status",
-        "scm_status_check",
         "property_of",
         "order_no",
     ]
@@ -574,6 +558,14 @@ class DataCenterAssetAdmin(
         ),
     )
 
+    def assign_mgmt_hostname(self, *args, **kwargs):
+        return assign_management_hostname_and_ip(self, *args, **kwargs)
+
+    assign_mgmt_hostname.short_description = "Assign management hostname and IP"
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(visibility_scope_filter(request.user))
+
     def get_export_queryset(self, request):
         qs = (
             super(RalphAdminImportExportMixin, self)
@@ -705,7 +697,7 @@ class DatabaseAdmin(RalphAdmin):
     pass
 
 
-@register(VIP)
+# @register(VIP)
 class VIPAdmin(RalphAdmin):
     search_fields = ["name", "ip__address"]
     list_display = ["name", "ip", "port", "protocol", "service_env"]
@@ -750,9 +742,7 @@ class DCHostSCMInfo(SCMCheckInfo):
 
 
 @register(DCHost)
-class DCHostAdmin(
-    SCMStatusCheckInChangeListMixin, ScanStatusInChangeListMixin, RalphAdmin
-):
+class DCHostAdmin(RalphAdmin):
     change_list_template = "admin/data_center/dchost/change_list.html"
     search_fields = [
         "remarks",
@@ -770,8 +760,6 @@ class DCHostAdmin(
         "configuration_path",
         "show_location",
         "remarks",
-        "scan_status",
-        "scm_status_check",
     ]
     # TODO: sn
     # TODO: hostname, DC
@@ -829,7 +817,7 @@ class DCHostAdmin(
     show_location.short_description = _("Location")
 
     def get_queryset(self, request):
-        qs = super().get_queryset(request)
+        qs = super().get_queryset(request).filter(visibility_scope_filter(request.user))
         # location
         polymorphic_select_related = dict(
             DataCenterAsset=["rack__server_room__data_center", "model"],

@@ -1,12 +1,6 @@
-try:
-    from dj.choices import Choices
-    use_choices = True
-except ImportError:
-    Choices = None
-    use_choices = False
-
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import FieldDoesNotExist
+from django.db.models import QuerySet
 from django.forms.utils import flatatt
 from django.template.loader import render_to_string
 from django.urls import reverse
@@ -17,6 +11,13 @@ from ralph.admin.helpers import (
     get_field_title_by_relation_path,
     getattr_dunder
 )
+
+try:
+    from dj.choices import Choices
+    use_choices = True
+except ImportError:
+    Choices = None
+    use_choices = False
 
 
 class Table(object):
@@ -46,7 +47,7 @@ class Table(object):
         Initialize table class
 
         Args:
-            queryset: django queryset
+            queryset: django queryset or a list
             list_display: field list to display; a value on the list could be
                 plain string (name of model's field - verbose name of field
                 will be used here) or tuple (field_name, verbose_name)
@@ -69,7 +70,10 @@ class Table(object):
 
     @property
     def rows_count(self):
-        return self.queryset.count()
+        if isinstance(self.queryset, QuerySet):
+            return self.queryset.count()
+        else:
+            return len(self.queryset)
 
     def get_headers(self):
         """
