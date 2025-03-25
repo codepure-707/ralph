@@ -122,9 +122,7 @@ class RalphUser(
     )
     regions = models.ManyToManyField(Region, related_name="users", blank=True)
     service_visibility_scopes = models.ManyToManyField(
-        ServiceBasedVisibilityScope,
-        related_name="users",
-        blank=True
+        ServiceBasedVisibilityScope, related_name="users", blank=True
     )
     team = models.ForeignKey(
         Team,

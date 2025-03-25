@@ -14,8 +14,7 @@ from ralph.attachments.admin import AttachmentsMixin
 from ralph.data_importer import resources
 from ralph.lib.custom_fields.admin import CustomFieldValueAdminMixin
 from ralph.lib.mixins.forms import PriceFormMixin
-from ralph.lib.visibility_scope.filters import \
-    visibility_scope_asset_support_filter
+from ralph.lib.visibility_scope.filters import visibility_scope_asset_support_filter
 from ralph.supports.models import BaseObjectsSupport, Support, SupportType
 
 

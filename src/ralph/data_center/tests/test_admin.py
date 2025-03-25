@@ -9,10 +9,7 @@ from django.test import override_settings, RequestFactory, TransactionTestCase
 from django.urls import reverse
 
 from ralph.accounts.tests.factories import UserFactory
-from ralph.assets.tests.factories import (
-    ServiceEnvironmentFactory,
-    ServiceFactory
-)
+from ralph.assets.tests.factories import ServiceEnvironmentFactory, ServiceFactory
 from ralph.data_center.admin import DataCenterAssetAdmin
 from ralph.data_center.models import DataCenterAsset, DataCenterAssetStatus
 from ralph.data_center.tests.factories import (
@@ -20,7 +17,7 @@ from ralph.data_center.tests.factories import (
     DataCenterAssetFullFactory,
     DataCenterFactory,
     RackFactory,
-    ServerRoomFactory
+    ServerRoomFactory,
 )
 from ralph.lib.custom_fields.models import (
     CustomField,
@@ -201,6 +198,7 @@ class DataCenterAssetAdminTest(TransactionTestCase):
         # check if on_commit callbacks are removed from current db connections
         self.assertEqual(connection.run_on_commit, [])
 
+
 class DataCenterAssetAdminAssignManagementHostnameTest(TransactionTestCase):
     def setUp(self):
         self.user = get_user_model().objects.create_superuser(
@@ -211,54 +209,62 @@ class DataCenterAssetAdminAssignManagementHostnameTest(TransactionTestCase):
         self.factory = RequestFactory()
 
         dc = DataCenterFactory(
-            management_hostname_suffix = "dc1.test",
-            management_ip_prefix = "12.34"
+            management_hostname_suffix="dc1.test", management_ip_prefix="12.34"
         )
         room = ServerRoomFactory(data_center=dc)
         rack = RackFactory(name="Rack 123", server_room=room)
         self.dca = DataCenterAssetFullFactory(  # type: DataCenterAsset
-            rack=rack,
-            position=18,
-            status=DataCenterAssetStatus.to_deploy.id
+            rack=rack, position=18, status=DataCenterAssetStatus.to_deploy.id
         )
         self.dca.management_hostname = None
         self.dca.management_ip = None
         self.dca.save()
 
     def build_request(self, dca):
-        request = self.factory.post(reverse('admin:data_center_datacenterasset_changelist'), {
-            'action': 'assign_mgmt_hostname',
-            '_selected_action': [dca.id],
-        })
+        request = self.factory.post(
+            reverse("admin:data_center_datacenterasset_changelist"),
+            {
+                "action": "assign_mgmt_hostname",
+                "_selected_action": [dca.id],
+            },
+        )
         request.user = self.user
-        setattr(request, 'session', 'session')
+        setattr(request, "session", "session")
         messages = FallbackStorage(request)
-        setattr(request, '_messages', messages)
+        setattr(request, "_messages", messages)
         return request
 
     def test_superuser_can_assign_mgmt_hostname_and_ip(self):
         admin = DataCenterAssetAdmin(DataCenterAsset, admin_site=AdminSite())
         request = self.build_request(self.dca)
-        admin.assign_mgmt_hostname(request, DataCenterAsset.objects.filter(pk=self.dca.id))
-        self.assertEqual(self.dca.management_hostname, 'rack123-18u-mgmt.dc1.test')
-        self.assertEqual(self.dca.management_ip, '12.34.213.218')
+        admin.assign_mgmt_hostname(
+            request, DataCenterAsset.objects.filter(pk=self.dca.id)
+        )
+        self.assertEqual(self.dca.management_hostname, "rack123-18u-mgmt.dc1.test")
+        self.assertEqual(self.dca.management_ip, "12.34.213.218")
 
     def test_superuser_can_assign_mgmt_hostname_for_server_blade(self):
         admin = DataCenterAssetAdmin(DataCenterAsset, admin_site=AdminSite())
         self.dca.slot_no = 33
         # we need to have IP first before setting hostname, this can be whatever
-        self.dca.management_ip = '10.15.20.25'
+        self.dca.management_ip = "10.15.20.25"
         self.dca.save()
         request = self.build_request(self.dca)
-        admin.assign_mgmt_hostname(request, DataCenterAsset.objects.filter(pk=self.dca.id))
-        self.assertEqual(self.dca.management_hostname, 'rack123-18u-bay33-mgmt.dc1.test')
-        self.assertEqual(self.dca.management_ip, '10.15.20.25')
+        admin.assign_mgmt_hostname(
+            request, DataCenterAsset.objects.filter(pk=self.dca.id)
+        )
+        self.assertEqual(
+            self.dca.management_hostname, "rack123-18u-bay33-mgmt.dc1.test"
+        )
+        self.assertEqual(self.dca.management_ip, "10.15.20.25")
 
     def test_cant_assign_mgmt_hostname_for_server_blade_if_no_ip(self):
         admin = DataCenterAssetAdmin(DataCenterAsset, admin_site=AdminSite())
         self.dca.slot_no = 33
         self.dca.save()
         request = self.build_request(self.dca)
-        admin.assign_mgmt_hostname(request, DataCenterAsset.objects.filter(pk=self.dca.id))
-        self.assertEqual(self.dca.management_hostname, '')
-        self.assertEqual(self.dca.management_ip, '')
+        admin.assign_mgmt_hostname(
+            request, DataCenterAsset.objects.filter(pk=self.dca.id)
+        )
+        self.assertEqual(self.dca.management_hostname, "")
+        self.assertEqual(self.dca.management_ip, "")

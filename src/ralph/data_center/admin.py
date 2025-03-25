@@ -20,7 +20,7 @@ from ralph.admin.filters import (
     MacAddressFilter,
     RelatedAutocompleteFieldListFilter,
     TagsListFilter,
-    TreeRelatedAutocompleteFilterWithDescendants
+    TreeRelatedAutocompleteFilterWithDescendants,
 )
 from ralph.admin.helpers import generate_html_link
 from ralph.admin.mixins import (
@@ -55,7 +55,7 @@ from ralph.data_center.models.virtual import (
     BaseObjectCluster,
     Cluster,
     ClusterType,
-    Database
+    Database,
 )
 from ralph.data_center.views import RelationsView
 from ralph.data_importer import resources
@@ -223,7 +223,9 @@ class ClusterAdmin(CustomFieldValueAdminMixin, RalphAdmin):
     inlines = [ClusterBaseObjectInline, ClusterNetworkInline]
 
     def get_queryset(self, request):
-        return super().get_queryset(request).filter(visibility_scope_filter(request.user))
+        return (
+            super().get_queryset(request).filter(visibility_scope_filter(request.user))
+        )
 
     def get_fieldsets(self, request, obj=None):
         """
@@ -564,7 +566,9 @@ class DataCenterAssetAdmin(
     assign_mgmt_hostname.short_description = "Assign management hostname and IP"
 
     def get_queryset(self, request):
-        return super().get_queryset(request).filter(visibility_scope_filter(request.user))
+        return (
+            super().get_queryset(request).filter(visibility_scope_filter(request.user))
+        )
 
     def get_export_queryset(self, request):
         qs = (

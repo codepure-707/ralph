@@ -297,7 +297,7 @@ class RalphUserAdmin(UserAdmin, RalphAdmin):
                     "groups",
                     "user_permissions",
                     "regions",
-                    "service_visibility_scopes"
+                    "service_visibility_scopes",
                 )
             },
         ),

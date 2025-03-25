@@ -116,6 +116,7 @@ class DCHostViewTest(ClientMixin, TestCase):
         )
         self.assertContains(result, "DC1 / SR1 / Rack #1")
 
+
 @skip("Security Scans are disabled")
 class DCHostScanStatusInListingTest(ClientMixin, TestCase):
     def setUp(self):
@@ -201,6 +202,7 @@ class DCHostScanStatusInListingTest(ClientMixin, TestCase):
             reverse("admin:data_center_dchost_changelist"),
         )
         self.assertContains(result, "Scan failed")
+
 
 @skip("Security Scans are disabled")
 class DCHostFilterByPatchDeadline(ClientMixin, TestCase):

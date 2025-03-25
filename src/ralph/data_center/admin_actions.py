@@ -17,12 +17,14 @@ def assign_management_hostname_and_ip(modeladmin, request, queryset):
                 raise RuntimeError("dc doesn't have IP prefix configured")
             if dca.status not in {
                 DataCenterAssetStatus.used.id,
-                DataCenterAssetStatus.to_deploy.id
+                DataCenterAssetStatus.to_deploy.id,
             }:
                 raise RuntimeError("asset should be in status 'in use' or 'to deploy'")
             try:
-                rack_number_int = int(re.match(r'.*?(\d+).*?', dca.rack.name).groups()[0])
-                rack_number = '%03d' % rack_number_int  # type: str
+                rack_number_int = int(
+                    re.match(r".*?(\d+).*?", dca.rack.name).groups()[0]
+                )
+                rack_number = "%03d" % rack_number_int  # type: str
             except:  # noqa
                 raise RuntimeError(f"invalid rack name {dca.rack.name}")
 
@@ -33,7 +35,9 @@ def assign_management_hostname_and_ip(modeladmin, request, queryset):
             if dca.slot_no:  # blade server
                 dca.management_hostname = hostname
                 modeladmin.message_user(
-                    request, f"Updated management hostname for asset id: {dca.id}", level="INFO"
+                    request,
+                    f"Updated management hostname for asset id: {dca.id}",
+                    level="INFO",
                 )
                 continue
             else:
@@ -43,16 +47,21 @@ def assign_management_hostname_and_ip(modeladmin, request, queryset):
                     dca.management_hostname = hostname
                     modeladmin.message_user(
                         request,
-                        f"Updated management hostname and IP for asset id: {dca.id}", level="INFO"
+                        f"Updated management hostname and IP for asset id: {dca.id}",
+                        level="INFO",
                     )
                     continue
             raise RuntimeError("unknown error")
         except Exception as e:  # noqa
-            modeladmin.message_user(request, f"Can't update asset id: {dca.id}: {e}", level="ERROR")
+            modeladmin.message_user(
+                request, f"Can't update asset id: {dca.id}: {e}", level="ERROR"
+            )
             return
 
 
-assign_management_hostname_and_ip.short_description = _("Assign management hostname and IP")
+assign_management_hostname_and_ip.short_description = _(
+    "Assign management hostname and IP"
+)
 
 
 def _infer_hostname(asset: DataCenterAsset, rack_number: str) -> Union[str, None]:
@@ -85,4 +94,4 @@ def _infer_ip(asset: DataCenterAsset, rack_number: str) -> Union[str, None]:
         if ip_prefix and rack_ip_part and position_ip_part:
             return f"{ip_prefix}.{rack_ip_part}.{position_ip_part}"
     except:  # noqa
-        raise RuntimeError(f"can't infer management IP address")
+        raise RuntimeError("can't infer management IP address")

@@ -310,7 +310,7 @@ sitetrees = [
                     section(
                         _("Visibility scopes"),
                         "visibility_scope",
-                        "ServiceBasedVisibilityScope"
+                        "ServiceBasedVisibilityScope",
                     ),
                     section(_("Access Zones"), "access_cards", "AccessZone"),
                     section(_("Transitions"), "transitions", "TransitionModel"),

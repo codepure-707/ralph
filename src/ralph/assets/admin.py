@@ -151,11 +151,11 @@ class ServiceBaseObjects(RalphDetailView):
     url_name = "service_base_objects"
 
     def get_service_base_objects_queryset(self):
-        return BaseObject.polymorphic_objects.filter(
-            service_env__service=self.object
-        ).select_related(
-            "service_env__environment", "content_type", "securityscan"
-        ).exclude(content_type__model="vip")
+        return (
+            BaseObject.polymorphic_objects.filter(service_env__service=self.object)
+            .select_related("service_env__environment", "content_type", "securityscan")
+            .exclude(content_type__model="vip")
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

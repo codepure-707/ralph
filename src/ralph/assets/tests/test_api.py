@@ -37,13 +37,12 @@ from ralph.back_office.models import BackOfficeAsset
 from ralph.back_office.tests.factories import BackOfficeAssetFactory
 from ralph.configuration_management.models import SCMCheckResult
 from ralph.configuration_management.tests.factories import SCMStatusCheckFactory
-from ralph.data_center.models import Cluster, Database, DataCenterAsset, VIP
+from ralph.data_center.models import Cluster, Database, DataCenterAsset
 from ralph.data_center.tests.factories import (
     ClusterFactory,
     DatabaseFactory,
     DataCenterAssetFactory,
     DataCenterAssetFullFactory,
-    VIPFactory,
 )
 from ralph.domains.models import Domain
 from ralph.domains.tests.factories import DomainFactory
