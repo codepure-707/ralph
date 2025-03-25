@@ -1,3 +1,18 @@
+ralph (20250325.1) bionic; urgency=medium
+
+  * WIP - Limit visibility of hardwarde for some users
+  * Limit visibility for assets DataCenterAsset, Cluster, VirtualServer, CloudHost, BaseObjectsSupport for users in information bubbles
+  * Fix flake and isort
+  * Fix tests
+  * Fix error when displaying masters summary of Cluster
+  * Change test case to transaction test case
+  * Fix information bubble factory
+  * Limit visibility of Cluster
+  * rename to visiblity scope
+  * Fix isort and sitetree
+
+ -- Paweł Szulc <pawel.szulc@allegro.com>  Tue, 25 Mar 2025 08:43:42 +0000
+
 ralph (20250321.1) bionic; urgency=medium
 
   * Fix auto hostname - limit statuses and fix help
