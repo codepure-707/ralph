@@ -4,7 +4,7 @@ from collections import OrderedDict
 
 from dj.choices import Choices
 from django.contrib.contenttypes.models import ContentType
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models
 from django.dispatch import receiver
 from django.utils.functional import cached_property
@@ -304,6 +304,22 @@ class CloudHost(
                 location.append(self.hypervisor.hostname)
         return location
 
+    def clean(self):
+        errors = {}
+        for validator in [
+            super().clean,
+            self._validate_hostname,
+        ]:
+            try:
+                validator()
+            except ValidationError as e:
+                e.update_error_dict(errors)
+        if errors:
+            raise ValidationError(errors)
+
+    def _validate_hostname(self):
+        if not self.hostname:
+            raise ValidationError({_("Hostname is required")})
 
 class VirtualComponent(Component):
     pass
@@ -405,6 +421,23 @@ class VirtualServer(
     def __str__(self):
         return "VirtualServer: {} ({})".format(self.hostname, self.sn)
 
+    def clean(self):
+        errors = {}
+        for validator in [
+            super().clean,
+            self._validate_hostname,
+        ]:
+            try:
+                validator()
+            except ValidationError as e:
+                e.update_error_dict(errors)
+        if errors:
+            raise ValidationError(errors)
+
+    def _validate_hostname(self):
+        if self.status == VirtualServerStatus.used.id:
+            if not self.hostname:
+                raise ValidationError({"hostname": _("Hostname is required for status 'in use'")})
 
 post_commit(publish_host_update, VirtualServer)
 post_commit(publish_host_update, CloudHost)

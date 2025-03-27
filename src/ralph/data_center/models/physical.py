@@ -745,10 +745,12 @@ class DataCenterAsset(
                     )
                     raise ValidationError({"slot_no": message})
 
+    def _validate_hostname(self, *args, **kwargs):
+        if self.status == DataCenterAssetStatus.used.id:
+            if not self.hostname or self.hostname == "":
+                raise ValidationError({"hostname": _("Hostname is required for status 'in use'")})
+
     def clean(self):
-        # TODO: this should be default logic of clean method;
-        # we could register somehow validators (or take each func with
-        # _validate prefix) and call it here
         errors = {}
         for validator in [
             super().clean,
@@ -756,6 +758,7 @@ class DataCenterAsset(
             self._validate_position,
             self._validate_position_in_rack,
             self._validate_slot_no,
+            self._validate_hostname,
         ]:
             try:
                 validator()
