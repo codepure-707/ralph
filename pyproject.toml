@@ -22,7 +22,6 @@ dependencies = [
     "Markdown==3.2.1",
     "Pillow",
     "Unidecode==0.04.18",
-    "dj.choices==0.11.0",
     "django-auth-ldap==2.1.0",
     "django-cryptography==0.3",
     "django-extensions==2.2.9",
@@ -86,6 +85,7 @@ dependencies = [
     "stevedore",
     "wrapt==1.10.6",
     "setuptools<66.0",
+    "dj-choices==0.11.0",
 ]
 
 [tool.ruff]

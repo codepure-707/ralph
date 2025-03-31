@@ -46,6 +46,7 @@ cmd2==2.5.11
     # via cliff
 coverage==7.6.1
     # via
+    #   ralph (pyproject.toml:dev)
     #   ralph (pyproject.toml:test)
     #   coveralls
 coveralls==4.0.1
