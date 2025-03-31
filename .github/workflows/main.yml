@@ -23,28 +23,19 @@ jobs:
         env:
           DEBIAN_FRONDEND: NONINTERACTIVE
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8.18
+      - name: Install and configure Mise
+        run: |
+          curl https://mise.run | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          echo 'eval "$(mise activate bash)"' >> ~/.bashrc
+          bash -c "source ~/.bashrc"
 
-      - name: Upgrade pip
-        run: pip3 install -U pip
-
-      - name: Cache pip dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('dev.txt', 'docs.txt', 'prod.txt', 'test.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-            ${{ runner.os }}-
-
-      - name: Install Ralph's python dependencies
-        run: pip3 install -r "${GITHUB_WORKSPACE}/requirements/dev.txt"
+      - name: Mise install tools
+        run: |
+          mise install
 
       - name: Check formatting
-        run: make lint
+        run: mise run checks
 
   missing_migrations:
     name: Missing migrations
@@ -100,35 +91,20 @@ jobs:
         env:
           DEBIAN_FRONDEND: NONINTERACTIVE
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8.18
-      - name: Upgrade pip
-        run: pip3 install -U pip
+      - name: Install and configure Mise
+        run: |
+          curl https://mise.run | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          echo 'eval "$(mise activate bash)"' >> ~/.bashrc
+          bash -c "source ~/.bashrc"
 
-      - name: Install Ralph
-        run: pip3 install "${GITHUB_WORKSPACE}"
-
-      - name: Cache pip dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('dev.txt', 'docs.txt', 'prod.txt', 'test.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-            ${{ runner.os }}-
-
-      - name: Install Ralph's python dependencies
-        run: pip3 install -r "${GITHUB_WORKSPACE}/requirements/test.txt"
-
-      - name: Install PostgreSQL driver
-        if: ${{ matrix.db-engine == 'psql' }}
-        run: pip3 install psycopg2-binary
+      - name: Mise install tools
+        run: |
+          mise install
 
       # Runs a set of commands using the runners shell
       - name: Check missing migrations
-        run: "${GITHUB_WORKSPACE}/scripts/check_missing_migrations.sh"
+        run: "mise run check-missing-migration"
 
   settings_test:
     name: Settings tests

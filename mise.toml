@@ -21,7 +21,7 @@ python = "3.8"
 ruff = "latest"
 
 [tasks.install]
-run = ["uv pip sync requirements/dev.txt", "uv pip install -e ."]
+run = ["uv sync"]
 description = "Install requirements and entrypoints"
 alias = ["deps", "i"]
 
@@ -38,35 +38,36 @@ run = "podman compose -f docker/docker-compose-dev.yml -p ralph build"
 description = "Rebuild images"
 
 [tasks.init]
-depends = ["install", "up"]
+depends = ["up"]
+depends_post = ["init_transitions"]
 run = [
   """ls 'src/ralph/settings/local.py' ||
         (echo 'please create your settings file e.g.:\ncp src/ralph/settings/local.template src/ralph/settings/local.py' \
         && exit 1)
     """,
-  "python setup.py develop",
-  "dev_ralph migrate",
-  "make menu",
+  "uv run setup.py develop",
+  "uv run dev_ralph migrate",
+  "uv run dev_ralph sitetree_resync_apps",
   "echo \"Installation finished. Run 'mise manage createsuperuser' to be able to log in\"",
   "echo \"Or just start server with 'mise run server'\"",
 ]
 description = "Bootstrap new local ralph installation"
 
 [tasks.manage]
-run = "dev_ralph"
+run = "uv run dev_ralph"
 
 [tasks.server]
 depends = ["up"]
-run = "dev_ralph runserver"
+run = "uv run dev_ralph runserver"
 alias = ["s", "default"]
 description = "Run local server"
 
 [tasks.requirements]
 run = [
-  "uv pip compile pyproject.toml --all-extras -o requirements/dev.txt",
-  "uv pip compile pyproject.toml --extra docs -o requirements/docs.txt",
-  "uv pip compile pyproject.toml --extra dev --extra test -o requirements/test.txt",
-  "uv pip compile pyproject.toml --extra prod -o requirements/prod.txt",
+  "uv pip compile pyproject.toml --group dev --group docs --group test --group prod -o requirements/dev.txt",
+  "uv pip compile pyproject.toml --group docs -o requirements/docs.txt",
+  "uv pip compile pyproject.toml --group dev --group test -o requirements/test.txt",
+  "uv pip compile pyproject.toml --group prod -o requirements/prod.txt",
 ]
 description = "Compile requirements"
 
@@ -82,15 +83,21 @@ description = "Format the code"
 run = ["find . -name '*.py[cod]' -delete", "rm .coverage || :"]
 hide = true
 
-[tasks.coverage]
+[tasks.check-missing-migrations]
+run = "uv run test_ralph makemigrations --check --dry-run"
+
+[tasks.tests]
 depends = ['clean']
 run = [
-  """DJANGO_SETTINGS_MODULE='ralph.settings.test' coverage run $(command -v test_ralph) \
+  """DJANGO_SETTINGS_MODULE='ralph.settings.test' uv run --group test coverage run $(command -v test_ralph) \
     test ralph.admin ralph.access_cards ralph.accounts ralph.accessories ralph.assets ralph.attachments ralph.back_office ralph.configuration_management ralph.dashboards ralph.data_center ralph.dhcp ralph.deployment ralph.licences ralph.domains ralph.trade_marks ralph.sim_cards ralph.supports ralph.security ralph.lib.foundation ralph.lib.table ralph.networks ralph.data_importer ralph.dc_view ralph.reports ralph.virtual ralph.operations ralph.lib.external_services ralph.lib.transitions ralph.lib.permissions ralph.lib.custom_fields ralph.lib.hooks ralph.notifications ralph.ssl_certificates ralph.lib.mixins ralph.tests ralph.lib.custom_fields.tests ralph.lib.permissions.tests ralph.lib.polymorphic.tests ralph.lib.mixins.tests \
     --keepdb """,
-  "coverage report",
+  "uv run --group test coverage report",
 ]
 description = "Run tests and report coverage"
+
+[tasks.ci]
+depends = ["checks", "tests", "check-missing-migrations"]
 
 [tasks.db-backup-mysql]
 run = """

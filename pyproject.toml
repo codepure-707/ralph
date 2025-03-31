@@ -88,21 +88,27 @@ dependencies = [
     "setuptools<66.0",
 ]
 
-[project.optional-dependencies]
+[tool.ruff]
+exclude = [
+    "*local.py",
+    "*migrations*"
+]
+
+[tools.ruff.format]
+line-length = 88
+line-ending = "auto"
+
+[dependency-groups]
 dev = [
-    # code_style
-    "flake8==3.7.9",
-    "isort==4.2.5",
-    "pyflakes==2.1.0",
-    "ruff",
-    # dev tools
-    "django-debug-toolbar==1.11",
-    "werkzeug==0.16.1",
-    "pudb",
-    "ipython",
-    "ipdb",
+    "coverage",
+    "django-cors-headers>=3.11.0",
+    "django-debug-toolbar>=1.11",
     "django-silk",
-    "django-cors-headers==3.11.0",
+    "ipdb",
+    "ipython",
+    "pudb",
+    "ruff",
+    "werkzeug==0.16.1",
 ]
 
 test = [
@@ -111,8 +117,6 @@ test = [
     "ddt",
     "django-plainpasswordhasher",
     "sphinx",
-    "flake8-debugger==1.4.0",
-    "flake8-print==2.0.2",
     "mock==4.0.2",
 ]
 
@@ -127,15 +131,6 @@ docs = [
     "mkdocs_bootstrap",
 ]
 
-[tool.ruff]
-exclude = [
-    "*local.py",
-    "*migrations*"
-]
-
-[tools.ruff.format]
-line-length = 88
-line-ending = "auto"
 
 [tool.ruff.lint]
 # Add "B" (bugbear) in the future
