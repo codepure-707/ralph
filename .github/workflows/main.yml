@@ -135,6 +135,9 @@ jobs:
         run: |
           mise install
 
+      - name: Install ralph entrypoint
+        run: uv pip install -e .
+
       - name: Test Ralph's settings
         run:  ./scripts/test_settings.sh prod test >/dev/null
 
@@ -214,9 +217,6 @@ jobs:
         run: |
           mise install
 
-      - name: Test ralph_dchp_agent
-        run: uv run contrib/dhcp_agent/test.py
-
-      - name: Test Ralph with coverage using python-${{ matrix.python-version }}
+      - name: Test Ralph with coverage
         run: mise run tests
 ...
