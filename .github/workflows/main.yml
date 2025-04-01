@@ -124,27 +124,16 @@ jobs:
         env:
           DEBIAN_FRONDEND: NONINTERACTIVE
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8.18
-
-      - name: Upgrade pip
-        run: pip3 install -U pip
-
-      - name: Cache pip dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('dev.txt', 'docs.txt', 'prod.txt', 'test.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-            ${{ runner.os }}-
-
-      - name: Install Ralph's python dependencies
+      - name: Install and configure Mise
         run: |
-          pip3 install -r "${GITHUB_WORKSPACE}/requirements/test.txt"
-          pip3 install -e .
+          curl https://mise.run | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          echo 'eval "$(mise activate bash)"' >> ~/.bashrc
+          bash -c "source ~/.bashrc"
+
+      - name: Mise install tools
+        run: |
+          mise install
 
       - name: Test Ralph's settings
         run:  ./scripts/test_settings.sh prod test >/dev/null
@@ -155,9 +144,9 @@ jobs:
     strategy:
       matrix:
         python-version: [3.8.18]
-        db-engine: ["psql", "mysql"]
+        db-engine: ["ci-psql", "ci-mysql"]
     env:
-      TEST_DB_ENGINE: ${{ matrix.db-engine }}
+      MISE_ENV: ${{ matrix.db-engine }}
       DATABASE_USER: ralph_ng
       DATABASE_PASSWORD: ralph_ng
 
@@ -214,33 +203,20 @@ jobs:
         env:
           DEBIAN_FRONDEND: NONINTERACTIVE
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Downgrade pip
-        run: pip3 install pip==19.3.1
-
-      - name: Install Ralph
-        run: pip3 install "${GITHUB_WORKSPACE}"
-
-      - name: Cache pip dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('dev.txt', 'docs.txt', 'prod.txt', 'test.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-            ${{ runner.os }}-
-
-      - name: Install Ralph's python dependencies
+      - name: Install and configure Mise
         run: |
-          pip3 install -r "${GITHUB_WORKSPACE}/requirements/test.txt"
+          curl https://mise.run | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          echo 'eval "$(mise activate bash)"' >> ~/.bashrc
+          bash -c "source ~/.bashrc"
 
-      - name: Test ralph_dchp_agent using python-${{ matrix.python-version }}
-        run: python contrib/dhcp_agent/test.py
+      - name: Mise install tools
+        run: |
+          mise install
+
+      - name: Test ralph_dchp_agent
+        run: uv run contrib/dhcp_agent/test.py
 
       - name: Test Ralph with coverage using python-${{ matrix.python-version }}
-        run: make coverage
+        run: mise run tests
 ...

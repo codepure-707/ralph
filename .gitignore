@@ -90,3 +90,4 @@ tags
 .*.swo
 .envrc
 .direnv/
+mise*local.toml
