@@ -321,6 +321,7 @@ class CloudHost(
         if not self.hostname:
             raise ValidationError({_("Hostname is required")})
 
+
 class VirtualComponent(Component):
     pass
 
@@ -438,6 +439,7 @@ class VirtualServer(
         if self.status == VirtualServerStatus.used.id:
             if not self.hostname:
                 raise ValidationError({"hostname": _("Hostname is required for status 'in use'")})
+
 
 post_commit(publish_host_update, VirtualServer)
 post_commit(publish_host_update, CloudHost)
