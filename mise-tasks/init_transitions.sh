@@ -11,7 +11,6 @@ try:
 except:
     user = RalphUser.objects.get(username='admin')
 
-
 transitions = [t for t in ['RETURN_TRANSITION_ID', 'LOAN_TRANSITION_ID', 'TRANSITION_ID']]
 ct = ContentType.objects.get_for_model(BackOfficeAsset)
 tm = TransitionModelFactory(content_type=ct)

@@ -7,6 +7,9 @@ DATABASE_PORT = 54320
 MISE_PROJECT_ROOT = "."
 MISE_PROJECT_NAME = "ralph"
 
+[vars]
+skip_containers = false
+
 [settings]
 experimental = true
 
@@ -25,12 +28,30 @@ run = ["uv sync"]
 description = "Install requirements and entrypoints"
 alias = ["deps", "i"]
 
-[tasks.install-entrypoints]
-run = ["uv pip install -e ."]
-
 [tasks.up]
-run = "podman compose -f docker/docker-compose-dev.yml -p ralph up -d"
+run = """
+  {% if not vars.skip_containers %}
+    podman compose -f docker/docker-compose-dev.yml -p ralph up -d
+  {% else %}
+    echo "Skipping containers because of skip_containers var"
+  {% endif %}
+"""
 description = "Start required containers"
+
+[tasks.db]
+depends = ['up']
+hide = true
+run = """
+  for i in {1..30}; do
+    if [ "$DB_ENGINE" = "psql" ]; then
+      PGPASSWORD=ralph_ng psql -h 127.0.0.1 -p $DATABASE_PORT -U ralph_ng -c "SELECT 1" >/dev/null 2>&1 && exit 0
+    else
+      mysqladmin ping -h 127.0.0.1 -P $DATABASE_PORT -u ralph_ng --password=ralph_ng >/dev/null 2>&1 && exit 0
+    fi
+    sleep 1
+  done
+  echo "Database not responding" && exit 1
+"""
 
 [tasks.down]
 run = "podman compose -f docker/docker-compose-dev.yml -p ralph down"
@@ -41,7 +62,7 @@ run = "podman compose -f docker/docker-compose-dev.yml -p ralph build"
 description = "Rebuild images"
 
 [tasks.init]
-depends = ["up"]
+depends = ["db"]
 depends_post = ["init_transitions"]
 run = [
   """ls 'src/ralph/settings/local.py' ||
@@ -57,10 +78,12 @@ run = [
 description = "Bootstrap new local ralph installation"
 
 [tasks.manage]
+depends = ["db"]
 run = "uv run ralph"
+description = "Run a Django command e.g. shell, dbshell, makemigrations"
 
 [tasks.server]
-depends = ["up"]
+depends = ["db"]
 run = "uv run ralph runserver"
 alias = ["s", "default"]
 description = "Run local server"
@@ -87,22 +110,28 @@ run = ["find . -name '*.py[cod]' -delete", "rm .coverage || :"]
 hide = true
 
 [tasks.check-missing-migrations]
-depends = ['up']
-run = "uv run test_ralph makemigrations --check --dry-run"
+depends = ['db']
+run = "uv run ralph makemigrations --check --dry-run"
 
-[tasks.tests]
-depends = ['clean']
+[tasks.test]
+depends = ['db']
+run = "uv run --group test ralph test"
+description = "Test a specific app/file/case"
+
+[tasks.coverage]
+depends = ['db', 'clean']
 run = [
     "uv run --group test contrib/dhcp_agent/test.py",
-  """DJANGO_SETTINGS_MODULE='ralph.settings.test' uv run --group test coverage run $(command -v test_ralph) \
+  """uv run --group test coverage run $(command -v ralph) \
     test ralph.admin ralph.access_cards ralph.accounts ralph.accessories ralph.assets ralph.attachments ralph.back_office ralph.configuration_management ralph.dashboards ralph.data_center ralph.dhcp ralph.deployment ralph.licences ralph.domains ralph.trade_marks ralph.sim_cards ralph.supports ralph.security ralph.lib.foundation ralph.lib.table ralph.networks ralph.data_importer ralph.dc_view ralph.reports ralph.virtual ralph.operations ralph.lib.external_services ralph.lib.transitions ralph.lib.permissions ralph.lib.custom_fields ralph.lib.hooks ralph.notifications ralph.ssl_certificates ralph.lib.mixins ralph.tests ralph.lib.custom_fields.tests ralph.lib.permissions.tests ralph.lib.polymorphic.tests ralph.lib.mixins.tests \
     --keepdb """,
   "uv run --group test coverage report",
 ]
-description = "Run tests and report coverage"
+description = "Run a whole test suite and report coverage"
 
 [tasks.ci]
-depends = ["checks", "tests", "check-missing-migrations"]
+depends = ["checks", "coverage", "check-missing-migrations"]
+description = "Run all CI checks in one command"
 
 [tasks.db-backup-mysql]
 run = """
