@@ -46,37 +46,6 @@ jobs:
         db-engine: ["ci-psql", "ci-mysql"]
     env:
         MISE_ENV: ${{ matrix.db-engine }}
-    services:
-      postgres:
-        image: postgres:9.4.26
-        env:
-          POSTGRES_USER: ralph_ng
-          POSTGRES_PASSWORD: ralph_ng
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
-      # NOTE(romcheg): Running mysql image of a more recent version will cause user
-      #                ralph_ng to not being able to create a test database.
-      mysql:
-        image: mysql:5.6.45
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_USER: ralph_ng
-          MYSQL_PASSWORD: ralph_ng
-          MYSQL_DATABASE: ralph_ng
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd "mysqladmin ping --silent"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2

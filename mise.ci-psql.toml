@@ -2,7 +2,3 @@
 DB_ENGINE = "psql"
 TEST_DB_ENGINE = "psql"
 DATABASE_PORT = 5432
-
-[tasks.check-missing-migrations]
-depends = []
-run = "uv run test_ralph makemigrations --check --dry-run"
