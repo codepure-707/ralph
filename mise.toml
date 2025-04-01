@@ -76,6 +76,7 @@ run = [
   "echo \"Or just start server with 'mise run server'\"",
 ]
 description = "Bootstrap new local ralph installation"
+confirm = "This will do a lot of stuff.\nThen you will be asked to update your local settings.\nYou ok with that?"
 
 [tasks.manage]
 depends = ["db"]

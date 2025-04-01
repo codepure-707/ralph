@@ -1,3 +1,5 @@
+import os
+
 from ralph.settings.dev import *  # noqa
 
 INSTALLED_APPS += ("corsheaders",)
@@ -9,7 +11,7 @@ CORS_ORIGIN_WHITELIST = (
     "https://127.0.0.1:8080",
 )
 
-POSTGRES = True
+POSTGRES = os.environ.get("DB_ENGINE") != "mysql"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql"
@@ -29,7 +31,7 @@ DATABASES = {
             "USER": os.environ.get("DATABASE_USER", "ralph_ng"),
             "PASSWORD": os.environ.get("DATABASE_PASSWORD", "ralph_ng") or None,
             "HOST": os.environ.get("DATABASE_HOST", "127.0.0.1"),
-            "PORT": os.environ.get("DATABASE_PORT", 5432 if POSTGRES else 3306),
+            "PORT": os.environ.get("DATABASE_PORT", 54320 if POSTGRES else 3306),
         },
     }
 }
