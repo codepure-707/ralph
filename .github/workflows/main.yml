@@ -134,10 +134,9 @@ jobs:
       - name: Mise install tools
         run: |
           mise install
-          mise run install
 
       - name: Install ralph entrypoint
-        run: uv pip install -e .
+        run: mise run install-entrypoints
 
       - name: Test Ralph's settings
         run:  ./scripts/test_settings.sh prod test >/dev/null

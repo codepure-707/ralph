@@ -25,6 +25,9 @@ run = ["uv sync"]
 description = "Install requirements and entrypoints"
 alias = ["deps", "i"]
 
+[tasks.install-entrypoints]
+run = ["uv pip install -e ."]
+
 [tasks.up]
 run = "podman compose -f docker/docker-compose-dev.yml -p ralph up -d"
 description = "Start required containers"
