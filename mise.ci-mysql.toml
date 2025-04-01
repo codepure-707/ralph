@@ -1,0 +1,7 @@
+[env]
+DB_ENGINE = "mysql"
+TEST_DB_ENGINE = "mysql"
+DATABASE_PORT = 3306
+[tasks.check-missing-migrations]
+depends = []
+run = "uv run test_ralph makemigrations --check --dry-run"

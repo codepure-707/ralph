@@ -84,6 +84,7 @@ run = ["find . -name '*.py[cod]' -delete", "rm .coverage || :"]
 hide = true
 
 [tasks.check-missing-migrations]
+depends = ['up']
 run = "uv run test_ralph makemigrations --check --dry-run"
 
 [tasks.tests]
@@ -114,7 +115,7 @@ hide = true
 run = """
 PGPASSWORD=ralph_ng pg_dump \
   -h 127.0.0.1 \
-  -p 54320 \
+  -p $DATABASE_PORT \
   -U ralph_ng \
   -F c \
   -b \

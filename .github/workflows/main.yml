@@ -43,9 +43,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        db-engine: ["psql", "mysql"]
+        db-engine: ["ci-psql", "ci-mysql"]
     env:
-        TEST_DB_ENGINE: ${{ matrix.db-engine }}
+        MISE_ENV: ${{ matrix.db-engine }}
     services:
       postgres:
         image: postgres:9.4.26
