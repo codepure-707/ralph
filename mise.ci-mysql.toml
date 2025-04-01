@@ -4,4 +4,4 @@ TEST_DB_ENGINE = "mysql"
 DATABASE_PORT = 3306
 
 [tools]
-podman = "3.4.4"
+podman = "3.3"
