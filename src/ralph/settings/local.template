@@ -2,7 +2,7 @@ import os
 
 from ralph.settings.dev import *  # noqa
 
-INSTALLED_APPS += ("corsheaders",)
+INSTALLED_APPS += ("corsheaders", "ralph.tests")
 DEBUG = True
 MIDDLEWARE = MIDDLEWARE + ("corsheaders.middleware.CorsMiddleware",)
 

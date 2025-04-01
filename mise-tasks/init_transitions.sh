@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-uv run dev_ralph shell -c """from ralph.accounts.models import RalphUser
+uv run ralph shell -c """from ralph.accounts.models import RalphUser
 from django.contrib.contenttypes.models import ContentType
 from ralph.lib.transitions.tests.factories import TransitionFactory, TransitionModelFactory
 from ralph.back_office.models import BackOfficeAsset
@@ -15,7 +15,7 @@ transitions = [t for t in ['RETURN_TRANSITION_ID', 'LOAN_TRANSITION_ID', 'TRANSI
 ct = ContentType.objects.get_for_model(BackOfficeAsset)
 tm = TransitionModelFactory(content_type=ct)
 tr = TransitionFactory(name='foo', model=tm, source=['in progress'],  target='in use')
-print('Please make sure these lines are in your local settings:')
-for transition in transitions:
-    print(f'ACCEPT_ASSETS_FOR_CURRENT_USER_CONFIG[\'{transition}\'] = {tr.id}')
+with open('src/ralph/settings/local.py', 'a') as file_:
+    for transition in transitions:
+        file_.write(f'ACCEPT_ASSETS_FOR_CURRENT_USER_CONFIG[\'{transition}\'] = {tr.id}\n')
 """

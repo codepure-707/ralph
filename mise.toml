@@ -66,17 +66,14 @@ depends = ["db"]
 depends_post = ["init_transitions"]
 run = [
   """ls 'src/ralph/settings/local.py' ||
-        (echo 'please create your settings file e.g.:\ncp src/ralph/settings/local.template src/ralph/settings/local.py' \
-        && exit 1)
+        cp src/ralph/settings/local.template src/ralph/settings/local.py
     """,
   "uv run setup.py develop",
   "uv run ralph migrate",
   "uv run ralph sitetree_resync_apps",
-  "echo \"Installation finished. Run 'mise manage createsuperuser' to be able to log in\"",
-  "echo \"Or just start server with 'mise run server'\"",
 ]
 description = "Bootstrap new local ralph installation"
-confirm = "This will do a lot of stuff.\nThen you will be asked to update your local settings.\nYou ok with that?"
+confirm = "This will do a lot of stuff and may break your installation.\nRead output when command finishes.\nOk?"
 
 [tasks.manage]
 depends = ["db"]
