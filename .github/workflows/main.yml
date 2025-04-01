@@ -135,11 +135,15 @@ jobs:
         run: |
           mise install
 
-      - name: Install ralph entrypoint
-        run: mise run install-entrypoints
+      - name: Test Ralph's test settings
+        run: mise run manage >/dev/null
+        env:
+          DJANGO_SETTINGS_MODULE: ralph.settings.test
 
-      - name: Test Ralph's settings
-        run:  ./scripts/test_settings.sh prod test >/dev/null
+      - name: Test Ralph's prod settings
+        run: mise run manage >/dev/null
+        env:
+          DJANGO_SETTINGS_MODULE: ralph.settings.prod
 
   python_tests:
     name: Python tests

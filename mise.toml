@@ -49,19 +49,19 @@ run = [
         && exit 1)
     """,
   "uv run setup.py develop",
-  "uv run dev_ralph migrate",
-  "uv run dev_ralph sitetree_resync_apps",
+  "uv run ralph migrate",
+  "uv run ralph sitetree_resync_apps",
   "echo \"Installation finished. Run 'mise manage createsuperuser' to be able to log in\"",
   "echo \"Or just start server with 'mise run server'\"",
 ]
 description = "Bootstrap new local ralph installation"
 
 [tasks.manage]
-run = "uv run dev_ralph"
+run = "uv run ralph"
 
 [tasks.server]
 depends = ["up"]
-run = "uv run dev_ralph runserver"
+run = "uv run ralph runserver"
 alias = ["s", "default"]
 description = "Run local server"
 
