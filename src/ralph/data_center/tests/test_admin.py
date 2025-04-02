@@ -4,6 +4,7 @@ from django.contrib.admin import AdminSite
 from django.contrib.auth import get_user_model
 from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core import mail
+from django.core.exceptions import ValidationError
 from django.db import connection, transaction
 from django.test import override_settings, RequestFactory, TransactionTestCase
 from django.urls import reverse
@@ -197,6 +198,10 @@ class DataCenterAssetAdminTest(TransactionTestCase):
         self.assertEqual(publish_mock.call_count, 1)
         # check if on_commit callbacks are removed from current db connections
         self.assertEqual(connection.run_on_commit, [])
+
+    def test_hostname_is_mandatory(self):
+        with self.assertRaises(ValidationError):
+            self._update_dca({"hostname": ""})
 
 
 class DataCenterAssetAdminAssignManagementHostnameTest(TransactionTestCase):
