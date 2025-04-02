@@ -93,8 +93,6 @@ class DataCenterAssetAdminTest(TransactionTestCase):
         }
 
     def test_if_mail_notification_is_send_when_dca_is_updated_through_gui(self):
-        import pdb; pdb.set_trace()
-        self._update_dca({"hostname": ""})
         old_service = ServiceFactory(name="test")
         new_service = ServiceFactory(name="prod")
         old_service.business_owners.add(UserFactory(email="test1@test.pl"))
