@@ -65,7 +65,7 @@ description = "Rebuild images"
 depends = ["db"]
 depends_post = ["init_transitions"]
 run = [
-  "cp -n src/ralph/settings/local.template src/ralph/settings/local.py",
+  "cp -n src/ralph/settings/local.template src/ralph/settings/local.py || true",
   "uv run setup.py develop",
   "uv run ralph migrate",
   "uv run ralph sitetree_resync_apps",
