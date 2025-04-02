@@ -18,5 +18,5 @@ tr = TransitionFactory(name='foo', model=tm, source=['in progress'],  target='in
 with open('src/ralph/settings/local.py', 'a') as file_:
     for transition in transitions:
         file_.write(f'ACCEPT_ASSETS_FOR_CURRENT_USER_CONFIG[\'{transition}\'] = {tr.id}\n')
-print('You can now start thje server with \'mise run server\'')
+print('You can now start the server with \'mise run server\'')
 """

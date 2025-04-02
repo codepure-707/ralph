@@ -20,8 +20,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev libssl-dev
-        env:
-          DEBIAN_FRONDEND: NONINTERACTIVE
 
       - name: Install and configure Mise
         run: |
@@ -88,8 +86,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev libssl-dev
-        env:
-          DEBIAN_FRONDEND: NONINTERACTIVE
 
       - name: Install and configure Mise
         run: |
@@ -153,8 +149,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev libssl-dev
-        env:
-          DEBIAN_FRONDEND: NONINTERACTIVE
 
       - name: Install and configure Mise
         run: |
@@ -238,8 +232,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev libssl-dev
-        env:
-          DEBIAN_FRONDEND: NONINTERACTIVE
 
       - name: Install and configure Mise
         run: |

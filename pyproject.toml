@@ -4,17 +4,17 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "Ralph"
-version = "20241127.1"
 requires-python = ">=3.8.0,<3.9"
 dynamic = [
-    "scripts",
-    "entry-points",
-    "classifiers",
-    "keywords",
     "authors",
+    "classifiers",
+    "description",
+    "entry-points",
+    "keywords",
     "license",
     "readme",
-    "description",
+    "scripts",
+    "version",
 ]
 dependencies = [
     "Django==2.2.28",

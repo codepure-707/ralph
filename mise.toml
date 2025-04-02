@@ -65,9 +65,7 @@ description = "Rebuild images"
 depends = ["db"]
 depends_post = ["init_transitions"]
 run = [
-  """ls 'src/ralph/settings/local.py' ||
-        cp src/ralph/settings/local.template src/ralph/settings/local.py
-    """,
+  "cp -n src/ralph/settings/local.template src/ralph/settings/local.py",
   "uv run setup.py develop",
   "uv run ralph migrate",
   "uv run ralph sitetree_resync_apps",
@@ -108,7 +106,7 @@ run = ["find . -name '*.py[cod]' -delete", "rm .coverage || :"]
 hide = true
 
 [tasks.check-missing-migrations]
-depends = ['db']
+depends = ["db"]
 run = "uv run ralph makemigrations --check --dry-run"
 
 [tasks.test]
@@ -117,7 +115,7 @@ run = "uv run --group test ralph test"
 description = "Test a specific app/file/case"
 
 [tasks.coverage]
-depends = ['db', 'clean']
+depends = ["db", "clean"]
 run = [
     "uv run --group test contrib/dhcp_agent/test.py",
   """uv run --group test coverage run $(command -v ralph) \
