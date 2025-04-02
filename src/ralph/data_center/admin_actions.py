@@ -61,7 +61,7 @@ def _infer_hostname(asset: DataCenterAsset, rack_number: str) -> Union[str, None
     asset_position = asset.position
     asset_slot = asset.slot_no
     if dc and hostname_suffix and asset_position:
-        if asset_slot is not None:
+        if asset_slot:
             return f"rack{rack_number}-{asset_position}u-bay{asset_slot}-mgmt.{hostname_suffix}"
         else:
             return f"rack{rack_number}-{asset_position}u-mgmt.{hostname_suffix}"
