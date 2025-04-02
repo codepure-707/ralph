@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from collections import Counter, Iterable
+from collections import Counter
+from collections.abc import Iterable
 from itertools import cycle
 
 from django.apps import apps
