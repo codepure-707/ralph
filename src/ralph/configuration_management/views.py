@@ -4,7 +4,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import NoReverseMatch
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from ralph.admin.filters import custom_title_filter
 from ralph.admin.helpers import get_admin_url
