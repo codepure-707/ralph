@@ -28,10 +28,13 @@ services:
       - "54320:5432"
   redis:
     platform: linux/amd64
-    image: redis:3.0
+    image: redis:4.0
     ports:
       - "6379:6379"
   inkpy:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile-inkpy
     depends_on:
      - redis
     platform: linux/amd64
