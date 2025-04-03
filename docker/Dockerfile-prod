@@ -17,6 +17,7 @@ LABEL description="Advanced Asset Management and DCIM system for data center and
 LABEL version="$RALPH_VERSION"
 
 RUN apt-get update && \
+    apt-get -y install software-properties-common && \
     add-apt-repository ppa:deadsnakes/ppa
 
 RUN apt-get clean && \
