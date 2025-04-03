@@ -20,7 +20,7 @@ from django.db.models.signals import (
     pre_save
 )
 from django.dispatch import receiver
-from django.utils.functional import curry
+from functools import partial
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 from django_extensions.db.fields.json import JSONField
@@ -490,7 +490,7 @@ class TransitionWorkflowBase(ModelBase):
             for field in fields:
                 new_class.add_to_class(
                     'get_available_transitions_for_{}'.format(field),
-                    curry(get_available_transitions_for_field, field=field)
+                    partial(get_available_transitions_for_field, field=field)
                 )
         return new_class
 

@@ -8,7 +8,6 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.forms.utils import flatatt
-from django.utils import six
 from django.utils.html import format_html, smart_urlquote
 from django.utils.translation import ugettext_lazy as _
 from taggit.forms import TagField
@@ -256,7 +255,7 @@ class BaseObjectForeignKey(models.ForeignKey):
 
 class TagWidget(forms.TextInput):
     def render(self, name, value, attrs=None, renderer=None):
-        if value is not None and not isinstance(value, six.string_types):
+        if value is not None and not isinstance(value, str):
             value = ', '.join(sorted([
                 (t if ',' not in t else '"%s"' % t) for t in value
             ]))

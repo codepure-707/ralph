@@ -7,7 +7,7 @@ from copy import copy
 from django import forms
 from django.conf import settings
 from django.contrib import admin, messages
-from django.contrib.admin.templatetags.admin_static import static
+from django.templatetags.static import static
 from django.contrib.admin.views.main import ORDER_VAR
 from django.contrib.auth import get_permission_codename
 from django.contrib.contenttypes.admin import GenericTabularInline

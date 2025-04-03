@@ -6,7 +6,7 @@ from django.contrib.admin import TabularInline
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.utils.functional import curry
+from functools import partial
 from django.utils.http import urlencode
 
 from ralph.admin.decorators import register
@@ -146,7 +146,7 @@ class TransitionAdminMixin(object):
             )
 
         return (
-            curry(transition_action_redirect, transition=transition),
+            partial(transition_action_redirect, transition=transition),
             name,
             '{} transition'.format(name.capitalize()),
         )

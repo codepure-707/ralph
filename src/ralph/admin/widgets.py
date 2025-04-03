@@ -9,7 +9,7 @@ from urllib import parse
 
 from django import forms
 from django.apps import apps
-from django.contrib.admin.templatetags.admin_static import static
+from django.templatetags.static import static
 from django.contrib.admin.views.main import TO_FIELD_VAR
 from django.core.exceptions import FieldDoesNotExist
 from django.forms.utils import flatatt

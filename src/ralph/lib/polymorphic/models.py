@@ -359,7 +359,6 @@ class Polymorphic(models.Model):
 
     class Meta:
         abstract = True
-        manager_inheritance_from_future = True
 
     def save(self, *args, **kwargs):
         """
