@@ -78,7 +78,7 @@ jobs:
 
       - name: Mise install tools
         run: |
-          mise install
+          mise install uv ruff
 
       - name: Check formatting
         run: mise run checks
