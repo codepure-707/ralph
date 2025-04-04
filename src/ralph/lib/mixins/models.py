@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.db.models import QuerySet
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -106,7 +107,10 @@ class TaggableManager(TaggableManagerOriginal):
         directly to resulting dict.
         """
         qs = super().value_from_object(instance)
-        return list(qs.values_list('tag__name', flat=True))
+        if isinstance(qs, QuerySet):
+            return list(qs.values_list('tag__name', flat=True))
+        else:
+            return [t.name for t in qs]
 
     def formfield(self, form_class=TaggitTagField, **kwargs):
         return super().formfield(form_class, **kwargs)

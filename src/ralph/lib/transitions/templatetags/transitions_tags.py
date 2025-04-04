@@ -9,11 +9,11 @@ register = template.Library()
 def available_transitions(context, obj, field):
     """Render available transitions for instance."""
     get_available_transitions = getattr(
-        obj, 'get_available_transitions_for_{}'.format(field), lambda user: []
+        obj, 'get_available_transitions_for_{}'.format(field), lambda *_, user: []
     )
     if get_available_transitions:
         transitions = []
-        for transition in get_available_transitions(user=context.request.user):
+        for transition in get_available_transitions(obj, user=context.request.user):
             transition.show_form = transition.has_form()
             transitions.append(transition)
         context.update({
