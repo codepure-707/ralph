@@ -154,12 +154,12 @@ class TransitionsTest(TransitionTestCase):
         )
 
         self.assertEqual(
-            list(order.get_available_transitions_for_status()), [transition]
+            list(order.get_available_transitions_for_status(order)), [transition]
         )
 
         order.status = OrderStatus.sended.id
         self.assertEqual(
-            list(order.get_available_transitions_for_status()), []
+            list(order.get_available_transitions_for_status(order)), []
         )
 
     def test_transition_exception(self):
@@ -185,7 +185,7 @@ class TransitionsTest(TransitionTestCase):
         )
 
         self.assertEqual(
-            list(order.get_available_transitions_for_status()), []
+            list(order.get_available_transitions_for_status(order)), []
         )
         with self.assertRaises(TransitionNotAllowedError):
             run_field_transition(
