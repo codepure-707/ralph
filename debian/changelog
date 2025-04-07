@@ -1,3 +1,9 @@
+ralph (20250407.2) focal; urgency=medium
+
+  * Fix ubuntu version in packagecloud
+
+ -- Paweł Szulc <pawel.szulc@allegro.com>  Mon, 07 Apr 2025 11:22:26 +0000
+
 ralph (20250407.1) focal; urgency=medium
 
   [ Paweł Szulc ]
