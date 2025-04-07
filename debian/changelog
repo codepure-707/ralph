@@ -1,3 +1,90 @@
+ralph (20250407.1) focal; urgency=medium
+
+  [ Paweł Szulc ]
+  * Add uv and mise support
+  * Fix workflow
+  * Fix workflow
+  * Pin down setuptools
+  * Update workflow
+  * Update workflow and localtemplate
+  * Bump python
+  * Loosen python version
+  * Loosen python version again
+  * Add statsd
+  * Bump netaddr
+  * Bump ubuntu in github actions
+  * Fix deps
+  * Fix github action
+  * Fix dhcp tests
+  * Fix flake
+  * Fix Makefile and pyproject.toml
+  * Fix pyproject.toml
+  * Fix makefile
+  * Back to .coveragerc
+  * Fix .coveragerc
+  * Update mise tasks
+  * Update mise and debian
+  * Make ruff happy
+  * Run ruff formatting. Add ruff check to CI
+  * Move ruff section to pyproject.toml
+  * Add missing django-prometheus
+  * Remove superfluous requirements file
+  * Start fixing debian build
+  * Switch to psycopg-binary and specify python version
+  * Add missing libs to install python-ldap
+  * Try removing setuptools pin
+  * Downgrade pip
+  * Switch from an ugly workaround to another ugly workaround
+  * Add missing libs
+  * Add debugging info for deb build
+  * Fix debugging info for deb build. Ignore some shlibs
+  * Update other dockerfiles
+  * Fix base settings
+  * Update reqs
+  * Update reqs2
+  * Rename tasks
+  * Add db backup to tasks
+  * Update docker compose and tasks
+  * Format code
+  * Fix mise test
+  * Move to mise
+  * Fix action
+  * Fix dj-choices install
+  * Fix check migrations for ci
+  * Fix tests for ci
+  * Fix settings tests
+  * Fix settings tests again
+  * Fix settings tests again 2
+  * Fix settings tests again 3
+  * Fix settings tests again 4
+  * Fix settings tests again 5
+  * Fix settings tests again 6
+  * Back to old settings
+  * Improve how mise works with containers and ci
+  * Fix github ci file
+  * Fix pickle problem with inkpy jinja
+  * Minor improvements
+  * Improve fresh install experience
+  * Improve fresh install experience 2
+  * Remove bad env in github CI. Fix quotes and typos. Change version to dynamic
+  * Fix quote and version
+  * Don't fail when local.py settings file exists
+  * Fix ci task for local development
+
+  [ Olga Matyla ]
+  * Bump to Node 22
+  * install python3.6
+  * update debian/control
+  * update debian/control
+  * install python3.6
+  * cleanup
+
+  [ Paweł Szulc ]
+  * Fix dockerfile
+  * Fix dockerfile-prod
+
+ -- Paweł Szulc <pawel.szulc@allegro.com>  Mon, 07 Apr 2025 10:32:17 +0000
+
 ralph (20250402.1) bionic; urgency=medium
 
   * Add hostname validation
