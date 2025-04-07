@@ -1,4 +1,3 @@
-version: '3'
 services:
   web:
     platform: linux/amd64
@@ -10,9 +9,6 @@ services:
       - "8000:8000"
     volumes:
       - ../.:/var/local/ralph
-    links:
-      - db
-      - redis
     environment:
         DATABASE_NAME: ralph_ng
         DATABASE_USER: ralph_ng
@@ -45,8 +41,6 @@ services:
   inkpy:
     platform: linux/amd64
     image: allegro/inkpy:latest
-    links:
-      - redis:redis
     environment:
         REDIS_HOST: redis
         REDIS_PASSWORD: ""
