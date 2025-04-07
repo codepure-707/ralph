@@ -16,10 +16,10 @@ LABEL authors="Allegro.pl Sp. z o.o. and Contributors opensource@allegro.pl"
 LABEL description="Advanced Asset Management and DCIM system for data center and back office."
 LABEL version="$RALPH_VERSION"
 
-
 RUN apt-get clean && \
     apt-get update && \
-    apt-get -y install apt-transport-https ca-certificates gnupg2 locales curl && \
+    apt-get -y install apt-transport-https ca-certificates \
+    python3.8 python3.8-dev python3.8-distutils gnupg2 locales curl && \
     rm -rf /var/lib/apt/lists/*
 
 
