@@ -1,0 +1,162 @@
+[env]
+_.python.venv = { path = ".venv", create = true }
+DJANGO_SETTINGS_MODULE = "ralph.settings.local"
+DB_ENGINE = "psql"
+TEST_DB_ENGINE = "psql"
+DATABASE_PORT = 54320
+MISE_PROJECT_ROOT = "."
+MISE_PROJECT_NAME = "ralph"
+
+[vars]
+skip_containers = false
+
+[settings]
+experimental = true
+
+[settings.python]
+uv_venv_auto = true
+
+[tools]
+podman = "latest"
+node = "11.7.0"
+uv = "latest"
+python = "3.8"
+ruff = "latest"
+
+[tasks.install]
+run = ["uv sync"]
+description = "Install requirements and entrypoints"
+alias = ["deps", "i"]
+
+[tasks.up]
+run = """
+  {% if not vars.skip_containers %}
+    podman compose -f docker/docker-compose-dev.yml -p ralph up -d
+  {% else %}
+    echo "Skipping containers because of skip_containers var"
+  {% endif %}
+"""
+description = "Start required containers"
+
+[tasks.db]
+depends = ['up']
+hide = true
+run = """
+  for i in {1..30}; do
+    if [ "$DB_ENGINE" = "psql" ]; then
+      PGPASSWORD=ralph_ng psql -h 127.0.0.1 -p $DATABASE_PORT -U ralph_ng -c "SELECT 1" >/dev/null 2>&1 && exit 0
+    else
+      mysqladmin ping -h 127.0.0.1 -P $DATABASE_PORT -u ralph_ng --password=ralph_ng >/dev/null 2>&1 && exit 0
+    fi
+    sleep 1
+  done
+  echo "Database not responding" && exit 1
+"""
+
+[tasks.down]
+run = "podman compose -f docker/docker-compose-dev.yml -p ralph down"
+description = "Stop and remove containers"
+
+[tasks.rebuild]
+run = "podman compose -f docker/docker-compose-dev.yml -p ralph build"
+description = "Rebuild images"
+
+[tasks.init]
+depends = ["db"]
+depends_post = ["init_transitions"]
+run = [
+  "cp -n src/ralph/settings/local.template src/ralph/settings/local.py || true",
+  "uv run setup.py develop",
+  "uv run ralph migrate",
+  "uv run ralph sitetree_resync_apps",
+]
+description = "Bootstrap new local ralph installation"
+confirm = "This will do a lot of stuff and may break your installation.\nRead output when command finishes.\nOk?"
+
+[tasks.manage]
+depends = ["db"]
+run = "uv run ralph"
+description = "Run a Django command e.g. shell, dbshell, makemigrations"
+
+[tasks.server]
+depends = ["db"]
+run = "uv run ralph runserver"
+alias = ["s", "default"]
+description = "Run local server"
+
+[tasks.requirements]
+run = [
+  "uv pip compile pyproject.toml --group dev --group docs --group test --group prod -o requirements/dev.txt",
+  "uv pip compile pyproject.toml --group docs -o requirements/docs.txt",
+  "uv pip compile pyproject.toml --group dev --group test -o requirements/test.txt",
+  "uv pip compile pyproject.toml --group prod -o requirements/prod.txt",
+]
+description = "Compile requirements"
+
+[tasks.checks]
+run = "ruff check src"
+description = "Check code formatting and linting"
+
+[tasks.format]
+run = "ruff format src"
+description = "Format the code"
+
+[tasks.clean]
+run = ["find . -name '*.py[cod]' -delete", "rm .coverage || :"]
+hide = true
+
+[tasks.check-missing-migrations]
+depends = ["db"]
+run = "uv run ralph makemigrations --check --dry-run"
+
+[tasks.test]
+depends = ['db']
+run = "uv run --group test ralph test"
+description = "Test a specific app/file/case"
+
+[tasks.coverage]
+depends = ["db", "clean"]
+run = [
+    "uv run --group test contrib/dhcp_agent/test.py",
+  """uv run --group test coverage run $(command -v test_ralph) \
+    test ralph.admin ralph.access_cards ralph.accounts ralph.accessories ralph.assets ralph.attachments ralph.back_office ralph.configuration_management ralph.dashboards ralph.data_center ralph.dhcp ralph.deployment ralph.licences ralph.domains ralph.trade_marks ralph.sim_cards ralph.supports ralph.security ralph.lib.foundation ralph.lib.table ralph.networks ralph.data_importer ralph.dc_view ralph.reports ralph.virtual ralph.operations ralph.lib.external_services ralph.lib.transitions ralph.lib.permissions ralph.lib.custom_fields ralph.lib.hooks ralph.notifications ralph.ssl_certificates ralph.lib.mixins ralph.tests ralph.lib.custom_fields.tests ralph.lib.permissions.tests ralph.lib.polymorphic.tests ralph.lib.mixins.tests \
+    --keepdb """,
+  "uv run --group test coverage report",
+]
+description = "Run a whole test suite and report coverage"
+
+[tasks.ci]
+depends = ["checks", "coverage", "check-missing-migrations"]
+description = "Run all CI checks in one command"
+
+[tasks.db-backup-mysql]
+run = """
+mysqldump \
+  -h 127.0.0.1 \
+  -u root \
+  -p'ralph_ng' \
+  ralph_ng > backup.sql
+"""
+description = "Backup the mysql database"
+hide = true
+
+[tasks.db-backup-psql]
+run = """
+PGPASSWORD=ralph_ng pg_dump \
+  -h 127.0.0.1 \
+  -p $DATABASE_PORT \
+  -U ralph_ng \
+  -F c \
+  -b \
+  -v \
+  -f backup.sql \
+"""
+description = "Backup the psql database"
+hide = true
+
+[tasks.db-backup]
+depends = [
+  "{% if env.DB_ENGINE == 'psql' %}db-backup-psql{% else %}db-backup-mysql{% endif %}",
+]
+description = "Backup the database"
+

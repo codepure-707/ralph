@@ -12,14 +12,10 @@ from ralph.assets.models.base import BaseObject
 from ralph.assets.models.choices import (
     ComponentType,
     EthernetSpeed,
-    FibreChannelCardSpeed
+    FibreChannelCardSpeed,
 )
 from ralph.lib.mixins.fields import MACAddressField, NullableCharField
-from ralph.lib.mixins.models import (
-    AdminAbsoluteUrlMixin,
-    NamedMixin,
-    TimeStampMixin
-)
+from ralph.lib.mixins.models import AdminAbsoluteUrlMixin, NamedMixin, TimeStampMixin
 
 MAC_RE = re.compile(r"^\s*([0-9a-fA-F]{2}[:-]){5}[0-9a-fA-F]{2}\s*$")
 MAC_ERROR_MSG = "'%(value)s' is not a valid MAC address."

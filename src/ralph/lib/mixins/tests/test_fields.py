@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.contrib.contenttypes.models import ContentType
-from django.core.exceptions import ValidationError
 from django.test import TestCase
 
 from ralph.assets.models.base import BaseObject

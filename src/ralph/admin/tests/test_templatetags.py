@@ -7,7 +7,7 @@ from ..templatetags.dashboard_tags import (
     get_user_equipment_to_accept_loan_tile_data,
     get_user_equipment_to_accept_return_tile_data,
     get_user_equipment_to_accept_tile_data,
-    get_user_simcard_to_accept_tile_data
+    get_user_simcard_to_accept_tile_data,
 )
 
 
@@ -29,7 +29,7 @@ class TestTemplatetags(TestCase):
         assert ret["label"] == _("Hardware loan")
 
     @patch("ralph.admin.templatetags.dashboard_tags.get_return_acceptance_url")
-    @patch("ralph.admin.templatetags.dashboard_tags.get_assets_to_accept_return")  # noqa:
+    @patch("ralph.admin.templatetags.dashboard_tags.get_assets_to_accept_return")  # noqa
     def test_hardware_return_label(self, mocked_gatar, mocked_grau):
         mocked_gatar().count.return_value = 1
         mocked_grau.return_value = "boo"

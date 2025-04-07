@@ -5,7 +5,7 @@ from ralph.accounts.views import (
     CurrentUserInfoView,
     InventoryTagConfirmationView,
     InventoryTagView,
-    UserProfileView
+    UserProfileView,
 )
 
 urlpatterns = [

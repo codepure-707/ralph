@@ -13,11 +13,11 @@ from ralph.accounts.tests.factories import RegionFactory, UserFactory
 from ralph.assets.tests.factories import (
     AssetHolderFactory,
     BudgetInfoFactory,
-    ManufacturerFactory
+    ManufacturerFactory,
 )
 from ralph.back_office.tests.factories import (
     BackOfficeAssetFactory,
-    OfficeInfrastructureFactory
+    OfficeInfrastructureFactory,
 )
 from ralph.data_center.tests.factories import DataCenterAssetFactory
 from ralph.licences.models import (
@@ -25,7 +25,7 @@ from ralph.licences.models import (
     Licence,
     LicenceType,
     LicenceUser,
-    Software
+    Software,
 )
 
 date_now = datetime.now().date()

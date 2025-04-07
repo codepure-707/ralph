@@ -5,12 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from ralph.admin.decorators import register
 from ralph.admin.mixins import RalphAdmin, RalphTabularInline
-from ralph.dhcp.models import (
-    DHCPServer,
-    DNSServer,
-    DNSServerGroup,
-    DNSServerGroupOrder
-)
+from ralph.dhcp.models import DHCPServer, DNSServer, DNSServerGroup, DNSServerGroupOrder
 from ralph.lib.table.table import TableWithUrl
 
 

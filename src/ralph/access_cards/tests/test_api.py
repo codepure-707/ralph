@@ -3,10 +3,7 @@ from datetime import datetime
 from rest_framework import status
 from rest_framework.reverse import reverse
 
-from ralph.access_cards.tests.factories import (
-    AccessCardFactory,
-    AccessZoneFactory
-)
+from ralph.access_cards.tests.factories import AccessCardFactory, AccessZoneFactory
 from ralph.accounts.tests.factories import RegionFactory
 from ralph.api.tests._base import RalphAPITestCase
 from ralph.tests.factories import UserFactory

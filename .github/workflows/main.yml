@@ -11,40 +11,39 @@ on:
 jobs:
   code_style:
     name: Code style
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.6
-      - name: Downgrade pip
-        run: pip3 install pip==19.3.1
-      - name: Cache pip dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('base.txt', 'dev.txt', 'docs.txt', 'hermes.txt', 'openstack.txt', 'prod.txt', 'prod_ldap.txt', '', 'test.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-            ${{ runner.os }}-
-      - name: Install Ralph's python dependencies
-        run: pip3 install -r "${GITHUB_WORKSPACE}/requirements/code_style.txt"
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev libssl-dev
 
-      - name: Run flake8
-        run: make flake
+      - name: Install and configure Mise
+        run: |
+          curl https://mise.run | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          echo 'eval "$(mise activate bash)"' >> ~/.bashrc
+          bash -c "source ~/.bashrc"
+
+      - name: Mise install tools
+        run: |
+          mise install
+
+      - name: Check formatting
+        run: mise run checks
 
   missing_migrations:
     name: Missing migrations
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
-        db-engine: ["psql", "mysql"]
+        db-engine: ["ci-psql", "ci-mysql"]
     env:
-        TEST_DB_ENGINE: ${{ matrix.db-engine }}
+        MISE_ENV: ${{ matrix.db-engine }}
     services:
       postgres:
         image: postgres:9.4.26
@@ -86,44 +85,58 @@ jobs:
       - name: Install system packages
         run: |
           sudo apt-get update
-          sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev
-        env:
-          DEBIAN_FRONDEND: NONINTERACTIVE
+          sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev libssl-dev
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.6
+      - name: Install and configure Mise
+        run: |
+          curl https://mise.run | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          echo 'eval "$(mise activate bash)"' >> ~/.bashrc
+          bash -c "source ~/.bashrc"
 
-      - name: Downgrade pip
-        run: pip3 install pip==19.3.1
-
-      - name: Install Ralph
-        run: pip3 install "${GITHUB_WORKSPACE}"
-
-      - name: Cache pip dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('base.txt', 'code_style.txt', 'dev.txt', 'docs.txt', 'hermes.txt', 'openstack.txt', 'prod.txt', 'prod_ldap.txt', '', 'test.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-            ${{ runner.os }}-
-
-      - name: Install Ralph's python dependencies
-        run: pip3 install -r "${GITHUB_WORKSPACE}/requirements/test.txt"
-
-      - name: Install PostgreSQL driver
-        if: ${{ matrix.db-engine == 'psql' }}
-        run: pip3 install psycopg2-binary
+      - name: Mise install tools
+        run: |
+          mise install
 
       # Runs a set of commands using the runners shell
       - name: Check missing migrations
-        run: "${GITHUB_WORKSPACE}/scripts/check_missing_migrations.sh"
+        run: "mise run check-missing-migrations"
 
   settings_test:
     name: Settings tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
+    env:
+      MISE_ENV: ci-psql
+
+    services:
+      postgres:
+        image: postgres:9.4.26
+        env:
+          POSTGRES_USER: ralph_ng
+          POSTGRES_PASSWORD: ralph_ng
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      # NOTE(romcheg): See the note regarging the mysql service above.
+      mysql:
+        image: mysql:5.6.45
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_USER: ralph_ng
+          MYSQL_PASSWORD: ralph_ng
+          MYSQL_DATABASE: ralph_ng
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd "mysqladmin ping --silent"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout source code
@@ -135,47 +148,37 @@ jobs:
       - name: Install system packages
         run: |
           sudo apt-get update
-          sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev
-        env:
-          DEBIAN_FRONDEND: NONINTERACTIVE
+          sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev libssl-dev
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.6
-
-      - name: Downgrade pip
-        run: pip3 install pip==19.3.1
-
-      - name: Install Ralph
-        run: pip3 install "${GITHUB_WORKSPACE}"
-
-      - name: Cache pip dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('base.txt', 'code_style.txt', 'dev.txt', 'docs.txt', 'hermes.txt', 'openstack.txt', 'prod.txt', 'prod_ldap.txt', '', 'test.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-            ${{ runner.os }}-
-
-      - name: Install Ralph's python dependencies
+      - name: Install and configure Mise
         run: |
-          pip3 install -r "${GITHUB_WORKSPACE}/requirements/test.txt"
-          pip3 install -r "${GITHUB_WORKSPACE}/requirements/openstack.txt"
+          curl https://mise.run | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          echo 'eval "$(mise activate bash)"' >> ~/.bashrc
+          bash -c "source ~/.bashrc"
 
-      - name: Test Ralph's settings
-        run:  ./scripts/test_settings.sh prod test >/dev/null
+      - name: Mise install tools
+        run: |
+          mise install
+
+      - name: Test Ralph's test settings
+        run: mise run manage >/dev/null
+        env:
+          DJANGO_SETTINGS_MODULE: ralph.settings.test
+
+      - name: Test Ralph's prod settings
+        run: mise run manage >/dev/null
+        env:
+          DJANGO_SETTINGS_MODULE: ralph.settings.prod
 
   python_tests:
     name: Python tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
-        python-version: [3.6]
-        db-engine: ["psql", "mysql"]
+        db-engine: ["ci-psql", "ci-mysql"]
     env:
-      TEST_DB_ENGINE: ${{ matrix.db-engine }}
+      MISE_ENV: ${{ matrix.db-engine }}
       DATABASE_USER: ralph_ng
       DATABASE_PASSWORD: ralph_ng
 
@@ -228,42 +231,18 @@ jobs:
       - name: Install system packages
         run: |
           sudo apt-get update
-          sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev
-        env:
-          DEBIAN_FRONDEND: NONINTERACTIVE
+          sudo apt-get -y --no-install-recommends install libldap2-dev libsasl2-dev libssl-dev
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Downgrade pip
-        run: pip3 install pip==19.3.1
-
-      - name: Install Ralph
-        run: pip3 install "${GITHUB_WORKSPACE}"
-
-      - name: Cache pip dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('base.txt', 'code_style.txt', 'dev.txt', 'docs.txt', 'hermes.txt', 'openstack.txt', 'prod.txt', 'prod_ldap.txt', '', 'test.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-            ${{ runner.os }}-
-
-      - name: Install Ralph's python dependencies
+      - name: Install and configure Mise
         run: |
-          pip3 install -r "${GITHUB_WORKSPACE}/requirements/test.txt"
-          pip3 install -r "${GITHUB_WORKSPACE}/requirements/openstack.txt"
+          curl https://mise.run | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          echo 'eval "$(mise activate bash)"' >> ~/.bashrc
+          bash -c "source ~/.bashrc"
 
-      - name: Install PostgreSQL driver
-        if: ${{ matrix.db-engine == 'psql' }}
-        run: pip3 install psycopg2-binary
+      - name: Mise install tools
+        run: |
+          mise install
 
-      - name: Test ralph_dchp_agent using python-${{ matrix.python-version }}
-        run: python contrib/dhcp_agent/test.py
-
-      - name: Test Ralph with coverage using python-${{ matrix.python-version }}
-        run: make coverage
-...
+      - name: Test Ralph with coverage
+        run: mise run coverage

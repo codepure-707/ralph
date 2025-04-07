@@ -9,12 +9,12 @@ from ralph.back_office.tests.factories import BackOfficeAssetFactory
 from ralph.data_center.tests.factories import (
     ClusterFactory,
     ConfigurationClassFactory,
-    DataCenterAssetFactory
+    DataCenterAssetFactory,
 )
 from ralph.lib.custom_fields.models import (
     CustomField,
     CustomFieldTypes,
-    CustomFieldValue
+    CustomFieldValue,
 )
 from ralph.networks.models import IPAddress
 from ralph.tests import RalphTestCase

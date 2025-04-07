@@ -20,17 +20,13 @@ from ralph.assets.models.assets import (
     Asset,
     AssetLastHostname,
     AssetModel,
-    ServiceEnvironment
+    ServiceEnvironment,
 )
 from ralph.assets.utils import move_parents_models
 from ralph.attachments.utils import send_transition_attachments_to_user
 from ralph.lib.hooks import get_hook
 from ralph.lib.mixins.fields import NullableCharField
-from ralph.lib.mixins.models import (
-    AdminAbsoluteUrlMixin,
-    NamedMixin,
-    TimeStampMixin
-)
+from ralph.lib.mixins.models import AdminAbsoluteUrlMixin, NamedMixin, TimeStampMixin
 from ralph.lib.transitions.conf import get_report_name_for_transition_id
 from ralph.lib.transitions.decorators import transition_action
 from ralph.lib.transitions.fields import TransitionField
@@ -529,7 +525,7 @@ class BackOfficeAsset(Regionalizable, Asset):
             "accept": {
                 "field": forms.BooleanField(
                     label=_(
-                        "I have read and fully understand and " "accept the agreement."
+                        "I have read and fully understand and accept the agreement."
                     )
                 )
             },

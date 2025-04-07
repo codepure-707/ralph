@@ -3,11 +3,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from ralph.attachments.helpers import get_file_path
-from ralph.lib.mixins.models import (
-    AdminAbsoluteUrlMixin,
-    NamedMixin,
-    TimeStampMixin
-)
+from ralph.lib.mixins.models import AdminAbsoluteUrlMixin, NamedMixin, TimeStampMixin
 
 
 def get_report_file_path(instance, filename):

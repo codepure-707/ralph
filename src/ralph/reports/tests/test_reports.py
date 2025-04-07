@@ -8,7 +8,7 @@ from ralph.assets.models.choices import ObjectModelType
 from ralph.assets.tests.factories import (
     CategoryFactory,
     DataCenterAssetModelFactory,
-    ManufacturerFactory
+    ManufacturerFactory,
 )
 from ralph.attachments.models import Attachment, AttachmentItem
 from ralph.back_office.models import BackOfficeAsset
@@ -18,7 +18,7 @@ from ralph.data_center.tests.factories import DataCenterAssetFactory
 from ralph.licences.models import BaseObjectLicence
 from ralph.licences.tests.factories import (
     LicenceFactory,
-    LicenceWithUserAndBaseObjectsFactory
+    LicenceWithUserAndBaseObjectsFactory,
 )
 from ralph.reports.models import ReportLanguage
 from ralph.reports.views import (
@@ -26,7 +26,7 @@ from ralph.reports.views import (
     AssetSupportsReport,
     CategoryModelReport,
     CategoryModelStatusReport,
-    LicenceRelationsReport
+    LicenceRelationsReport,
 )
 from ralph.supports.models import BaseObjectsSupport
 from ralph.supports.tests.factories import SupportFactory

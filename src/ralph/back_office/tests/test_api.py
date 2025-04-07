@@ -7,13 +7,10 @@ from ralph.api.tests._base import RalphAPITestCase
 from ralph.assets.tests.factories import (
     AssetHolderFactory,
     BackOfficeAssetModelFactory,
-    ServiceEnvironmentFactory
+    ServiceEnvironmentFactory,
 )
 from ralph.back_office.models import BackOfficeAsset
-from ralph.back_office.tests.factories import (
-    BackOfficeAssetFactory,
-    WarehouseFactory
-)
+from ralph.back_office.tests.factories import BackOfficeAssetFactory, WarehouseFactory
 
 
 class BackOfficeAssetAPITests(RalphAPITestCase):

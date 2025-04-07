@@ -86,8 +86,8 @@ debian/ralph-core/*
 # other
 .python-version
 tags
-*.lock
 .*.swp
 .*.swo
 .envrc
 .direnv/
+mise*local.toml

@@ -10,7 +10,7 @@ from ralph.data_importer.widgets import (
     ExportForeignKeyStrWidget,
     ExportManyToManyStrTroughWidget,
     ExportManyToManyStrWidget,
-    ManyToManyThroughWidget
+    ManyToManyThroughWidget,
 )
 
 

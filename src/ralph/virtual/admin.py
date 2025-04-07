@@ -34,7 +34,7 @@ from ralph.virtual.models import (
     CloudProject,
     CloudProvider,
     VirtualServer,
-    VirtualServerType
+    VirtualServerType,
 )
 
 if settings.ENABLE_DNSAAS_INTEGRATION:

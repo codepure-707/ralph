@@ -66,7 +66,7 @@ def get_vip(ip, port, protocol):
 def handle_create_vip_event(data):
     errors = validate_vip_event_data(data)
     if errors:
-        msg = "Error(s) detected in event data: %s. Ignoring received create " "event."
+        msg = "Error(s) detected in event data: %s. Ignoring received create event."
         logger.error(msg, "; ".join(errors))
         return
 
@@ -127,7 +127,7 @@ def handle_create_vip_event(data):
 
 def migrate_vip_to_cluster(vip, cluster, protocol):
     msg = (
-        "Trying to update VIP with IP %s, port %s and protocol %s" "failed: %s",
+        "Trying to update VIP with IP %s, port %s and protocol %sfailed: %s",
         (vip.ip.address, vip.port, protocol.name),
     )
     cluster_content_type = ContentType.objects.get_for_model(Cluster)
@@ -164,7 +164,7 @@ def migrate_vip_to_cluster(vip, cluster, protocol):
 def handle_update_vip_event(data):
     errors = validate_vip_event_data(data)
     if errors:
-        msg = "Error(s) detected in event data: %s. Ignoring received update " "event."
+        msg = "Error(s) detected in event data: %s. Ignoring received update event."
         logger.error(msg, "; ".join(errors))
         return
 
@@ -225,7 +225,7 @@ def handle_update_vip_event(data):
 def handle_delete_vip_event(data):
     errors = validate_vip_event_data(data)
     if errors:
-        msg = "Error(s) detected in event data: %s. Ignoring received delete " "event."
+        msg = "Error(s) detected in event data: %s. Ignoring received delete event."
         logger.error(msg, "; ".join(errors))
         return
 

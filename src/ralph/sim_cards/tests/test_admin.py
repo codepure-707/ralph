@@ -5,7 +5,7 @@ from ralph.back_office.tests.factories import WarehouseFactory
 from ralph.sim_cards.models import SIMCard
 from ralph.sim_cards.tests.factories import (
     CellularCarrierFactory,
-    SIMCardFeatureFactory
+    SIMCardFeatureFactory,
 )
 from ralph.tests.base import RalphTestCase
 from ralph.tests.factories import UserFactory

@@ -79,7 +79,7 @@ def record_operation(
     # NOTE(romcheg): Changes of an unknown type should not be recorded.
     if operation_type is None:
         logger.warning(
-            "Not recording operation with the " "unknown type: %s.", operation_name
+            "Not recording operation with the unknown type: %s.", operation_name
         )
         return
 

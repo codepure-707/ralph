@@ -10,6 +10,7 @@ from ralph.admin.filters import custom_title_filter
 from ralph.admin.helpers import get_admin_url
 from ralph.admin.views.extra import RalphDetailView
 from ralph.configuration_management.models import SCMCheckResult
+
 # NOTE(romcheg): These functions could be moved to a common place
 from ralph.security.views import _linkify, _url_name_for_change_view
 

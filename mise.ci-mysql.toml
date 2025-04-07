@@ -1,0 +1,8 @@
+[env]
+DB_ENGINE = "mysql"
+TEST_DB_ENGINE = "mysql"
+DATABASE_PORT = 3306
+DJANGO_SETTINGS_MODULE="ralph.settings.test"
+
+[vars]
+skip_containers = true

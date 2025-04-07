@@ -18,14 +18,14 @@ from ralph.networks.filters import (
     ContainsIPAddressFilter,
     IPRangeFilter,
     NetworkClassFilter,
-    NetworkRangeFilter
+    NetworkRangeFilter,
 )
 from ralph.networks.models.networks import (
     DiscoveryQueue,
     IPAddress,
     Network,
     NetworkEnvironment,
-    NetworkKind
+    NetworkKind,
 )
 
 

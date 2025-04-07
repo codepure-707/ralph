@@ -7,7 +7,7 @@ from ralph.assets.tests.factories import (
     AssetHolderFactory,
     DataCenterAssetModelFactory,
     EthernetFactory,
-    ServiceEnvironmentFactory
+    ServiceEnvironmentFactory,
 )
 from ralph.data_center.models import (
     BaseObjectCluster,
@@ -16,7 +16,7 @@ from ralph.data_center.models import (
     Orientation,
     Rack,
     RackAccessory,
-    RackOrientation
+    RackOrientation,
 )
 from ralph.data_center.tests.factories import (
     AccessoryFactory,
@@ -26,7 +26,7 @@ from ralph.data_center.tests.factories import (
     DataCenterAssetFullFactory,
     RackAccessoryFactory,
     RackFactory,
-    ServerRoomFactory
+    ServerRoomFactory,
 )
 from ralph.networks.tests.factories import IPAddressFactory
 from ralph.virtual.tests.factories import CloudHostFactory, VirtualServerFactory

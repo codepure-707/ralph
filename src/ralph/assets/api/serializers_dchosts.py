@@ -3,7 +3,7 @@ from rest_framework import fields, serializers
 from ralph.assets.api.serializers import (
     BaseObjectSerializer,
     ComponentSerializerMixin,
-    SecurityScanField
+    SecurityScanField,
 )
 from ralph.assets.models import BaseObject
 from ralph.data_center.api.serializers import DataCenterAssetSimpleSerializer

@@ -11,14 +11,9 @@ from ralph.api.filters import (
     ExtendedFiltersBackend,
     FALSE_VALUES,
     LookupFilterBackend,
-    TRUE_VALUES
+    TRUE_VALUES,
 )
-from ralph.api.tests.api import (
-    Bar,
-    BarViewSet,
-    ManufacturerViewSet,
-    TestManufacturer
-)
+from ralph.api.tests.api import Bar, BarViewSet, ManufacturerViewSet, TestManufacturer
 from ralph.tests import RalphTestCase
 from ralph.tests.factories import TestManufacturerFactory
 

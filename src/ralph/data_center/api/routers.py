@@ -10,7 +10,7 @@ from ralph.data_center.api.views import (
     DataCenterViewSet,
     RackAccessoryViewSet,
     RackViewSet,
-    ServerRoomViewSet
+    ServerRoomViewSet,
 )
 
 router.register(r"accessories", AccessoryViewSet)

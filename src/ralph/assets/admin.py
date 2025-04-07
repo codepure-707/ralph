@@ -19,7 +19,7 @@ from ralph.assets.models.assets import (
     ManufacturerKind,
     ProfitCenter,
     Service,
-    ServiceEnvironment
+    ServiceEnvironment,
 )
 from ralph.assets.models.base import BaseObject
 from ralph.assets.models.components import (
@@ -29,12 +29,9 @@ from ralph.assets.models.components import (
     FibreChannelCard,
     GenericComponent,
     Memory,
-    Processor
+    Processor,
 )
-from ralph.assets.models.configuration import (
-    ConfigurationClass,
-    ConfigurationModule
-)
+from ralph.assets.models.configuration import ConfigurationClass, ConfigurationModule
 from ralph.data_importer import resources
 from ralph.lib.custom_fields.admin import CustomFieldValueAdminMixin
 from ralph.lib.table.table import Table, TableWithUrl
@@ -154,11 +151,11 @@ class ServiceBaseObjects(RalphDetailView):
     url_name = "service_base_objects"
 
     def get_service_base_objects_queryset(self):
-        return BaseObject.polymorphic_objects.filter(
-            service_env__service=self.object
-        ).select_related(
-            "service_env__environment", "content_type", "securityscan"
-        ).exclude(content_type__model="vip")
+        return (
+            BaseObject.polymorphic_objects.filter(service_env__service=self.object)
+            .select_related("service_env__environment", "content_type", "securityscan")
+            .exclude(content_type__model="vip")
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

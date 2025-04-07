@@ -12,11 +12,11 @@ from ralph.assets.api.serializers import (
     BaseObjectSerializer,
     ComponentSerializerMixin,
     NetworkComponentSerializerMixin,
-    ServiceEnvironmentSimpleSerializer
+    ServiceEnvironmentSimpleSerializer,
 )
 from ralph.assets.api.views import (
     base_object_descendant_prefetch_related,
-    BaseObjectViewSetMixin
+    BaseObjectViewSetMixin,
 )
 from ralph.assets.models import Ethernet
 from ralph.data_center.api.serializers import DataCenterAssetSimpleSerializer
@@ -32,7 +32,7 @@ from ralph.virtual.models import (
     CloudProject,
     CloudProvider,
     VirtualServer,
-    VirtualServerType
+    VirtualServerType,
 )
 
 

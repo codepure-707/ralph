@@ -15,14 +15,14 @@ from ralph.licences.tests.factories import (
     BackOfficeAssetLicenceFactory,
     DataCenterAssetLicenceFactory,
     LicenceFactory,
-    LicenceUserFactory
+    LicenceUserFactory,
 )
 from ralph.supports.models import BaseObjectsSupport, Support
 from ralph.supports.tests.factories import (
     BackOfficeAssetSupportFactory,
     BaseObjectsSupportFactory,
     DataCenterAssetSupportFactory,
-    SupportFactory
+    SupportFactory,
 )
 
 

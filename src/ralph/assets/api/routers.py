@@ -19,7 +19,7 @@ from ralph.assets.api.views import (
     ProcessorViewSet,
     ProfitCenterViewSet,
     ServiceEnvironmentViewSet,
-    ServiceViewSet
+    ServiceViewSet,
 )
 
 router.register(r"assetholders", AssetHolderViewSet)

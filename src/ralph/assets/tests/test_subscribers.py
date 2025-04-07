@@ -9,10 +9,7 @@ from django.urls import reverse
 from ralph.accounts.tests.factories import UserFactory
 from ralph.assets.models import Service
 from ralph.assets.subscribers import ACTION_TYPE
-from ralph.assets.tests.factories import (
-    ServiceEnvironmentFactory,
-    ServiceFactory
-)
+from ralph.assets.tests.factories import ServiceEnvironmentFactory, ServiceFactory
 from ralph.data_center.tests.factories import DataCenterAssetFactory
 
 

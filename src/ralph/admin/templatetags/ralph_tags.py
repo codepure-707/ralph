@@ -6,7 +6,7 @@ from django.template import Library
 from ralph.admin.helpers import (
     get_content_type_for_model,
     get_field_by_relation_path,
-    get_value_by_relation_path
+    get_value_by_relation_path,
 )
 from ralph.lib.transitions.models import TransitionsHistory
 

@@ -224,7 +224,7 @@ sitetrees = [
                         title=_("Manufacturer category model"),
                         url="manufactured_category_model_report",
                         access_by_perms=(
-                            "accounts." "can_view_extra_manufacturercategorymodelreport"
+                            "accounts.can_view_extra_manufacturercategorymodelreport"
                         ),
                     ),
                     ralph_item(
@@ -310,7 +310,7 @@ sitetrees = [
                     section(
                         _("Visibility scopes"),
                         "visibility_scope",
-                        "ServiceBasedVisibilityScope"
+                        "ServiceBasedVisibilityScope",
                     ),
                     section(_("Access Zones"), "access_cards", "AccessZone"),
                     section(_("Transitions"), "transitions", "TransitionModel"),

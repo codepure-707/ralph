@@ -8,7 +8,7 @@ from ralph.data_center.models.physical import (
     DataCenterAsset,
     Rack,
     RackAccessory,
-    ServerRoom
+    ServerRoom,
 )
 
 TYPE_EMPTY = "empty"

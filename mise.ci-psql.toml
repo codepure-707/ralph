@@ -1,0 +1,8 @@
+[env]
+DB_ENGINE = "psql"
+TEST_DB_ENGINE = "psql"
+DATABASE_PORT = 5432
+DJANGO_SETTINGS_MODULE="ralph.settings.test"
+
+[vars]
+skip_containers = true

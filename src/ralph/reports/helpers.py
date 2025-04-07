@@ -32,16 +32,13 @@ def generate_report(name, requester, instances, language, context):
             json.dumps(
                 {
                     "id": ", ".join(
-                        [
-                            str(obj.id) for obj in
-                            instances[n:n + items_per_attachment]
-                        ]
+                        [str(obj.id) for obj in instances[n : n + items_per_attachment]]
                     ),
                     "now": str(datetime.datetime.now()),
                     "logged_user": obj_to_dict(requester),
                     "affected_user": obj_to_dict(instances[0].user),
                     "owner": obj_to_dict(instances[0].owner),
-                    "assets": context[n:n + items_per_attachment],
+                    "assets": context[n : n + items_per_attachment],
                 }
             )
         )

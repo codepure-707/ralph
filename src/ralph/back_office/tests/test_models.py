@@ -20,14 +20,14 @@ from ralph.assets.tests.factories import (
     BackOfficeAssetModelFactory,
     CategoryFactory,
     DataCenterAssetModelFactory,
-    ServiceEnvironmentFactory
+    ServiceEnvironmentFactory,
 )
 from ralph.attachments.models import Attachment
 from ralph.back_office.helpers import EmailContext
 from ralph.back_office.models import (
     _check_assets_owner,
     BackOfficeAsset,
-    BackOfficeAssetStatus
+    BackOfficeAssetStatus,
 )
 from ralph.back_office.tests.factories import BackOfficeAssetFactory
 from ralph.data_center.models import DataCenterAsset, DataCenterAssetStatus
@@ -38,7 +38,7 @@ from ralph.lib.transitions.models import (
     run_field_transition,
     Transition,
     TransitionModel,
-    TransitionNotAllowedError
+    TransitionNotAllowedError,
 )
 from ralph.lib.transitions.tests import TransitionTestCase
 from ralph.licences.tests.factories import LicenceFactory
@@ -603,7 +603,7 @@ class TestBackOfficeAssetTransitions(TransitionTestCase, RalphTestCase):
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].from_email, "foo@bar.pl")
 
-    def test_send_attachments_to_user_action_dont_send_email_without_attachments(self):  # noqa: E501
+    def test_send_attachments_to_user_action_dont_send_email_without_attachments(self):  # noqa
         bo_asset = BackOfficeAssetFactory(model=self.model)
         _, transition, _ = self._create_transition(
             model=self.bo_asset,
@@ -656,10 +656,10 @@ class BackOfficeAssetFormTest(TransitionTestCase, ClientMixin):
             "barcode": self.asset.barcode,
             "depreciation_rate": 0,
             "property_of": self.asset.property_of.id,
-            "custom_fields-customfieldvalue-content_type-object_id-INITIAL_FORMS": "0",  # noqa: E501
-            "custom_fields-customfieldvalue-content_type-object_id-MAX_NUM_FORMS": "1000",  # noqa: E501
-            "custom_fields-customfieldvalue-content_type-object_id-MIN_NUM_FORMS": "0",  # noqa: E501
-            "custom_fields-customfieldvalue-content_type-object_id-TOTAL_FORMS": "3",  # noqa: E501fhtml
+            "custom_fields-customfieldvalue-content_type-object_id-INITIAL_FORMS": "0",  # noqa
+            "custom_fields-customfieldvalue-content_type-object_id-MAX_NUM_FORMS": "1000",  # noqa
+            "custom_fields-customfieldvalue-content_type-object_id-MIN_NUM_FORMS": "0",  # noqa
+            "custom_fields-customfieldvalue-content_type-object_id-TOTAL_FORMS": "3",  # noqa
         }
 
     def test_bo_admin_form_wo_access_to_service_env_and_hostname(self):

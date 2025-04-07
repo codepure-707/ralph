@@ -8,7 +8,7 @@ from ralph.admin.helpers import (
     generate_html_link,
     get_content_type_for_model,
     get_field_by_relation_path,
-    getattr_dunder
+    getattr_dunder,
 )
 from ralph.assets.models.assets import Asset, Manufacturer
 from ralph.assets.models.base import BaseObject

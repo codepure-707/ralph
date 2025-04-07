@@ -4,10 +4,7 @@ from django.db import transaction
 from django.test import TransactionTestCase
 
 from ralph.accounts.tests.factories import UserFactory
-from ralph.assets.tests.factories import (
-    ServiceEnvironmentFactory,
-    ServiceFactory
-)
+from ralph.assets.tests.factories import ServiceEnvironmentFactory, ServiceFactory
 from ralph.data_center.models import DataCenterAsset
 from ralph.data_center.tests.factories import DataCenterAssetFactory
 

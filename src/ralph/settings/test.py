@@ -1,9 +1,13 @@
-import sys
-
 from ralph.settings import *  # noqa
-
-# for dhcp agent test
-sys.path.append(os.path.join(BASE_DIR, "..", "..", "contrib", "dhcp_agent"))
+import os
+from ralph.settings import (
+    DATABASES,
+    REDIS_CONNECTION,
+    INSTALLED_APPS,
+    HERMES,
+    RQ_QUEUES,
+    RALPH_INTERNAL_SERVICES,
+)
 
 DEBUG = False
 

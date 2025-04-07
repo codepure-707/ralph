@@ -381,6 +381,8 @@ else:
         "CONNECT_TIMEOUT": REDIS_CONNECT_TIMEOUT,
     }
     RQ_QUEUES = {"default": dict(**REDIS_CONNECTION)}
+    REDIS_SENTINEL_HOSTS = None
+    REDIS_CLUSTER_NAME = None
 
 # set to False to turn off cache decorator
 USE_CACHE = bool_from_env("USE_CACHE", True)

@@ -8,7 +8,7 @@ from ralph.api import RalphAPISerializer, RalphAPIViewSet, router
 from ralph.api.permissions import IsSuperuserOrReadonly
 from ralph.back_office.api import (
     BackOfficeAssetSimpleSerializer,
-    BackOfficeAssetViewSet
+    BackOfficeAssetViewSet,
 )
 from ralph.back_office.models import BackOfficeAsset
 from ralph.licences.api import LicenceUserViewSet

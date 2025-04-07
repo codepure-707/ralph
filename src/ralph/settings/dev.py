@@ -1,4 +1,10 @@
 from ralph.settings import *  # noqa
+from ralph.settings import (
+    bool_from_env,
+    INSTALLED_APPS,
+    LOGGING,
+    MIDDLEWARE,
+)
 
 
 def only_true(request):
@@ -9,11 +15,11 @@ def only_true(request):
 DEBUG = False
 
 INSTALLED_APPS = INSTALLED_APPS + (
-    # "debug_toolbar",
+    "debug_toolbar",
     "django_extensions",
 )
 
-# MIDDLEWARE = MIDDLEWARE + ("debug_toolbar.middleware.DebugToolbarMiddleware",)
+MIDDLEWARE = MIDDLEWARE + ("debug_toolbar.middleware.DebugToolbarMiddleware",)
 
 DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK": "%s.only_true" % __name__,

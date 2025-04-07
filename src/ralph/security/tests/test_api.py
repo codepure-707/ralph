@@ -8,13 +8,10 @@ from rest_framework import status
 from ralph.api.tests._base import RalphAPITestCase
 from ralph.networks.tests.factories import IPAddressFactory
 from ralph.security.models import Risk, ScanStatus, SecurityScan, Vulnerability
-from ralph.security.tests.factories import (
-    SecurityScanFactory,
-    VulnerabilityFactory
-)
+from ralph.security.tests.factories import SecurityScanFactory, VulnerabilityFactory
 
 
-@skip('Security Scans are disabled')
+@skip("Security Scans are disabled")
 class SecurityScanAPITests(RalphAPITestCase):
     def setUp(self):
         super().setUp()
@@ -221,6 +218,7 @@ class SecurityScanAPITests(RalphAPITestCase):
             scan.id,
         )
 
+
 @skip("Vulnerabilities are disabled")
 class VulnerabilityAPITests(RalphAPITestCase):
     def setUp(self):
@@ -306,6 +304,7 @@ class VulnerabilityAPITests(RalphAPITestCase):
             self.vulnerability.external_vulnerability_id,
             data["external_vulnerability_id"],
         )
+
 
 @skip("Vulnerabilities are disabled")
 class TestExternalVulnerability(RalphAPITestCase):

@@ -7,7 +7,7 @@ from ralph.admin.helpers import get_field_by_relation_path
 from ralph.assets.models import BaseObject
 from ralph.data_center.publishers import (
     publish_host_update,
-    publish_host_update_from_related_model
+    publish_host_update_from_related_model,
 )
 from ralph.lib.custom_fields.signals import api_post_create, api_post_update
 from ralph.signals import post_commit

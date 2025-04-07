@@ -14,7 +14,7 @@ from ralph.tests.models import (
     Foo,
     Order,
     PolymorphicTestModel,
-    TestManufacturer
+    TestManufacturer,
 )
 
 

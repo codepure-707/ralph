@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from ralph.assets.tests.factories import BaseObjectFactory
 from ralph.data_center.tests.factories import (
     DataCenterAssetFactory,
-    ServiceEnvironmentFactory
+    ServiceEnvironmentFactory,
 )
 from ralph.licences.tests.factories import LicenceFactory
 from ralph.tests import RalphTestCase

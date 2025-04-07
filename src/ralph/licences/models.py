@@ -15,11 +15,7 @@ from ralph.assets.models.assets import AssetHolder, BudgetInfo, Manufacturer
 from ralph.assets.models.base import BaseObject
 from ralph.assets.models.choices import ObjectModelType
 from ralph.lib.mixins.fields import BaseObjectForeignKey
-from ralph.lib.mixins.models import (
-    AdminAbsoluteUrlMixin,
-    NamedMixin,
-    PriceMixin
-)
+from ralph.lib.mixins.models import AdminAbsoluteUrlMixin, NamedMixin, PriceMixin
 from ralph.lib.permissions.models import PermByFieldMixin
 from ralph.lib.polymorphic.models import PolymorphicQuerySet
 
@@ -217,7 +213,7 @@ class Licence(Regionalizable, AdminAbsoluteUrlMixin, PriceMixin, BaseObject):
         null=True,
         blank=True,
         help_text=_(
-            "Any value to help your accounting department " "identify this licence"
+            "Any value to help your accounting department identify this licence"
         ),
     )
     base_objects = models.ManyToManyField(
@@ -310,7 +306,11 @@ class Licence(Regionalizable, AdminAbsoluteUrlMixin, PriceMixin, BaseObject):
         # filter by ids of licences which could be assigned (are not fully
         # used)
         return cls.objects_used_free.filter(
-            pk__in=[l.id for l in cls.objects_used_free.all() if l.free > 0]
+            pk__in=[
+                licence.id
+                for licence in cls.objects_used_free.all()
+                if licence.free > 0
+            ]
         )
 
 

@@ -17,10 +17,7 @@ from ralph.assets.models.base import BaseObject
 from ralph.assets.models.choices import ComponentType
 from ralph.assets.models.components import Component, ComponentModel, Ethernet
 from ralph.assets.utils import DNSaaSPublisherMixin
-from ralph.data_center.models.physical import (
-    DataCenterAsset,
-    NetworkableBaseObject
-)
+from ralph.data_center.models.physical import DataCenterAsset, NetworkableBaseObject
 from ralph.data_center.models.virtual import Cluster
 from ralph.data_center.publishers import publish_host_update
 from ralph.lib.mixins.fields import NullableCharField
@@ -28,7 +25,7 @@ from ralph.lib.mixins.models import (
     AdminAbsoluteUrlMixin,
     NamedMixin,
     PreviousStateMixin,
-    TimeStampMixin
+    TimeStampMixin,
 )
 from ralph.lib.transitions.fields import TransitionField
 from ralph.networks.models.networks import IPAddress

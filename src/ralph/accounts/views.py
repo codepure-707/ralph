@@ -14,7 +14,7 @@ from ralph.accounts.admin import (
     AssetList,
     AssignedLicenceList,
     AssignedSimcardsList,
-    UserInfoMixin
+    UserInfoMixin,
 )
 from ralph.accounts.helpers import (
     ACCEPTANCE_LOAN_TRANSITION_ID,
@@ -24,7 +24,7 @@ from ralph.accounts.helpers import (
     get_assets_to_accept,
     get_assets_to_accept_loan,
     get_loan_acceptance_url,
-    loan_transition_exists
+    loan_transition_exists,
 )
 from ralph.admin.mixins import RalphBaseTemplateView, RalphTemplateView
 from ralph.back_office.models import BackOfficeAsset
@@ -87,7 +87,7 @@ class InventoryTagView(View):
 
     def _post_no(self, request, asset):
         tags = [settings.INVENTORY_TAG_MISSING]
-        missing_asset_info = "Please contact person responsible " "for asset management"
+        missing_asset_info = "Please contact person responsible for asset management"
         if settings.MISSING_ASSET_REPORT_URL is not None:
             missing_asset_info += "\n" + settings.MISSING_ASSET_REPORT_URL
 

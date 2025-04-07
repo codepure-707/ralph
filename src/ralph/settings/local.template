@@ -1,22 +1,38 @@
+import os
+
 from ralph.settings.dev import *  # noqa
 
+INSTALLED_APPS += ("corsheaders", "ralph.tests")
+DEBUG = True
+MIDDLEWARE = MIDDLEWARE + ("corsheaders.middleware.CorsMiddleware",)
+
+CORS_ORIGIN_WHITELIST = (
+    "https://localhost:8080",
+    "https://127.0.0.1:8080",
+)
+
+POSTGRES = os.environ.get("DB_ENGINE") != "mysql"
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('DATABASE_NAME', 'ralph_ng'),
-        'USER': os.environ.get('DATABASE_USER', 'ralph_ng'),
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD', 'ralph_ng') or None,
-        'HOST': os.environ.get('DATABASE_HOST', '127.0.0.1'),
-        'PORT': os.environ.get('DATABASE_PORT', 3306),
-        'ATOMIC_REQUESTS': True,
-        'TEST': {
-            'NAME': 'test_ralph_ng',
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'USER': os.environ.get('DATABASE_USER', 'ralph_ng'),
-            'PASSWORD': os.environ.get('DATABASE_PASSWORD', 'ralph_ng') or None,
-            'HOST': os.environ.get('DATABASE_HOST', '127.0.0.1'),
-            'PORT': os.environ.get('DATABASE_PORT', 3306),
-        }
+    "default": {
+        "ENGINE": "django.db.backends.postgresql"
+        if POSTGRES
+        else "django.db.backends.mysql",
+        "NAME": os.environ.get("DATABASE_NAME", "ralph_ng"),
+        "USER": os.environ.get("DATABASE_USER", "ralph_ng"),
+        "PASSWORD": os.environ.get("DATABASE_PASSWORD", "ralph_ng") or None,
+        "HOST": os.environ.get("DATABASE_HOST", "127.0.0.1"),
+        "PORT": 54320 if POSTGRES else 3306,
+        "ATOMIC_REQUESTS": False,
+        "TEST": {
+            "NAME": "test_ralph_ng",
+            "ENGINE": "django.db.backends.postgresql"
+            if POSTGRES
+            else "django.db.backends.mysql",
+            "USER": os.environ.get("DATABASE_USER", "ralph_ng"),
+            "PASSWORD": os.environ.get("DATABASE_PASSWORD", "ralph_ng") or None,
+            "HOST": os.environ.get("DATABASE_HOST", "127.0.0.1"),
+            "PORT": os.environ.get("DATABASE_PORT", 54320 if POSTGRES else 3306),
+        },
     }
 }
 

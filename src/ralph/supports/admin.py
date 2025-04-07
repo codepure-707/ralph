@@ -8,18 +8,13 @@ from django.utils.translation import ugettext_lazy as _
 from ralph.admin.decorators import register
 from ralph.admin.filters import TagsListFilter
 from ralph.admin.helpers import generate_html_link
-from ralph.admin.mixins import (
-    BulkEditChangeListMixin,
-    RalphAdmin,
-    RalphTabularInline
-)
+from ralph.admin.mixins import BulkEditChangeListMixin, RalphAdmin, RalphTabularInline
 from ralph.admin.views.extra import RalphDetailViewAdmin
 from ralph.attachments.admin import AttachmentsMixin
 from ralph.data_importer import resources
 from ralph.lib.custom_fields.admin import CustomFieldValueAdminMixin
 from ralph.lib.mixins.forms import PriceFormMixin
-from ralph.lib.visibility_scope.filters import \
-    visibility_scope_asset_support_filter
+from ralph.lib.visibility_scope.filters import visibility_scope_asset_support_filter
 from ralph.supports.models import BaseObjectsSupport, Support, SupportType
 
 

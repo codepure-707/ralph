@@ -8,7 +8,7 @@ from ralph.assets.tests.factories import (
     EthernetWithIPAddressFactory,
     MemoryFactory,
     ProcessorFactory,
-    ServiceEnvironmentFactory
+    ServiceEnvironmentFactory,
 )
 from ralph.data_center.tests.factories import DataCenterAssetFactory
 from ralph.security.tests.factories import SecurityScanFactory
@@ -19,7 +19,7 @@ from ralph.virtual.models import (
     CloudProject,
     CloudProvider,
     VirtualServer,
-    VirtualServerType
+    VirtualServerType,
 )
 
 

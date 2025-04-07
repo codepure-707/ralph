@@ -9,7 +9,7 @@ from ralph.admin.mixins import (
     get_inline_media,
     initialize_search_form,
     RalphAdmin,
-    RalphTemplateView
+    RalphTemplateView,
 )
 from ralph.admin.sites import ralph_site
 from ralph.helpers import get_model_view_url_name

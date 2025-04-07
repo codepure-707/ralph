@@ -12,7 +12,7 @@ from ralph.lib.mixins.models import (
     AdminAbsoluteUrlMixin,
     NamedMixin,
     PriceMixin,
-    TimeStampMixin
+    TimeStampMixin,
 )
 from ralph.lib.permissions.models import PermByFieldMixin
 

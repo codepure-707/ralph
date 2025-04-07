@@ -12,7 +12,7 @@ from ralph.assets.tests.factories import EthernetFactory
 from ralph.data_center.tests.factories import (
     ClusterFactory,
     DataCenterAssetFactory,
-    DataCenterFactory
+    DataCenterFactory,
 )
 from ralph.networks.admin import NetworkAdmin
 from ralph.networks.filters import NetworkClassFilter
@@ -20,7 +20,7 @@ from ralph.networks.models.networks import IPAddress, Network
 from ralph.networks.tests.factories import (
     IPAddressFactory,
     NetworkEnvironmentFactory,
-    NetworkFactory
+    NetworkFactory,
 )
 from ralph.tests import RalphTestCase
 from ralph.virtual.tests.factories import VirtualServerFactory
@@ -461,9 +461,7 @@ class NetworkEnvironmentTest(RalphTestCase):
             hostname_template_counter_length=5,
             use_hostname_counter=True,
         )
-        DataCenterAssetFactory(
-            hostname="".join([prefix, non_integer_counter, postfix])
-        )
+        DataCenterAssetFactory(hostname="".join([prefix, non_integer_counter, postfix]))
         self.assertEqual(ne.current_counter_without_model(), 0)
 
 

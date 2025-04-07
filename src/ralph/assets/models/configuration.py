@@ -6,10 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from mptt.models import MPTTModel, MPTTModelBase, TreeForeignKey
 
 from ralph.assets.models.base import BaseObject
-from ralph.lib.custom_fields.models import (
-    CustomFieldMeta,
-    WithCustomFieldsMixin
-)
+from ralph.lib.custom_fields.models import CustomFieldMeta, WithCustomFieldsMixin
 from ralph.lib.mixins.models import AdminAbsoluteUrlMixin, TimeStampMixin
 
 dir_file_name_validator = RegexValidator(regex=r"\w+")

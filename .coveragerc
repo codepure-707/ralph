@@ -1,6 +1,7 @@
 [run]
 source = ralph
 branch = 1
+omit = *migrations*,*tests*,*__init__*,*wsgi.py,*__main__*,*settings*,*manage.py
 
 [report]
 omit = *migrations*,*tests*,*__init__*,*wsgi.py,*__main__*,*settings*,*manage.py

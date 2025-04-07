@@ -12,7 +12,7 @@ from ralph.lib.mixins.models import AdminAbsoluteUrlMixin, PriceMixin
 from ralph.lib.transitions.decorators import transition_action
 from ralph.lib.transitions.exceptions import (
     FreezeAsyncTransition,
-    RescheduleAsyncTransitionActionLater
+    RescheduleAsyncTransitionActionLater,
 )
 from ralph.lib.transitions.fields import TransitionField
 from ralph.lib.transitions.models import TransitionWorkflowBase

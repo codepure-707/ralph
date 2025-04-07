@@ -7,10 +7,7 @@ from django.urls import reverse
 from ralph.assets.models import Ethernet, ObjectModelType
 from ralph.assets.tests.factories import DataCenterAssetModelFactory
 from ralph.data_center.models import DataCenterAsset
-from ralph.data_center.tests.factories import (
-    DataCenterAssetFactory,
-    RackFactory
-)
+from ralph.data_center.tests.factories import DataCenterAssetFactory, RackFactory
 from ralph.networks.forms import validate_is_management
 from ralph.networks.models import IPAddress
 from ralph.networks.tests.factories import IPAddressFactory
@@ -35,7 +32,7 @@ class NetworkLineFormsetTest(RalphTestCase):
         }
         with self.assertRaisesRegex(
             ValidationError,
-            ("Only one management IP address can be assigned " "to this asset"),
+            ("Only one management IP address can be assigned to this asset"),
         ):
             validate_is_management([form_1, form_2])
 

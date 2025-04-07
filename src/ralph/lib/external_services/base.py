@@ -1,7 +1,15 @@
 import time
 
+from rq import job
+import pickle
+from functools import partial
 import django_rq
 from django.conf import settings
+
+# 4 is the highest pickle protocol support by inkpy-jinja
+# This is an ugly and potentially dangerous hack as it changes the default rq
+# TODO: Remove this hack when inkpy-jinja is retired
+job.dumps = partial(pickle.dumps, protocol=4)
 
 
 class QueuedServiceError(Exception):

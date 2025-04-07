@@ -1,4 +1,3 @@
-
 from ddt import data, ddt, unpack
 
 from ralph.assets.models.assets import ServiceEnvironment
@@ -7,16 +6,13 @@ from ralph.assets.models.components import ComponentModel
 from ralph.assets.tests.factories import (
     EnvironmentFactory,
     ServiceEnvironmentFactory,
-    ServiceFactory
+    ServiceFactory,
 )
-from ralph.data_center.tests.factories import (
-    DataCenterAssetFullFactory,
-    RackFactory
-)
+from ralph.data_center.tests.factories import DataCenterAssetFullFactory, RackFactory
 from ralph.lib.custom_fields.models import (
     CustomField,
     CustomFieldTypes,
-    CustomFieldValue
+    CustomFieldValue,
 )
 from ralph.networks.models import IPAddress
 from ralph.networks.tests.factories import NetworkFactory
@@ -28,7 +24,7 @@ from ralph.virtual.tests.factories import (
     CloudHostFactory,
     CloudProjectFactory,
     CloudProviderFactory,
-    VirtualServerFullFactory
+    VirtualServerFullFactory,
 )
 
 

@@ -1,7 +1,16 @@
+from ralph.settings import *  # noqa
 import json
 import os
-
-from ralph.settings import *  # noqa
+from ralph.settings import (
+    REDIS_CONNECTION,
+    INSTALLED_APPS,
+    MIDDLEWARE,
+    bool_from_env,
+    REDIS_SENTINEL_ENABLED,
+    REDIS_SENTINEL_HOSTS,
+    REDIS_CLUSTER_NAME,
+    REST_FRAMEWORK,
+)
 
 DEBUG = bool_from_env("RALPH_DEBUG", False)
 
@@ -44,8 +53,8 @@ if os.environ.get("USE_REDIS_CACHE"):
     CACHES = {
         "default": {
             "OPTIONS": (
-                json.loads(
-                    os.environ.get("REDIS_CACHE_OPTIONS", "{}")) or DEFAULT_CACHE_OPTIONS
+                json.loads(os.environ.get("REDIS_CACHE_OPTIONS", "{}"))
+                or DEFAULT_CACHE_OPTIONS
             ),
         },
     }
@@ -80,15 +89,13 @@ if bool_from_env("COLLECT_METRICS"):
     if ALLOW_PUSH_GRAPHS_DATA_TO_STATSD:
         STATSD_GRAPHS_PREFIX = os.environ.get("STATSD_GRAPHS_PREFIX", "ralph.graphs")
 
-if bool_from_env('PROMETHEUS_METRICS_ENABLED', True):
+if bool_from_env("PROMETHEUS_METRICS_ENABLED", True):
     PROMETHEUS_METRICS_ENABLED = True
     PROMETHEUS_EXPORT_MIGRATIONS = False
     MIDDLEWARE = (
-        'django_prometheus.middleware.PrometheusBeforeMiddleware',
+        "django_prometheus.middleware.PrometheusBeforeMiddleware",
     ) + MIDDLEWARE
     MIDDLEWARE = MIDDLEWARE + (
-        'django_prometheus.middleware.PrometheusAfterMiddleware',
+        "django_prometheus.middleware.PrometheusAfterMiddleware",
     )
-    INSTALLED_APPS += (
-        'django_prometheus',
-    )
+    INSTALLED_APPS += ("django_prometheus",)

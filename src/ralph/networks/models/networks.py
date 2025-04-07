@@ -16,16 +16,13 @@ from mptt.models import MPTTModel, TreeForeignKey
 from ralph.assets.models import AssetLastHostname, Ethernet
 from ralph.dns.dnsaas import DNSaaS
 from ralph.lib import network as network_tools
-from ralph.lib.mixins.fields import (
-    NullableCharField,
-    NullableCharFieldWithAutoStrip
-)
+from ralph.lib.mixins.fields import NullableCharField, NullableCharFieldWithAutoStrip
 from ralph.lib.mixins.models import (
     AdminAbsoluteUrlMixin,
     LastSeenMixin,
     NamedMixin,
     PreviousStateMixin,
-    TimeStampMixin
+    TimeStampMixin,
 )
 from ralph.lib.polymorphic.fields import PolymorphicManyToManyField
 from ralph.networks.fields import IPNetwork

@@ -5,7 +5,7 @@ from ralph.api import RalphAPISerializer, RalphAPIViewSet, router
 from ralph.api.serializers import ReversionHistoryAPISerializerMixin
 from ralph.assets.api.serializers import (
     BaseObjectSimpleSerializer,
-    ServiceEnvironmentSimpleSerializer
+    ServiceEnvironmentSimpleSerializer,
 )
 from ralph.lib.api.utils import renderer_classes_without_form
 from ralph.licences.models import (
@@ -13,7 +13,7 @@ from ralph.licences.models import (
     Licence,
     LicenceType,
     LicenceUser,
-    Software
+    Software,
 )
 
 

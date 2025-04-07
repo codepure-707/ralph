@@ -16,7 +16,7 @@ from ralph.lib.mixins.models import AdminAbsoluteUrlMixin, NamedMixin
 from ralph.lib.permissions.models import (
     PermByFieldMixin,
     PermissionsForObjectMixin,
-    user_permission
+    user_permission,
 )
 from ralph.lib.visibility_scope.models import ServiceBasedVisibilityScope
 
@@ -122,9 +122,7 @@ class RalphUser(
     )
     regions = models.ManyToManyField(Region, related_name="users", blank=True)
     service_visibility_scopes = models.ManyToManyField(
-        ServiceBasedVisibilityScope,
-        related_name="users",
-        blank=True
+        ServiceBasedVisibilityScope, related_name="users", blank=True
     )
     team = models.ForeignKey(
         Team,

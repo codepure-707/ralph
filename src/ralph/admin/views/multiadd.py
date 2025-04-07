@@ -13,7 +13,7 @@ from django.utils.translation import ugettext_lazy as _
 from ralph.admin.fields import (
     IntegerMultilineField,
     MultilineField,
-    MultivalueFormMixin
+    MultivalueFormMixin,
 )
 from ralph.admin.mixins import RalphTemplateView
 from ralph.admin.sites import ralph_site

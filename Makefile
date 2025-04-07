@@ -104,8 +104,11 @@ flake: isort
 	flake8 src/ralph/settings --ignore=F405 --exclude=*local.py
 	@cat scripts/flake.txt
 
+checks:
+	ruff check src
+
 clean:
-	find . -name '*.py[cod]' -exec rm -rf {} \;
+	find . -name '*.py[cod]' -delete;
 
 coverage: clean
 	coverage run $(shell which test_ralph) test $(TEST) -v 2 --keepdb --settings="ralph.settings.test"

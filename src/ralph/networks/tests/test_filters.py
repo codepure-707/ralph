@@ -1,7 +1,7 @@
 from unittest import mock
 
 from django.contrib.admin.options import IncorrectLookupParameters
-from django.test import RequestFactory, TestCase
+from django.test import TestCase
 from django.test.client import RequestFactory
 
 from ralph.networks.admin import NetworkAdmin

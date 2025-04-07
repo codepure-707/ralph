@@ -14,19 +14,20 @@ import tempfile
 from logging import handlers as logging_handlers
 from optparse import OptionParser
 
-IS_PY3 = sys.version_info[0] == 3
-if IS_PY3:
+try:
     from dbm import gnu as cache_db
+except:  # noqa
+    import dbm as cache_db
+
+try:
     from urllib.error import HTTPError
     from urllib.parse import urlencode
     from urllib.request import Request, urlopen
     string_types = (str,)
-else:
-    import dbm as cache_db
+except:  # noqa
     from urllib import urlencode
-
     from urllib2 import HTTPError, Request, urlopen
-    string_types = (basestring,)
+    string_types = (basestring,)  # noqa
 
 
 APP_DIR = os.path.expanduser('~/.ralph-dhcp-agent')

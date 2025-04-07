@@ -7,12 +7,11 @@ from ralph.api import RalphAPISerializer, RalphAPIViewSet, router
 from ralph.assets.api.serializers import (
     ServiceEnvironmentSimpleSerializer,
     StrField,
-    TypeFromContentTypeSerializerMixin
+    TypeFromContentTypeSerializerMixin,
 )
 from ralph.assets.models import BaseObject
 from ralph.lib.permissions.api import PermissionsForObjectFilter
-from ralph.lib.visibility_scope.filters import \
-    visibility_scope_asset_support_filter
+from ralph.lib.visibility_scope.filters import visibility_scope_asset_support_filter
 from ralph.supports.models import BaseObjectsSupport, Support, SupportType
 
 
@@ -64,9 +63,9 @@ class BaseObjectsFilter(django_filters.FilterSet):
     e.g. /?base_objects=1,2,3
 
     """
+
     base_objects = django_filters.CharFilter(
-        field_name="base_objects",
-        method='filter_base_objects'
+        field_name="base_objects", method="filter_base_objects"
     )
 
     class Meta:
@@ -77,7 +76,7 @@ class BaseObjectsFilter(django_filters.FilterSet):
         if not value:
             return queryset
         try:
-            ids = [int(x) for x in value.split(',')]
+            ids = [int(x) for x in value.split(",")]
             return queryset.filter(base_objects__in=ids)
         except ValueError:
             return queryset.none()
@@ -88,7 +87,7 @@ class SupportViewSet(RalphAPIViewSet):
     serializer_class = SupportSerializer
     filter_backends = (
         django_filters.rest_framework.DjangoFilterBackend,
-        PermissionsForObjectFilter
+        PermissionsForObjectFilter,
     )
     filterset_class = BaseObjectsFilter
     select_related = [
@@ -127,8 +126,9 @@ class BaseObjectSupportViewSet(RalphAPIViewSet):
 
     def get_queryset(self):
         return (
-            super().get_queryset().
-            filter(visibility_scope_asset_support_filter(self.request.user))
+            super()
+            .get_queryset()
+            .filter(visibility_scope_asset_support_filter(self.request.user))
         )
 
 

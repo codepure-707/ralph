@@ -5,7 +5,7 @@ import django
 
 django.setup()
 
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model  # noqa
 
 User = get_user_model()
 

@@ -10,21 +10,18 @@ from ralph.data_center.models import BaseObjectCluster, Cluster, DataCenterAsset
 from ralph.data_center.tests.factories import (
     ClusterFactory,
     DataCenterAssetFactory,
-    DataCenterAssetFullFactory
+    DataCenterAssetFullFactory,
 )
 from ralph.data_center.views import RelationsView
 from ralph.security.models import ScanStatus
-from ralph.security.tests.factories import (
-    SecurityScanFactory,
-    VulnerabilityFactory
-)
+from ralph.security.tests.factories import SecurityScanFactory, VulnerabilityFactory
 from ralph.tests.mixins import ClientMixin
 from ralph.virtual.models import CloudHost, VirtualServer
 from ralph.virtual.tests.factories import (
     CloudHostFactory,
     CloudHostFullFactory,
     VirtualServerFactory,
-    VirtualServerFullFactory
+    VirtualServerFullFactory,
 )
 
 
@@ -119,6 +116,7 @@ class DCHostViewTest(ClientMixin, TestCase):
         )
         self.assertContains(result, "DC1 / SR1 / Rack #1")
 
+
 @skip("Security Scans are disabled")
 class DCHostScanStatusInListingTest(ClientMixin, TestCase):
     def setUp(self):
@@ -204,6 +202,7 @@ class DCHostScanStatusInListingTest(ClientMixin, TestCase):
             reverse("admin:data_center_dchost_changelist"),
         )
         self.assertContains(result, "Scan failed")
+
 
 @skip("Security Scans are disabled")
 class DCHostFilterByPatchDeadline(ClientMixin, TestCase):

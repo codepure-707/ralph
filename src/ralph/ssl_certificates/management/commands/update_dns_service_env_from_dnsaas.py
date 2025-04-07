@@ -41,8 +41,9 @@ class Command(BaseCommand):
                 )
             except ServiceEnvironment.DoesNotExist:
                 self.stderr.write(
-                    "Service with name {} "
-                    "and prod environment does not exist".format(service_dns)
+                    "Service with name {} and prod environment does not exist".format(
+                        service_dns
+                    )
                 )
             else:
                 ssl_certificates_object_update(domain, service_env)

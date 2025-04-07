@@ -9,22 +9,18 @@ from django.db import transaction
 from django.db.models import Q
 from django.db.models.fields import exceptions
 from rest_framework import permissions, relations, serializers
-from rest_framework.exceptions import \
-    ValidationError as RestFrameworkValidationError
+from rest_framework.exceptions import ValidationError as RestFrameworkValidationError
 from rest_framework.settings import api_settings
 from rest_framework.utils import model_meta
 from reversion import revisions as reversion
-from taggit_serializer.serializers import (
-    TaggitSerializer,
-    TagListSerializerField
-)
+from taggit_serializer.serializers import TaggitSerializer, TagListSerializerField
 
 from ralph.api.fields import AbsoluteUrlField, ReversedChoiceField
 from ralph.api.relations import RalphHyperlinkedRelatedField, RalphRelatedField
 from ralph.lib.mixins.models import AdminAbsoluteUrlMixin, TaggableMixin
 from ralph.lib.permissions.api import (
     PermissionsPerFieldSerializerMixin,
-    RelatedObjectsPermissionsSerializerMixin
+    RelatedObjectsPermissionsSerializerMixin,
 )
 
 logger = logging.getLogger(__name__)

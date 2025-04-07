@@ -24,16 +24,11 @@ from ralph.accounts.helpers import (
     get_team_asset_acceptance_url,
     get_team_assets_to_accept,
     get_test_asset_acceptance_url,
-    get_test_assets_to_accept
+    get_test_assets_to_accept,
 )
 from ralph.assets.models import BaseObject, Service, ServiceEnvironment
 from ralph.back_office.models import BackOfficeAsset
-from ralph.data_center.models import (
-    DataCenter,
-    DataCenterAsset,
-    Rack,
-    RackAccessory
-)
+from ralph.data_center.models import DataCenter, DataCenterAsset, Rack, RackAccessory
 
 register = Library()
 COLORS = ["green", "blue", "purple", "orange", "red", "pink"]

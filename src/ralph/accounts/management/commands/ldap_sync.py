@@ -235,8 +235,7 @@ class Command(BaseCommand):
                         break
                 else:
                     logger.error(
-                        "LDAP::_run_ldap_query\tQuery: Server ignores RFC 2696 "
-                        "control"
+                        "LDAP::_run_ldap_query\tQuery: Server ignores RFC 2696 control"
                     )
                     sys.exit(1)
 
@@ -273,7 +272,7 @@ class Command(BaseCommand):
         for option in options:
             if not hasattr(settings, option):
                 logger.error(
-                    "LDAP::check_settings_existence\tSetting %s is " "not provided",
+                    "LDAP::check_settings_existence\tSetting %s is not provided",
                     option,
                 )
                 sys.exit(1)

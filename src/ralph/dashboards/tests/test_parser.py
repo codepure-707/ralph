@@ -19,13 +19,10 @@ from ralph.data_center.admin import DataCenterAdmin
 from ralph.data_center.models import DataCenterAsset
 from ralph.data_center.tests.factories import (
     DataCenterAssetFactory,
-    DataCenterAssetFullFactory
+    DataCenterAssetFullFactory,
 )
 from ralph.security.models import Vulnerability
-from ralph.security.tests.factories import (
-    SecurityScanFactory,
-    VulnerabilityFactory
-)
+from ralph.security.tests.factories import SecurityScanFactory, VulnerabilityFactory
 from ralph.tests.models import Bar
 
 ARGS, KWARGS = (0, 1)

@@ -141,7 +141,7 @@ class MultiAddTest(ClientMixin, TestCase):
             response,
             "form",
             "sn",
-            ("Following items already exist: " '<a href="{}">{}</a>').format(
+            ('Following items already exist: <a href="{}">{}</a>').format(
                 reverse(
                     "admin:data_center_datacenterasset_change", args=[self.dc_1.pk]
                 ),
