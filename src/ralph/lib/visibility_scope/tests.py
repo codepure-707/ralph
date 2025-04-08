@@ -4,7 +4,7 @@ from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.test import TransactionTestCase
 from django.urls import reverse
-from factory import DjangoModelFactory
+from factory.django import DjangoModelFactory
 from rest_framework.test import APITestCase
 
 from ralph.accounts.tests.factories import UserFactory

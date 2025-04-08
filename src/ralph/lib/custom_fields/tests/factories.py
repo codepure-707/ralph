@@ -1,4 +1,4 @@
-from factory import DjangoModelFactory
+from factory.django import DjangoModelFactory
 from factory.fuzzy import FuzzyText
 
 from ralph.lib.custom_fields.models import CustomField, CustomFieldTypes
