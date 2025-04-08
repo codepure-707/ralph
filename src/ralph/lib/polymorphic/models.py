@@ -232,7 +232,7 @@ class PolymorphicQuerySet(models.QuerySet):
                 while cache_[pk]:
                     yield cache_[pk].pop()
 
-    def iterator(self):
+    def iterator(self, chunk_size=None):
         yield from self.__iter__()
 
     def annotate(self, *args, **kwargs):
