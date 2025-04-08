@@ -336,16 +336,16 @@ wheels = [
 
 [[package]]
 name = "django"
-version = "3.0.14"
+version = "3.2.25"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "asgiref" },
     { name = "pytz" },
     { name = "sqlparse" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/76/0e/5d847a77b7b42cacd01405b45e4e370124c1d8a15970865df5ab0f09f83a/Django-3.0.14.tar.gz", hash = "sha256:d58d8394036db75a81896037d757357e79406e8f68816c3e8a28721c1d9d4c11", size = 9259569 }
+sdist = { url = "https://files.pythonhosted.org/packages/ec/68/0e744f07b57bfdf99abbb6b3eb14fcba188867021c05f4a104e04f6d56b8/Django-3.2.25.tar.gz", hash = "sha256:7ca38a78654aee72378594d63e51636c04b8e28574f5505dff630895b5472777", size = 9836336 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/34/3b/393482eb369b3c50608b66feac8eabd4c5c15ae80468fb1eccc0b9c136a2/Django-3.0.14-py3-none-any.whl", hash = "sha256:9bc7aa619ed878fedba62ce139abe663a147dccfd20e907725ec11e02a1ca225", size = 7461625 },
+    { url = "https://files.pythonhosted.org/packages/30/8e/cc23c762c5dcd1d367d73cf006a326e0df2bd0e785cba18b658b39904c1e/Django-3.2.25-py3-none-any.whl", hash = "sha256:a52ea7fcf280b16f7b739cec38fa6d3f8953a5456986944c3ca97e79882b4e38", size = 7890550 },
 ]
 
 [[package]]
@@ -375,14 +375,15 @@ wheels = [
 
 [[package]]
 name = "django-cors-headers"
-version = "3.11.0"
+version = "4.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
+    { name = "asgiref" },
     { name = "django" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/3e/39/0058ff0bd2cb7aacfa00e660ddaf18fe4de7d2d8be9535857016d39ec201/django-cors-headers-3.11.0.tar.gz", hash = "sha256:eb98389bf7a2afc5d374806af4a9149697e3a6955b5a2dc2bf049f7d33647456", size = 20730 }
+sdist = { url = "https://files.pythonhosted.org/packages/d3/34/f0c7a7241f885cbfc99b1edef0acc7915dd7a3fb749fe27de5e8a9fb2ccb/django_cors_headers-4.4.0.tar.gz", hash = "sha256:92cf4633e22af67a230a1456cb1b7a02bb213d6536d2dcb2a4a24092ea9cebc2", size = 21151 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5a/8d/678814a8ffa62650ee8c4e8a0d8704f43462473c2e7577187d4de961afe4/django_cors_headers-3.11.0-py3-none-any.whl", hash = "sha256:a22be2befd4069c4fc174f11cf067351df5c061a3a5f94a01650b4e928b0372b", size = 12952 },
+    { url = "https://files.pythonhosted.org/packages/9d/0c/4201d5650199b3a36ef3f2ab91f44c4527a70685f3003ce9f3ed8c30780c/django_cors_headers-4.4.0-py3-none-any.whl", hash = "sha256:5c6e3b7fe870876a1efdfeb4f433782c3524078fa0dc9e0195f6706ce7a242f6", size = 12789 },
 ]
 
 [[package]]
@@ -400,15 +401,15 @@ wheels = [
 
 [[package]]
 name = "django-debug-toolbar"
-version = "3.2.4"
+version = "4.3.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django" },
     { name = "sqlparse" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/09/e9/cd42e1403270bd3522fb5ebf151065c9d8fae5c9855eac629c8e2d6edc72/django-debug-toolbar-3.2.4.tar.gz", hash = "sha256:644bbd5c428d3283aa9115722471769cac1bec189edf3a0c855fd8ff870375a9", size = 128774 }
+sdist = { url = "https://files.pythonhosted.org/packages/61/ff/b6d3cc2c31f9a6cf68eda0f7a640ada743f5c39122a0c14db8d3eee3f412/django_debug_toolbar-4.3.0.tar.gz", hash = "sha256:0b0dddee5ea29b9cb678593bc0d7a6d76b21d7799cb68e091a2148341a80f3c4", size = 261173 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b7/6a/d21188bb459436427b56b894d86a86d108cd8164b1bc69be413c70b94ec9/django_debug_toolbar-3.2.4-py3-none-any.whl", hash = "sha256:6b633b6cfee24f232d73569870f19aa86c819d750e7f3e833f2344a9eb4b4409", size = 216571 },
+    { url = "https://files.pythonhosted.org/packages/ee/0e/73d81b1dfd9a84f24e3869019309758b37a5a5a9fe2bc7e54fca08191ea0/django_debug_toolbar-4.3.0-py3-none-any.whl", hash = "sha256:e09b7dcb8417b743234dfc57c95a7c1d1d87a88844abd13b4c5387f807b31bf6", size = 223656 },
 ]
 
 [[package]]
@@ -451,14 +452,14 @@ wheels = [
 
 [[package]]
 name = "django-js-asset"
-version = "2.0.0"
+version = "2.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/99/a7/06be13db4030fff013137f0ccd6a2f46babb623b536eec6068430e176fb1/django_js_asset-2.0.0.tar.gz", hash = "sha256:adc1ee1efa853fad42054b540c02205344bb406c9bddf87c9e5377a41b7db90f", size = 4592 }
+sdist = { url = "https://files.pythonhosted.org/packages/28/bb/04accb19b0c0b6d835a393c20f04dfc379648e8cd6654c045e4d843ad527/django_js_asset-2.2.0.tar.gz", hash = "sha256:0c57a82cae2317e83951d956110ce847f58ff0cdc24e314dbc18b35033917e94", size = 7904 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/89/dd/67936526e547dd14ca4e5d13ab1655bc4aefa410f092ad13de3a085a3d51/django_js_asset-2.0.0-py3-none-any.whl", hash = "sha256:86f9f300d682537ddaf0487dc2ab356581b8f50c069bdba91d334a46e449f923", size = 4941 },
+    { url = "https://files.pythonhosted.org/packages/dc/4d/5bb8c351f2515a616576a4218c736af081edf0dd4d1eead1c7e880f74c0e/django_js_asset-2.2.0-py3-none-any.whl", hash = "sha256:7ef3e858e13d06f10799b56eea62b1e76706f42cf4e709be4e13356bc0ae30d8", size = 4704 },
 ]
 
 [[package]]
@@ -559,21 +560,17 @@ wheels = [
 
 [[package]]
 name = "django-silk"
-version = "4.4.1"
+version = "5.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "autopep8" },
     { name = "django" },
     { name = "gprof2dot" },
-    { name = "jinja2" },
-    { name = "python-dateutil" },
-    { name = "pytz" },
-    { name = "requests" },
     { name = "sqlparse" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9d/ae/d5f87c868cc6c09c5c2ba0357aa1952b5db692bd6633576a28e392c32094/django-silk-4.4.1.tar.gz", hash = "sha256:5d4d3f1d4e3454fb073be8928293bc8af33c61cb32987783c8f93243ebf9705e", size = 4381484 }
+sdist = { url = "https://files.pythonhosted.org/packages/0e/94/0ae2ec9c00e68f002d3f8a6365442d250ddf1522f7d386597dbb9076b6e7/django_silk-5.2.0.tar.gz", hash = "sha256:39ddeda80469d5495d1cbb53590a9bdd4ce30a7474dc16ac26b6cbc0d9521f50", size = 4394287 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/83/13/7ed68e8d37cd165e00384d352b1f05960a8f6c232017a3fc3561fcdd9c8e/django_silk-4.4.1-py3-none-any.whl", hash = "sha256:72f20020177e929ca5733dfebf226b4ce8559c5a7bdb1517daf9aaf7916b188a", size = 1832064 },
+    { url = "https://files.pythonhosted.org/packages/b7/5f/16010e42a8982a5977bb7395bad04e8c59874a15a9d1e2e4f9306be796aa/django_silk-5.2.0-py3-none-any.whl", hash = "sha256:b3f01ccbf46611073603a6ac2b84f578bde978ad44785f42994c3d6f81398fdc", size = 1840272 },
 ]
 
 [[package]]
@@ -1853,7 +1850,7 @@ test = [
 requires-dist = [
     { name = "babel", specifier = "==2.11.0" },
     { name = "debtcollector", specifier = "==1.3.0" },
-    { name = "django", specifier = "~=3.0.0" },
+    { name = "django", specifier = "~=3.2.0" },
     { name = "django-auth-ldap", specifier = "==2.1.0" },
     { name = "django-cryptography", specifier = "==1.0" },
     { name = "django-extensions", specifier = "==3.1.5" },
