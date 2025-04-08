@@ -30,7 +30,7 @@ class NetworkTerminatorReadOnlyInline(RalphTabularM2MInline):
     def get_readonly_fields(self, request, obj=None):
         return self.get_fields(request, obj)
 
-    def has_add_permission(self, request):
+    def has_add_permission(self, request, obj=None):
         return False
 
 

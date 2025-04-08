@@ -32,7 +32,7 @@ class OperationInlineReadOnlyForExisting(OperationInline):
     def get_readonly_fields(self, request, obj=None):
         return self.get_fields(request, obj)
 
-    def has_add_permission(self, request):
+    def has_add_permission(self, request, obj=None):
         return False
 
     @mark_safe
@@ -51,6 +51,9 @@ class OperationInlineAddOnly(OperationInline):
 
     def has_change_permission(self, request, obj=None):
         return False
+
+    def has_add_permission(self, request, obj=None):
+        super().has_add_permission(request, obj)
 
 
 class OperationView(RalphDetailViewAdmin):
