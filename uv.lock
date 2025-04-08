@@ -336,16 +336,16 @@ wheels = [
 
 [[package]]
 name = "django"
-version = "3.0.14"
+version = "3.1.14"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "asgiref" },
     { name = "pytz" },
     { name = "sqlparse" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/76/0e/5d847a77b7b42cacd01405b45e4e370124c1d8a15970865df5ab0f09f83a/Django-3.0.14.tar.gz", hash = "sha256:d58d8394036db75a81896037d757357e79406e8f68816c3e8a28721c1d9d4c11", size = 9259569 }
+sdist = { url = "https://files.pythonhosted.org/packages/7a/59/b774fbaf743e675e9a808406a39814effb723c7c0b1d4a5b3b2e794ce077/Django-3.1.14.tar.gz", hash = "sha256:72a4a5a136a214c39cf016ccdd6b69e2aa08c7479c66d93f3a9b5e4bb9d8a347", size = 9659386 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/34/3b/393482eb369b3c50608b66feac8eabd4c5c15ae80468fb1eccc0b9c136a2/Django-3.0.14-py3-none-any.whl", hash = "sha256:9bc7aa619ed878fedba62ce139abe663a147dccfd20e907725ec11e02a1ca225", size = 7461625 },
+    { url = "https://files.pythonhosted.org/packages/6b/2e/b031dc0789840ebc108d4654c134e86a9f6593ce9c58ce39328c142b24b8/Django-3.1.14-py3-none-any.whl", hash = "sha256:0fabc786489af16ad87a8c170ba9d42bfd23f7b699bd5ef05675864e8d012859", size = 7835424 },
 ]
 
 [[package]]
@@ -512,23 +512,15 @@ wheels = [
 
 [[package]]
 name = "django-redis"
-version = "3.8.4"
+version = "5.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
+    { name = "django" },
     { name = "redis" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/4c/a3/6dc2b8ee41bc2dd0899f6b12945331763f08fde76a8749f9ab71503099eb/django-redis-3.8.4.tar.gz", hash = "sha256:8601b27f43427a1c4402273918da4d9eb18d460db15c27191360bfcd9794c718", size = 11434 }
-
-[[package]]
-name = "django-redis-sessions"
-version = "0.6.2"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "redis" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/d4/36/1dc0d238e03415c879e3d5dc2362c5ec94e3a1b03c36e67eef52bab1a917/django-redis-sessions-0.6.2.tar.gz", hash = "sha256:ba33ecca198f28ddc32d9f03742dc8dfc34c1857b789c75ea8425d6d7d7376be", size = 7215 }
+sdist = { url = "https://files.pythonhosted.org/packages/07/23/c9f2ea5771196568d31e87ccc84a7859da9814171652abb4b2002410fe47/django-redis-5.0.0.tar.gz", hash = "sha256:048f665bbe27f8ff2edebae6aa9c534ab137f1e8fa7234147ef470df3f3aa9b8", size = 47508 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b4/c4/79c227a757f3fa6c463f2e18a928a5264d08592c7cd8d112748ca4dca326/django_redis_sessions-0.6.2-py3-none-any.whl", hash = "sha256:13b645a4fad4352c111057e44d0987a3163116b0a2f8b141c7d8abe0cab446c9", size = 6146 },
+    { url = "https://files.pythonhosted.org/packages/44/b8/1d02e873ebca6ecb3d42fc55e4130daa7c839df79b9ad5c454f6e3361827/django_redis-5.0.0-py3-none-any.whl", hash = "sha256:97739ca9de3f964c51412d1d7d8aecdfd86737bb197fce6e1ff12620c63c97ee", size = 29882 },
 ]
 
 [[package]]
@@ -1762,7 +1754,6 @@ dependencies = [
     { name = "django-mptt" },
     { name = "django-prometheus" },
     { name = "django-redis" },
-    { name = "django-redis-sessions" },
     { name = "django-reversion" },
     { name = "django-rq" },
     { name = "django-sitetree" },
@@ -1853,7 +1844,7 @@ test = [
 requires-dist = [
     { name = "babel", specifier = "==2.11.0" },
     { name = "debtcollector", specifier = "==1.3.0" },
-    { name = "django", specifier = "~=3.0.0" },
+    { name = "django", specifier = "~=3.1.0" },
     { name = "django-auth-ldap", specifier = "==2.1.0" },
     { name = "django-cryptography", specifier = "==1.0" },
     { name = "django-extensions", specifier = "==3.1.5" },
@@ -1862,8 +1853,7 @@ requires-dist = [
     { name = "django-money", specifier = "==2.0.3" },
     { name = "django-mptt", specifier = "==0.11" },
     { name = "django-prometheus", specifier = "==2.2.0" },
-    { name = "django-redis", specifier = "==3.8.4" },
-    { name = "django-redis-sessions", specifier = "==0.6.2" },
+    { name = "django-redis", specifier = "==5.0.0" },
     { name = "django-reversion", specifier = "==3.0.5" },
     { name = "django-rq", specifier = "==2.8.0" },
     { name = "django-sitetree", specifier = "==1.17.3" },
