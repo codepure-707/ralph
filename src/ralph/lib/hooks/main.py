@@ -5,14 +5,14 @@ from django.conf import settings
 from functools import lru_cache
 
 
-def hook_name_to_env_name(name, prefix='HOOKS'):
+def hook_name_to_env_name(name, prefix="HOOKS"):
     """
     >>> hook_name_to_env_name('foo.bar_baz')
     HOOKS_FOO_BAR_BAZ
     >>> hook_name_to_env_name('foo.bar_baz', 'PREFIX')
     PREFIX_FOO_BAR_BAZ
     """
-    return '_'.join([prefix, name.upper().replace('.', '_')])
+    return "_".join([prefix, name.upper().replace(".", "_")])
 
 
 @lru_cache(maxsize=None)

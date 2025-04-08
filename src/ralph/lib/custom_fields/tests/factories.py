@@ -11,4 +11,6 @@ class CustomFieldFactory(DjangoModelFactory):
 
     class Meta:
         model = CustomField
-        django_get_or_create = ['name',]
+        django_get_or_create = [
+            "name",
+        ]

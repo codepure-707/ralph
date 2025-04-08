@@ -1,7 +1,7 @@
 import logging
 import os
 
-from dj.choices import Choices
+from ralph.lib.dj_choices import Choices
 from django.conf import settings
 from django.db import models
 from django.db.models import F, Q

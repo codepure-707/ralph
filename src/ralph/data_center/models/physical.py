@@ -4,7 +4,7 @@ import re
 from collections import namedtuple, OrderedDict
 from itertools import chain
 
-from dj.choices import Choices, Country
+from ralph.lib.dj_choices import Choices, Country
 from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError
@@ -750,7 +750,9 @@ class DataCenterAsset(
     def _validate_hostname(self, *args, **kwargs):
         if self.status == DataCenterAssetStatus.used.id:
             if not self.hostname or self.hostname == "":
-                raise ValidationError({"hostname": _("Hostname is required for status 'in use'")})
+                raise ValidationError(
+                    {"hostname": _("Hostname is required for status 'in use'")}
+                )
 
     def clean(self):
         errors = {}

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import hashlib
 
-from dj.choices import Country
+from ralph.lib.dj_choices import Country
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models

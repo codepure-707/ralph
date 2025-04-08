@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from dj.choices import Choices
+from ralph.lib.dj_choices import Choices
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.functional import cached_property

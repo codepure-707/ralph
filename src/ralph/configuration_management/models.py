@@ -1,5 +1,5 @@
-from dj.choices import Choices
-from dj.choices.fields import ChoiceField
+from ralph.lib.dj_choices import Choices
+from ralph.lib.dj_choices.fields import ChoiceField
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 

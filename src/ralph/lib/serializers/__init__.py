@@ -55,8 +55,7 @@ def Deserializer(stream_or_string, **options):  # noqa
                 field = Model._meta.get_field(field_name)
                 if isinstance(field, MoneyField) and field_value is not None:
                     try:
-                        currency = \
-                            obj["fields"][get_currency_field_name(field_name)]
+                        currency = obj["fields"][get_currency_field_name(field_name)]
                     except KeyError:
                         currency = DEFAULT_CURRENCY_CODE
                     money_fields[field_name] = Money(field_value, currency)

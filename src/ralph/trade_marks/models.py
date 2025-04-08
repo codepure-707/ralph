@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from dj.choices import Choices, Country
+from ralph.lib.dj_choices import Choices, Country
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 
-from dj.choices import Choices
+from ralph.lib.dj_choices import Choices
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.db import models
 from django.utils.translation import gettext_lazy as _

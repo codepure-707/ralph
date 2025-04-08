@@ -7,16 +7,14 @@ from ralph.lib.mixins.models import AdminAbsoluteUrlMixin, NamedMixin
 
 class ServiceBasedVisibilityScope(AdminAbsoluteUrlMixin, NamedMixin):
     services = models.ManyToManyField(
-        "assets.Service",
-        related_name="visibility_scopes",
-        blank=True
+        "assets.Service", related_name="visibility_scopes", blank=True
     )
     group = models.ForeignKey(
         Group,
         related_name="visibility_scopes",
         blank=True,
         null=True,
-        on_delete=models.SET_NULL
+        on_delete=models.SET_NULL,
     )
 
     class Meta:
