@@ -156,6 +156,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "ralph.wsgi.application"
 
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
 DEFAULT_DATABASE_OPTIONS = {
     "sql_mode": "TRADITIONAL",
     "charset": "utf8",

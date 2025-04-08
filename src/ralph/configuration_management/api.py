@@ -1,9 +1,9 @@
 import operator
 from functools import reduce
 
-from django.conf.urls import url
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
+from django.urls import re_path
 from rest_framework import status
 from rest_framework.response import Response
 
@@ -97,7 +97,7 @@ class SCMInfoViewSet(RalphAPIViewSet):
 
 # router.register("scm-info", SCMInfoViewSet)
 urlpatterns = [
-    url(
+    re_path(
         r"^scm-info/(?P<hostname>[\w\.-]+)",
         SCMInfoViewSet.as_view({"post": "create", "delete": "delete"}),
         name="scm-info-post",
