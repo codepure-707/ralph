@@ -512,16 +512,12 @@ wheels = [
 
 [[package]]
 name = "django-redis"
-version = "5.0.0"
+version = "3.8.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "django" },
     { name = "redis" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/07/23/c9f2ea5771196568d31e87ccc84a7859da9814171652abb4b2002410fe47/django-redis-5.0.0.tar.gz", hash = "sha256:048f665bbe27f8ff2edebae6aa9c534ab137f1e8fa7234147ef470df3f3aa9b8", size = 47508 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/44/b8/1d02e873ebca6ecb3d42fc55e4130daa7c839df79b9ad5c454f6e3361827/django_redis-5.0.0-py3-none-any.whl", hash = "sha256:97739ca9de3f964c51412d1d7d8aecdfd86737bb197fce6e1ff12620c63c97ee", size = 29882 },
-]
+sdist = { url = "https://files.pythonhosted.org/packages/4c/a3/6dc2b8ee41bc2dd0899f6b12945331763f08fde76a8749f9ab71503099eb/django-redis-3.8.4.tar.gz", hash = "sha256:8601b27f43427a1c4402273918da4d9eb18d460db15c27191360bfcd9794c718", size = 11434 }
 
 [[package]]
 name = "django-reversion"
@@ -1853,7 +1849,7 @@ requires-dist = [
     { name = "django-money", specifier = "==2.0.3" },
     { name = "django-mptt", specifier = "==0.11" },
     { name = "django-prometheus", specifier = "==2.2.0" },
-    { name = "django-redis", specifier = "==5.0.0" },
+    { name = "django-redis", specifier = "~=3.8.0" },
     { name = "django-reversion", specifier = "==3.0.5" },
     { name = "django-rq", specifier = "==2.8.0" },
     { name = "django-sitetree", specifier = "==1.17.3" },
@@ -1896,7 +1892,7 @@ requires-dist = [
     { name = "redis", specifier = "~=4.0" },
     { name = "requests", specifier = "==2.20.0" },
     { name = "requests-oauthlib", specifier = "==1.3.0" },
-    { name = "rq", specifier = "==2.2.0" },
+    { name = "rq", specifier = "==1.16.2" },
     { name = "setuptools", specifier = "<66.0" },
     { name = "simplejson", specifier = "==3.8.2" },
     { name = "six", specifier = "==1.16.0" },
@@ -2041,15 +2037,15 @@ wheels = [
 
 [[package]]
 name = "rq"
-version = "2.2.0"
+version = "1.16.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
     { name = "redis" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/44/e6/1858493e933622ba4371a046c882596c991964b7345a6c77637a1efe7833/rq-2.2.0.tar.gz", hash = "sha256:b636760f1e4c183022031c142faa0483e687885824e9732ba2953f994104e203", size = 645030 }
+sdist = { url = "https://files.pythonhosted.org/packages/c5/1d/a020e8f3559293635dd6283d037bfc15f866136498da3db1e5416c65773d/rq-1.16.2.tar.gz", hash = "sha256:5c5b9ad5fbaf792b8fada25cc7627f4d206a9a4455aced371d4f501cc3f13b34", size = 629881 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/69/1a/0eae7e1bb355ec7f7114afbf7de56c9c0b8ac94449a8d4aa06c527db6596/rq-2.2.0-py3-none-any.whl", hash = "sha256:dacbfe1ccb79a45c8cd95dec7951620679fa0195570b63da3f9347622d33accc", size = 98047 },
+    { url = "https://files.pythonhosted.org/packages/46/35/db396caf7cfe71a9e661cea520b276f1472df25015e7cb9143c65a1dca6d/rq-1.16.2-py3-none-any.whl", hash = "sha256:52e619f6cb469b00e04da74305045d244b75fecb2ecaa4f26422add57d3c5f09", size = 90911 },
 ]
 
 [[package]]
