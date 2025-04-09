@@ -93,6 +93,7 @@ django==3.0.14
     #   django-money
     #   django-mptt
     #   django-plainpasswordhasher
+    #   django-redis
     #   django-reversion
     #   django-rq
     #   django-silk
@@ -125,7 +126,9 @@ django-plainpasswordhasher==0.3
     # via ralph (pyproject.toml:test)
 django-prometheus==2.2.0
     # via ralph (pyproject.toml)
-django-redis==3.8.4
+django-redis==5.0.0
+    # via ralph (pyproject.toml)
+django-redis-sessions==0.6.2
     # via ralph (pyproject.toml)
 django-reversion==3.0.5
     # via ralph (pyproject.toml)
@@ -179,7 +182,7 @@ gprof2dot==2024.6.6
     # via django-silk
 gunicorn==23.0.0
     # via ralph (pyproject.toml:prod)
-hiredis==1.0.0
+hiredis==3.1.0
     # via ralph (pyproject.toml)
 idna==2.7
     # via requests
@@ -450,6 +453,7 @@ redis==4.6.0
     # via
     #   ralph (pyproject.toml)
     #   django-redis
+    #   django-redis-sessions
     #   django-rq
     #   rq
 referencing==0.35.1
@@ -551,11 +555,15 @@ tablib==0.11.5
     #   django-import-export
 text-unidecode==1.2
     # via faker
+toml-sort==0.23.1
+    # via ralph (pyproject.toml:dev)
 tomli==2.2.1
     # via
     #   autopep8
     #   coverage
     #   ipdb
+tomlkit==0.13.2
+    # via toml-sort
 tornado==6.4.2
     # via
     #   livereload

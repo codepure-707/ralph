@@ -44,30 +44,25 @@ if os.environ.get("USE_REDIS_CACHE"):
         "PARSER_CLASS": os.environ.get(
             "REDIS_CACHE_PARSER", "redis.connection.HiredisParser"
         ),
-        "CONNECTION_POOL_CLASS": os.environ.get(
-            "REDIS_CACHE_CONNECTION_POOL_CLASS", "redis.BlockingConnectionPool"
-        ),
         "PICKLE_VERSION": -1,
     }
 
     CACHES = {
         "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": os.environ.get(
+                "REDIS_CACHE_LOCATION",
+                '"{}:{}"'.format(REDIS_CONNECTION["HOST"], REDIS_CONNECTION["PORT"]),
+            ),
             "OPTIONS": (
                 json.loads(os.environ.get("REDIS_CACHE_OPTIONS", "{}"))
                 or DEFAULT_CACHE_OPTIONS
             ),
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+            if not REDIS_SENTINEL_ENABLED
+            else "django_redis.client.SentinelClient",
         },
     }
-    if REDIS_SENTINEL_ENABLED:
-        CACHES["default"]["BACKEND"] = "ralph.lib.cache.DjangoConnectionPoolCache"  # noqa
-    else:
-        CACHES["default"]["BACKEND"] = "redis_cache.RedisCache"
-        CACHES["default"]["LOCATION"] = json.loads(
-            os.environ.get(
-                "REDIS_CACHE_LOCATION",
-                '"{}:{}"'.format(REDIS_CONNECTION["HOST"], REDIS_CONNECTION["PORT"]),
-            )
-        )
 
     if bool_from_env("RALPH_DISABLE_CACHE_FRAGMENTS", False):
         CACHES["template_fragments"] = {
