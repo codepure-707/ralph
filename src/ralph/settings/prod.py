@@ -36,31 +36,29 @@ if os.environ.get("STORE_SESSIONS_IN_REDIS"):
     SESSION_REDIS_PREFIX = "session"
 
 if os.environ.get("USE_REDIS_CACHE"):
-    DEFAULT_CACHE_OPTIONS = {
-        "DB": os.environ.get("REDIS_CACHE_DB", REDIS_CONNECTION["DB"]),
-        "PASSWORD": os.environ.get(
-            "REDIS_CACHE_PASSWORD", REDIS_CONNECTION["PASSWORD"]
-        ),
-        "PARSER_CLASS": os.environ.get(
-            "REDIS_CACHE_PARSER", "redis.connection.HiredisParser"
-        ),
-        "PICKLE_VERSION": -1,
-    }
-
     CACHES = {
         "default": {
             "BACKEND": "django_redis.cache.RedisCache",
             "LOCATION": os.environ.get(
                 "REDIS_CACHE_LOCATION",
                 '"{}:{}"'.format(REDIS_CONNECTION["HOST"], REDIS_CONNECTION["PORT"]),
-            ),
-            "OPTIONS": (
-                json.loads(os.environ.get("REDIS_CACHE_OPTIONS", "{}"))
-                or DEFAULT_CACHE_OPTIONS
-            ),
-            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+            )
             if not REDIS_SENTINEL_ENABLED
-            else "django_redis.client.SentinelClient",
+            else [f"redis://{host}:{port}" for host, port in REDIS_SENTINEL_HOSTS],
+            "OPTIONS": {
+                "DB": os.environ.get("REDIS_CACHE_DB", REDIS_CONNECTION["DB"]),
+                "PASSWORD": os.environ.get(
+                    "REDIS_CACHE_PASSWORD", REDIS_CONNECTION["PASSWORD"]
+                ),
+                "PARSER_CLASS": os.environ.get(
+                    "REDIS_CACHE_PARSER", "redis.connection.HiredisParser"
+                ),
+                "PICKLE_VERSION": -1,
+                "CLIENT_CLASS": "django_redis.client.DefaultClient"
+                if not REDIS_SENTINEL_ENABLED
+                else "django_redis.client.SentinelClient",
+                "SENTINELS": REDIS_SENTINEL_HOSTS or [],
+            },
         },
     }
 
