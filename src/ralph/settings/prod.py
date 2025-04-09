@@ -1,5 +1,4 @@
 from ralph.settings import *  # noqa
-import json
 import os
 from ralph.settings import (
     REDIS_CONNECTION,
