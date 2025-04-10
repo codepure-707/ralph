@@ -40,10 +40,8 @@ if os.environ.get("USE_REDIS_CACHE"):
             "BACKEND": "django_redis.cache.RedisCache",
             "LOCATION": os.environ.get(
                 "REDIS_CACHE_LOCATION",
-                '"{}:{}"'.format(REDIS_CONNECTION["HOST"], REDIS_CONNECTION["PORT"]),
-            )
-            if not REDIS_SENTINEL_ENABLED
-            else [f"redis://{host}:{port}" for host, port in REDIS_SENTINEL_HOSTS],
+                f"redis://{REDIS_CLUSTER_NAME}/{os.environ.get('REDIS_CACHE_DB', REDIS_CONNECTION['DB'])}",
+            ),
             "OPTIONS": {
                 "DB": os.environ.get("REDIS_CACHE_DB", REDIS_CONNECTION["DB"]),
                 "PASSWORD": os.environ.get(
