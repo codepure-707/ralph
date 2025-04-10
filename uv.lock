@@ -362,15 +362,15 @@ wheels = [
 
 [[package]]
 name = "django-auth-ldap"
-version = "2.1.0"
+version = "2.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django" },
     { name = "python-ldap" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/57/b3/755493fcba5d1d2a0b04f73bfc55f52f18549069f9032d3b2e04192976d6/django-auth-ldap-2.1.0.tar.gz", hash = "sha256:5f48232c85ddfa33e3573153e6080526ac2eef5e7ec9cf42b5c4ba3c62afb96d", size = 51027 }
+sdist = { url = "https://files.pythonhosted.org/packages/f2/93/4001ad3dab9d960cc131df854186dcaaa7afdfa07d26f54bfaebb3d67486/django-auth-ldap-2.4.0.tar.gz", hash = "sha256:60fcbfc3141c99c3c49d3ccd7311a3992a231c319d94b6d2c143968f63676676", size = 53523 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e0/3f/ed83151177789fd44e6ed2cb569eeea3c4198f4321690ffe969afe61e909/django_auth_ldap-2.1.0-py3-none-any.whl", hash = "sha256:4d68d21058bd57a316a9e1fcd7a36d0f25d054d4d9d9ec85f766a4991176b454", size = 20217 },
+    { url = "https://files.pythonhosted.org/packages/42/0b/0c02eb9af9182e820a5ee21723b1c80ceec9dd276b8dc7aa3236e97506c7/django_auth_ldap-2.4.0-py3-none-any.whl", hash = "sha256:2d869955da8a0c9a4448671bd9826b9f87458f6a9fc20278e84de8a81200a2be", size = 20457 },
 ]
 
 [[package]]
@@ -1882,7 +1882,7 @@ requires-dist = [
     { name = "babel", specifier = "==2.11.0" },
     { name = "debtcollector", specifier = "==1.3.0" },
     { name = "django", specifier = "~=3.0.0" },
-    { name = "django-auth-ldap", specifier = "==2.1.0" },
+    { name = "django-auth-ldap", specifier = "~=2.0" },
     { name = "django-cryptography", specifier = "==1.0" },
     { name = "django-extensions", specifier = "==3.1.5" },
     { name = "django-filter", specifier = "==2.4.0" },

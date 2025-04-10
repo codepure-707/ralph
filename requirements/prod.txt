@@ -8,7 +8,7 @@ asgiref==3.8.1
     # via django
 async-timeout==5.0.1
     # via redis
-attrs==25.1.0
+attrs==25.3.0
     # via
     #   jsonschema
     #   referencing
@@ -34,7 +34,7 @@ cliff==4.7.0
     #   python-ironicclient
 cmd2==2.5.11
     # via cliff
-cryptography==44.0.0
+cryptography==44.0.2
     # via
     #   django-cryptography
     #   openstacksdk
@@ -44,7 +44,7 @@ debtcollector==1.3.0
     #   oslo-config
     #   oslo-utils
     #   python-keystoneclient
-decorator==5.1.1
+decorator==5.2.1
     # via
     #   dogpile-cache
     #   openstacksdk
@@ -73,7 +73,7 @@ django==3.0.14
     #   drf-nested-routers
 django-appconf==1.0.6
     # via django-cryptography
-django-auth-ldap==2.1.0
+django-auth-ldap==2.4.0
     # via ralph (pyproject.toml)
 django-cryptography==1.0
     # via ralph (pyproject.toml)
@@ -160,7 +160,7 @@ jsonschema==4.23.0
     # via python-ironicclient
 jsonschema-specifications==2023.12.1
     # via jsonschema
-keystoneauth1==5.8.0
+keystoneauth1==5.8.1
     # via
     #   ralph (pyproject.toml)
     #   openstacksdk
@@ -170,6 +170,8 @@ keystoneauth1==5.8.0
     #   python-novaclient
 markdown==3.2.1
     # via ralph (pyproject.toml)
+markuppy==1.18
+    # via tablib
 monotonic==0.6
     # via ralph (pyproject.toml)
 msgpack==1.1.0
@@ -277,7 +279,7 @@ pyasn1==0.6.1
     # via
     #   pyasn1-modules
     #   python-ldap
-pyasn1-modules==0.4.1
+pyasn1-modules==0.4.2
     # via python-ldap
 pycparser==2.22
     # via cffi
@@ -388,7 +390,7 @@ stevedore==5.3.0
     #   oslo-config
     #   python-ironicclient
     #   python-keystoneclient
-tablib==0.11.5
+tablib==0.14.0
     # via
     #   ralph (pyproject.toml)
     #   django-import-export
@@ -396,12 +398,10 @@ text-unidecode==1.2
     # via faker
 typing==3.6.6
     # via ralph (pyproject.toml)
-typing-extensions==4.12.2
+typing-extensions==4.13.1
     # via
     #   asgiref
     #   dogpile-cache
-unicodecsv==0.14.1
-    # via tablib
 unidecode==0.4.18
     # via ralph (pyproject.toml)
 urllib3==1.24.3
