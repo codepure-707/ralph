@@ -23,7 +23,7 @@ REST_FRAMEWORK["DEFAULT_AUTHENTICATION_CLASSES"] = (
 )
 
 if os.environ.get("STORE_SESSIONS_IN_REDIS"):
-     SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+    SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 
 if os.environ.get("USE_REDIS_CACHE"):
     CACHES = {

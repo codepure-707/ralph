@@ -127,8 +127,6 @@ django-prometheus==2.2.0
     # via ralph (pyproject.toml)
 django-redis==5.0.0
     # via ralph (pyproject.toml)
-django-redis-sessions==0.6.2
-    # via ralph (pyproject.toml)
 django-reversion==3.0.5
     # via ralph (pyproject.toml)
 django-rq==2.8.0
@@ -461,7 +459,6 @@ redis==4.6.0
     # via
     #   ralph (pyproject.toml)
     #   django-redis
-    #   django-redis-sessions
     #   django-rq
     #   rq
 referencing==0.35.1
