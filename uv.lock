@@ -524,18 +524,6 @@ wheels = [
 ]
 
 [[package]]
-name = "django-redis-sessions"
-version = "0.6.2"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "redis" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/d4/36/1dc0d238e03415c879e3d5dc2362c5ec94e3a1b03c36e67eef52bab1a917/django-redis-sessions-0.6.2.tar.gz", hash = "sha256:ba33ecca198f28ddc32d9f03742dc8dfc34c1857b789c75ea8425d6d7d7376be", size = 7215 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/b4/c4/79c227a757f3fa6c463f2e18a928a5264d08592c7cd8d112748ca4dca326/django_redis_sessions-0.6.2-py3-none-any.whl", hash = "sha256:13b645a4fad4352c111057e44d0987a3163116b0a2f8b141c7d8abe0cab446c9", size = 6146 },
-]
-
-[[package]]
 name = "django-reversion"
 version = "3.0.5"
 source = { registry = "https://pypi.org/simple" }
@@ -1789,7 +1777,6 @@ dependencies = [
     { name = "django-mptt" },
     { name = "django-prometheus" },
     { name = "django-redis" },
-    { name = "django-redis-sessions" },
     { name = "django-reversion" },
     { name = "django-rq" },
     { name = "django-sitetree" },
@@ -1891,7 +1878,6 @@ requires-dist = [
     { name = "django-mptt", specifier = "==0.11" },
     { name = "django-prometheus", specifier = "==2.2.0" },
     { name = "django-redis", specifier = "==5.0.0" },
-    { name = "django-redis-sessions", specifier = ">=0.6.2" },
     { name = "django-reversion", specifier = "==3.0.5" },
     { name = "django-rq", specifier = "==2.8.0" },
     { name = "django-sitetree", specifier = "==1.17.3" },
