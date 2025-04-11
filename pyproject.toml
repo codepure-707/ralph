@@ -59,7 +59,7 @@ dependencies = [
   "django-threadlocals==0.8",
   "djangorestframework==3.13.1",
   "djangorestframework_xml==2.0.0",
-  "django~=3.0.0",
+  "django~=3.1.0",
   "drf-nested-routers==0.92.5",
   "funcsigs==0.4",
   "hiredis>=3.1.0",

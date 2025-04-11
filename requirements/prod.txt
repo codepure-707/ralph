@@ -54,7 +54,7 @@ defusedxml==0.7.1
     #   odfpy
 diff-match-patch==20241021
     # via django-import-export
-django==3.0.14
+django==3.1.14
     # via
     #   ralph (pyproject.toml)
     #   django-appconf
