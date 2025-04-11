@@ -63,7 +63,7 @@ build-snapshot-docker-image: build-snapshot-package
 		--build-arg RALPH_VERSION="$(version)" \
 		--build-arg SNAPSHOT="1" \
 		-t $(DOCKER_REPO_NAME)/ralph-inkpy:latest \
-		-t "$(DOCKER_REPO_NAME)/ralph-inkpy:$(version)" .
+		-t "$(DOCKER_REPO_NAME)/inkpy:$(version)" .
 	docker build \
 		-f docker/Dockerfile-static \
 		--build-arg RALPH_VERSION="$(version)" \
@@ -78,7 +78,7 @@ publish-docker-image: build-docker-image
 publish-docker-snapshot-image: version = $(shell ./get_version.sh show)
 publish-docker-snapshot-image: build-snapshot-docker-image
 	docker push $(DOCKER_REPO_NAME)/ralph:$(version)
-	docker push $(DOCKER_REPO_NAME)/ralph-inkpy:$(version)
+	docker push $(DOCKER_REPO_NAME)/inkpy:$(version)
 	docker push $(DOCKER_REPO_NAME)/ralph-static-nginx:$(version)
 
 install-js:
