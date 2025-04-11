@@ -71,8 +71,6 @@ from ralph.operations.views import OperationViewReadOnlyForExisiting
 from ralph.security.views import SecurityInfo
 from ralph.supports.models import BaseObjectsSupport
 
-dupa = 1
-
 
 def generate_list_filter_with_common_fields(prefix=None, postfix=None):
     result = []
