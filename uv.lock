@@ -437,16 +437,16 @@ wheels = [
 
 [[package]]
 name = "django-import-export"
-version = "2.0.1"
+version = "2.5.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "diff-match-patch" },
     { name = "django" },
-    { name = "tablib" },
+    { name = "tablib", extra = ["ods", "xls", "xlsx", "yaml"] },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ad/7f/987307c54575d2daa4743ebe75ab3cab9bf9e9f3b8f8c2a270834a9e336e/django-import-export-2.0.1.tar.gz", hash = "sha256:94c2030ba1b141bdd6423ac479b4da79b7de55c5a9f339b675c46299db184c11", size = 45420 }
+sdist = { url = "https://files.pythonhosted.org/packages/c6/1d/f4e62cddec35ada9c53e6d18be267e60adb6122e768dbce8d2da87dcf7d0/django-import-export-2.5.0.tar.gz", hash = "sha256:c39c003bfc803fb63ba7742562f1667603a4a8d7426261845d75ce8582d40f48", size = 48956 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ac/ab/dc240689d94099ce61df5b46b1ae3c1f24717cf1f19d34ac7425a6ff3aa7/django_import_export-2.0.1-py3-none-any.whl", hash = "sha256:939109c8be31a8bcc8779634c080c4510669aba576b173f37cfdf838a705d0ac", size = 82818 },
+    { url = "https://files.pythonhosted.org/packages/c7/32/22a133978ba1b284a789391cf956118007fec4264d1116812dbcb1e5c3c7/django_import_export-2.5.0-py3-none-any.whl", hash = "sha256:cf6f3dabdd4f32dcb26e25c7ddcba7aee3168b55d380b0da79f0349afa17c011", size = 94651 },
 ]
 
 [[package]]
@@ -1003,15 +1003,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/98/79/ce6984767cb9478e6818bd0994283db55c423d733cc62a88a3ffb8581e11/Markdown-3.2.1.tar.gz", hash = "sha256:90fee683eeabe1a92e149f7ba74e5ccdc81cd397bd6c516d93a8da0ef90b6902", size = 297048 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/ab/c4/ba46d44855e6eb1770a12edace5a165a0c6de13349f592b9036257f3c3d3/Markdown-3.2.1-py2.py3-none-any.whl", hash = "sha256:e4795399163109457d4c5af2183fbe6b60326c17cfdf25ce6e7474c6624f725d", size = 88772 },
-]
-
-[[package]]
-name = "markuppy"
-version = "1.18"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/46/12/2f2426faf45655dceacccf04a927a3d9f24e74fbccabbb39784034139dcc/markuppy-1.18.tar.gz", hash = "sha256:540f31b835076260339368890ac4f44eb3971d75fdbd97b49fa1f8b6685513d3", size = 11583 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/3a/06/15436a52f281ff43a9a54d1587b602536716645c8534fbb76c58b266f32b/markuppy-1.18-py3-none-any.whl", hash = "sha256:788115ef3d529c2f8a298da4799f0838f57805a5e47068bcb9903092391466b3", size = 10272 },
 ]
 
 [[package]]
@@ -1875,7 +1866,7 @@ requires-dist = [
     { name = "django-cryptography", specifier = "==1.0" },
     { name = "django-extensions", specifier = "==3.1.5" },
     { name = "django-filter", specifier = "==2.4.0" },
-    { name = "django-import-export", specifier = "==2.0.1" },
+    { name = "django-import-export", specifier = "~=2.5.0" },
     { name = "django-money", specifier = "==2.0.3" },
     { name = "django-mptt", specifier = "==0.14" },
     { name = "django-prometheus", specifier = "==2.2.0" },
@@ -2265,19 +2256,26 @@ wheels = [
 
 [[package]]
 name = "tablib"
-version = "0.14.0"
+version = "3.6.1"
 source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "markuppy" },
+sdist = { url = "https://files.pythonhosted.org/packages/5e/ac/b44905c06f86658b49830e1155d1f327eb70cbd1087d97c9dc62182499a3/tablib-3.6.1.tar.gz", hash = "sha256:040685fde11e9237675f43e985edb94b63250a5e9236f89d561ce6fb1465b839", size = 119207 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ff/d0/30af53e5ae2c4cb27aa114c1af1f1aa21709159a2516d7b2380dca31483f/tablib-3.6.1-py3-none-any.whl", hash = "sha256:c771d38ed1d74350a69873db43e0afb7f1cca0ed2915a7243094463eb6789207", size = 47062 },
+]
+
+[package.optional-dependencies]
+ods = [
     { name = "odfpy" },
-    { name = "openpyxl" },
-    { name = "pyyaml" },
+]
+xls = [
     { name = "xlrd" },
     { name = "xlwt" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/79/ec/69c399f5978012e1fd1fe0778d9855bbf43780a18345b64f4ec477b67ba5/tablib-0.14.0.tar.gz", hash = "sha256:6336e7aa3f0e5894b47270a3dc639cc2e78eb823c7ccb8c4512fb408cdc18d08", size = 76937 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/7f/8d/665f895e4355f1ee95665e003b994512c8b670148a921aa9acec9d1607fb/tablib-0.14.0-py3-none-any.whl", hash = "sha256:00654241e5beee437ba544e4fa4abef70ccec3668503aa95406c1250bb660770", size = 65154 },
+xlsx = [
+    { name = "openpyxl" },
+]
+yaml = [
+    { name = "pyyaml" },
 ]
 
 [[package]]

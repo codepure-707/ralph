@@ -119,8 +119,6 @@ class PermissionsSelectWidget(forms.Widget):
             local_selected = set([v.value for v in local_values]) & set(
                 selected_choices or []
             )
-            # if str(group_key) == "Back Office Asset":
-            #    import pdb; pdb.set_trace()
             slug = slugify(group_key)
             label = title(group_key)
             logger.warning(
