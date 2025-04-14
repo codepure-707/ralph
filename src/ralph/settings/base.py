@@ -161,7 +161,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "ralph.wsgi.application"
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 DEFAULT_DATABASE_OPTIONS = {
     "sql_mode": "TRADITIONAL",
