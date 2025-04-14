@@ -29,7 +29,13 @@ class OperationChangeList(RalphChangeList):
     def get_filters(self, request):
         """Avoid using DISTINCT clause when base object filter is not used."""
 
-        filter_specs, filter_specs_exist, lookup_params, use_distinct, has_active_filters = super().get_filters(request)
+        (
+            filter_specs,
+            filter_specs_exist,
+            lookup_params,
+            use_distinct,
+            has_active_filters,
+        ) = super().get_filters(request)
 
         filter_params = self.get_filters_params()
 
