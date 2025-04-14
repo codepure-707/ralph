@@ -67,7 +67,7 @@ class SCMInfoViewSet(RalphAPIViewSet):
 
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    def create(self, request, hostname):
+    def create(self, request, hostname, *args, **kwargs):
         """Sets a SCM scan record for an object having matching hostname."""
 
         bo = self.get_baseobject(hostname)
