@@ -525,14 +525,14 @@ wheels = [
 
 [[package]]
 name = "django-reversion"
-version = "3.0.5"
+version = "4.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/45/d0/7c8805d1d715561be14bab6cfab49fea26f2576501888e92fdb345cce1dd/django-reversion-3.0.5.tar.gz", hash = "sha256:1add55bb05311f4acd26683dd71af60729d4f33dfe42c608da8e15e679a32009", size = 65235 }
+sdist = { url = "https://files.pythonhosted.org/packages/e8/5c/8f65df5aab38028cee5fde25bc739071108bb23d22fc7233ba858edbaac0/django-reversion-4.0.2.tar.gz", hash = "sha256:5d33ba944dbf19c7030c9e70e3731248ae34368cf2afede10e0d08fbf89e6f8c", size = 71705 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e7/fe/b47df6c9540cd90c664b3ccd3a46f4db6ec15a675684f1ca3fbfd39d2d22/django_reversion-3.0.5-py2.py3-none-any.whl", hash = "sha256:60efa47f02d8b0451aff1d76e00e5122144b661bd720a099eb44241a081aa254", size = 80710 },
+    { url = "https://files.pythonhosted.org/packages/b2/2c/72acbaf6009ac05568d4816be2546f8fb785d7d266fe4927c218c09f3eca/django_reversion-4.0.2-py3-none-any.whl", hash = "sha256:095ec684626a07b48a1a32640e30cae93eb2acd3c452a9111f77ac934c2efb91", size = 86921 },
 ]
 
 [[package]]
@@ -575,14 +575,14 @@ wheels = [
 
 [[package]]
 name = "django-taggit"
-version = "1.3.0"
+version = "1.5.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c2/9e/1f8a8511d58f0c9fa539a93581a3744d93b46316d40c7d297464c57e9b50/django-taggit-1.3.0.tar.gz", hash = "sha256:4a833bf71f4c2deddd9745924eee53be1c075d7f0020a06f12e29fa3d752732d", size = 46986 }
+sdist = { url = "https://files.pythonhosted.org/packages/ec/2c/0f73f06a880836bab5f5d4de726e1062e5362ce6b18580c6cc5b994cdde7/django-taggit-1.5.1.tar.gz", hash = "sha256:e5bb62891f458d55332e36a32e19c08d20142c43f74bc5656c803f8af25c084a", size = 52766 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/56/3e/dde2d7151bc0c4ac65d225e611a85e54a897c551507e8eca2c06a083f3f4/django_taggit-1.3.0-py3-none-any.whl", hash = "sha256:609b0223d8a652f3fae088b7fd29f294fdadaca2d7931d45c27d6c59b02fdf31", size = 45709 },
+    { url = "https://files.pythonhosted.org/packages/6f/ce/ad830d2410d5930025b11ec9f0b40cadbf42cb78335c4d5ba9bf246d0c07/django_taggit-1.5.1-py3-none-any.whl", hash = "sha256:dfe9e9c10b5929132041de0c00093ef0072c73c2a97d0f74a818ae50fa77149a", size = 53055 },
 ]
 
 [[package]]
@@ -1868,10 +1868,10 @@ requires-dist = [
     { name = "django-mptt", specifier = "==0.14" },
     { name = "django-prometheus", specifier = "==2.2.0" },
     { name = "django-redis", specifier = "==5.0.0" },
-    { name = "django-reversion", specifier = "==3.0.5" },
+    { name = "django-reversion", specifier = "~=4.0.2" },
     { name = "django-rq", specifier = "==2.8.0" },
     { name = "django-sitetree", specifier = "==1.17.3" },
-    { name = "django-taggit", specifier = "==1.3.0" },
+    { name = "django-taggit", specifier = "==1.5.1" },
     { name = "django-taggit-serializer", specifier = ">=0.1.7" },
     { name = "django-threadlocals", specifier = "==0.8" },
     { name = "djangorestframework", specifier = "==3.13.1" },
