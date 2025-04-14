@@ -184,7 +184,7 @@ class DataImporterTestCase(TestCase):
         warehouse_csv = os.path.join(
             self.base_dir, "tests/samples/warehouses_semicolon.csv"
         )
-        output = management.call_command(
+        management.call_command(
             "importer",
             warehouse_csv,
             type="file",
