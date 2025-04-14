@@ -90,7 +90,6 @@ django==3.1.14
     #   django-import-export
     #   django-js-asset
     #   django-money
-    #   django-mptt
     #   django-plainpasswordhasher
     #   django-redis
     #   django-reversion
@@ -113,13 +112,13 @@ django-extensions==3.1.5
     # via ralph (pyproject.toml)
 django-filter==2.4.0
     # via ralph (pyproject.toml)
-django-import-export==2.0.1
+django-import-export==2.7.1
     # via ralph (pyproject.toml)
 django-js-asset==2.0.0
     # via django-mptt
 django-money==2.0.3
     # via ralph (pyproject.toml)
-django-mptt==0.11.0
+django-mptt==0.14.0
     # via ralph (pyproject.toml)
 django-plainpasswordhasher==0.3
     # via ralph (pyproject.toml:test)
@@ -243,8 +242,6 @@ markdown==3.2.1
     #   mkdocs
     #   mkdocs-material
     #   pymdown-extensions
-markuppy==1.18
-    # via tablib
 markupsafe==2.1.5
     # via
     #   jinja2
@@ -551,7 +548,7 @@ stevedore==5.3.0
     #   oslo-config
     #   python-ironicclient
     #   python-keystoneclient
-tablib==0.14.0
+tablib==3.6.1
     # via
     #   ralph (pyproject.toml)
     #   django-import-export

@@ -64,7 +64,6 @@ django==3.1.14
     #   django-import-export
     #   django-js-asset
     #   django-money
-    #   django-mptt
     #   django-redis
     #   django-reversion
     #   django-rq
@@ -81,13 +80,13 @@ django-extensions==3.1.5
     # via ralph (pyproject.toml)
 django-filter==2.4.0
     # via ralph (pyproject.toml)
-django-import-export==2.0.1
+django-import-export==2.7.1
     # via ralph (pyproject.toml)
 django-js-asset==2.0.0
     # via django-mptt
 django-money==2.0.3
     # via ralph (pyproject.toml)
-django-mptt==0.11.0
+django-mptt==0.14.0
     # via ralph (pyproject.toml)
 django-prometheus==2.2.0
     # via ralph (pyproject.toml)
@@ -168,8 +167,6 @@ keystoneauth1==5.8.1
     #   python-novaclient
 markdown==3.2.1
     # via ralph (pyproject.toml)
-markuppy==1.18
-    # via tablib
 monotonic==0.6
     # via ralph (pyproject.toml)
 msgpack==1.1.0
@@ -387,7 +384,7 @@ stevedore==5.3.0
     #   oslo-config
     #   python-ironicclient
     #   python-keystoneclient
-tablib==0.14.0
+tablib==3.6.1
     # via
     #   ralph (pyproject.toml)
     #   django-import-export

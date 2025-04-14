@@ -668,6 +668,9 @@ class BackOfficeAssetFormTest(TransitionTestCase, ClientMixin):
 
         self.assertEqual(resp.status_code, 200)
 
+        import pdb
+
+        pdb.set_trace()
         self.assertIn("model", resp.context["adminform"].form.fields)
         self.assertNotIn("hostname", resp.context["adminform"].form.fields)
         self.assertNotIn("service_env", resp.context["adminform"].form.fields)
