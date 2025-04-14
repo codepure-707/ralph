@@ -1,5 +1,5 @@
 from django.conf import settings
-from redis_cache import RedisCache
+from django_redis.cache import RedisCache
 
 from ralph.lib.redis import get_redis_connection
 

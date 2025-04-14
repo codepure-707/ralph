@@ -38,7 +38,6 @@ services:
     depends_on:
      - redis
     platform: linux/amd64
-    image: allegro/inkpy:latest
     restart: always
     environment:
         REDIS_HOST: redis

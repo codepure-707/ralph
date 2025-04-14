@@ -1,4 +1,4 @@
-FROM allegro/inkpy:latest
+FROM allegro/inkpy:0.1.4
 LABEL maintainer="Allegro.pl Sp. z o.o. opensource@allegro.pl"
 LABEL authors="Allegro.pl Sp. z o.o. and Contributors opensource@allegro.pl"
 LABEL description="Inkpy jinja updated to work with higher django versions"
