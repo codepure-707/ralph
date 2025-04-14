@@ -80,7 +80,7 @@ django-extensions==3.1.5
     # via ralph (pyproject.toml)
 django-filter==2.4.0
     # via ralph (pyproject.toml)
-django-import-export==2.0.1
+django-import-export==2.5.0
     # via ralph (pyproject.toml)
 django-js-asset==2.0.0
     # via django-mptt

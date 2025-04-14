@@ -100,7 +100,7 @@ dependencies = [
   "stevedore",
   "tablib",
   "typing==3.6.6",
-  "wrapt==1.10.6",
+  "wrapt==1.10.6"
 ]
 dynamic = [
   "authors",

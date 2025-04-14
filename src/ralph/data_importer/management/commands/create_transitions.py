@@ -80,9 +80,7 @@ class Command(BaseCommand):
         for action in actions:
             try:
                 action = Action.objects.get(content_type=content_type, name=action)
-                transition.actions.add(
-                    action
-                )
+                transition.actions.add(action)
             except Action.DoesNotExist:
                 action = Action.objects.create(name=action)
                 action.content_type.set([content_type])
