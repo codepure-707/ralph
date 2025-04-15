@@ -59,6 +59,12 @@ jobs:
           --health-timeout 5s
 
     steps:
+      - name: Grant test database permissions for MySQL
+        if: matrix.db-engine == 'ci-mysql'
+        run: |
+          mysql -h127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON *.* TO 'ralph_ng'@'%' WITH GRANT OPTION;"
+          mysql -h127.0.0.1 -uroot -proot -e "FLUSH PRIVILEGES;"
+
       - name: Checkout source code
         uses: actions/checkout@v2
 
