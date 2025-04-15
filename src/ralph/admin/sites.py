@@ -87,5 +87,7 @@ class RalphAdminSite(RalphAdminSiteMixin, AdminSite):
         context["google_tag_manager_tag_id"] = settings.GOOGLE_TAG_MANAGER_TAG_ID
         return context
 
+    final_catch_all_view = False
+
 
 ralph_site = RalphAdminSite()

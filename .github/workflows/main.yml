@@ -36,7 +36,7 @@ jobs:
       # NOTE(romcheg): Running mysql image of a more recent version will cause user
       #                ralph_ng to not being able to create a test database.
       mysql:
-        image: mysql:5.6.45
+        image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_USER: ralph_ng
