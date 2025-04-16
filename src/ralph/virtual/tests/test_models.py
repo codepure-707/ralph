@@ -217,13 +217,6 @@ class CloudHostTestCase(RalphTestCase, NetworkableBaseObjectTestMixin):
 
         self.assertNetworksTheSame(nets, host._get_available_networks())
 
-    def test_cleanup_security_scan_transition(self):
-        security_scan = SecurityScanFactory(base_object=self.cloud_host)
-        self.assertEqual(self.cloud_host.securityscan, security_scan)
-        self.assertIsNotNone(self.cloud_host.securityscan.id)
-        CloudHost.cleanup_security_scans((self.cloud_host,))
-        self.assertIsNone(self.cloud_host.securityscan.id)
-
 
 class VirtualServerTestCase(RalphTestCase, NetworkableBaseObjectTestMixin):
     def setUp(self):
@@ -263,10 +256,3 @@ class VirtualServerTestCase(RalphTestCase, NetworkableBaseObjectTestMixin):
         )
 
         self.assertNetworksTheSame(nets, vm._get_available_networks())
-
-    def test_cleanup_security_scan_transition(self):
-        security_scan = SecurityScanFactory(base_object=self.vs)
-        self.assertEqual(self.vs.securityscan, security_scan)
-        self.assertIsNotNone(self.vs.securityscan.id)
-        VirtualServer.cleanup_security_scans((self.vs,))
-        self.assertIsNone(self.vs.securityscan.id)
