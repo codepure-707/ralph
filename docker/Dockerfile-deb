@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:jammy
 
 LABEL maintainer="Allegro.pl Sp. z o.o. opensource@allegro.pl"
 LABEL authors="Allegro.pl Sp. z o.o. and Contributors opensource@allegro.pl"
@@ -26,7 +26,7 @@ RUN apt-get update && \
     libmysqlclient-dev libmysqlclient21 libldap2-dev libsasl2-dev \
     libwebp-dev libbrotli-dev liblzma-dev libjpeg-dev libssl-dev libkrb5-dev \
     libcom-err2 libkeyutils-dev libxau-dev libfreetype6-dev libpcre3-dev libselinux1-dev libtinfo-dev libpng-dev \
-    python3.8 python3.8-dev libffi-dev git-buildpackage vim-tiny git && \
+    python3.10-dev libffi-dev git-buildpackage vim-tiny git && \
     rm -rf /var/lib/apt/lists/* && \
     git config --global user.name "$GIT_USER_NAME" && \
     git config --global user.email "$GIT_USER_EMAIL"
