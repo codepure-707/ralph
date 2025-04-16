@@ -116,7 +116,8 @@ class PermissionsSelectWidget(forms.Widget):
         for group_key, group_choices in grouped:
             items = list(group_choices)
             local_values = [item[0] for item in items]
-            local_selected = set([v.value for v in local_values]) & set(
+            # int(str(v)) makes sure it works both with ModelChoiceIteratorValue and regular int
+            local_selected = set([int(str(v)) for v in local_values]) & set(
                 selected_choices or []
             )
             slug = slugify(group_key)

@@ -68,9 +68,6 @@ class ModelMultipleChoiceField(MultipleChoiceField):
 
     def __init__(self, *args, **kwargs):
         self.model = kwargs["choices"].queryset.model
-        import pdb
-
-        pdb.set_trace()
         super().__init__(*args, **kwargs)
 
     def to_internal_value(self, data):
