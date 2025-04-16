@@ -16,9 +16,8 @@ from ralph.lib.custom_fields.models import (
 )
 from ralph.networks.models import IPAddress
 from ralph.networks.tests.factories import NetworkFactory
-from ralph.security.tests.factories import SecurityScanFactory
 from ralph.tests import RalphTestCase
-from ralph.virtual.models import CloudHost, VirtualComponent, VirtualServer
+from ralph.virtual.models import CloudHost, VirtualComponent
 from ralph.virtual.tests.factories import (
     CloudFlavorFactory,
     CloudHostFactory,

@@ -5,4 +5,3 @@ class BackOfficeConfig(RalphAppConfig):
     name = "ralph.back_office"
     verbose_name = "Back Office"
     default = True
-
