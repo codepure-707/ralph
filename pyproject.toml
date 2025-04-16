@@ -54,10 +54,9 @@ dependencies = [
   "django-reversion~=4.0.2",
   "django-rq==2.8.0",
   "django-sitetree==1.17.3",
-  "django-taggit-serializer>=0.1.7",
   "django-taggit==1.5.1",
   "django-threadlocals==0.8",
-  "djangorestframework==3.13.1",
+  "djangorestframework==3.15.0",
   "djangorestframework_xml==2.0.0",
   "django~=3.2.0",
   "drf-nested-routers==0.92.5",
@@ -113,7 +112,7 @@ dynamic = [
   "scripts"
 ]
 name = "Ralph"
-requires-python = ">=3.8.0,<3.9"
+requires-python = ">=3.10.0,<3.11"
 version = "3"
 
 [tool.ruff]

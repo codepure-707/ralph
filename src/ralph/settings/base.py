@@ -67,10 +67,11 @@ RALPH_INSTANCE = os.environ.get("RALPH_INSTANCE", "http://127.0.0.1:8000")
 
 INSTALLED_APPS = (
     "django.contrib.contenttypes",
-    "taggit",
     "django.contrib.auth",
+    "ralph.accounts",
     "ralph.admin",
     "django.contrib.admin",
+    "taggit",
     "django.contrib.humanize",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -82,7 +83,6 @@ INSTALLED_APPS = (
     "reversion",
     "sitetree",
     "ralph.access_cards",
-    "ralph.accounts",
     "ralph.accessories",
     "ralph.assets",
     "ralph.attachments",
@@ -116,7 +116,6 @@ INSTALLED_APPS = (
     "ralph.ssl_certificates",
     "rest_framework",
     "rest_framework.authtoken",
-    "taggit_serializer",
     "djmoney",
 )
 

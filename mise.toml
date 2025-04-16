@@ -20,7 +20,7 @@ uv_venv_auto = true
 podman = "latest"
 node = "22"
 uv = "latest"
-python = "3.8"
+python = "3.10"
 ruff = "latest"
 
 [tasks.install]
