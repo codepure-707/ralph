@@ -97,7 +97,6 @@ dependencies = [
   "sqlparse==0.2.3",
   "statsd==3.2.1",
   "stevedore",
-  "tablib",
   "typing==3.6.6",
   "wrapt==1.10.6"
 ]
