@@ -37,7 +37,6 @@ from ralph.assets.models.base import BaseObject, BaseObjectPolymorphicQuerySet
 from ralph.assets.models.components import Ethernet
 from ralph.assets.views import ComponentsAdminView
 from ralph.attachments.admin import AttachmentsMixin
-from ralph.configuration_management.views import SCMCheckInfo
 from ralph.data_center.admin_actions import assign_management_hostname_and_ip
 from ralph.data_center.forms import DataCenterAssetForm
 from ralph.data_center.models.components import DiskShare, DiskShareMount
@@ -344,10 +343,6 @@ class DataCenterAssetChangeList(RalphChangeList):
                     continue  # Invalid ordering specified, skip it.
 
         return ordering
-
-
-class DataCenterAssetSCMInfo(SCMCheckInfo):
-    url_name = "datacenterasset_scm_info"
 
 
 class DataCenterAssetRelationsView(RelationsView):
@@ -699,26 +694,6 @@ class DatabaseAdmin(RalphAdmin):
     pass
 
 
-# @register(VIP)
-class VIPAdmin(RalphAdmin):
-    search_fields = ["name", "ip__address"]
-    list_display = ["name", "ip", "port", "protocol", "service_env"]
-    list_filter = ["ip", "port", "protocol", "service_env", "parent"]
-    list_select_related = ["ip", "service_env__service", "service_env__environment"]
-    raw_id_fields = ["ip", "service_env", "parent", "configuration_path"]
-    raw_id_override_parent = {"parent": Cluster}
-    fields = (
-        "name",
-        "ip",
-        "port",
-        "protocol",
-        "service_env",
-        "parent",
-        "remarks",
-        "tags",
-    )
-
-
 @register(Connection)
 class ConnectionAdmin(RalphAdmin):
     resource_class = resources.ConnectionResource
@@ -737,10 +712,6 @@ class DiskShareMountAdmin(RalphAdmin):
 class DCHostChangeList(ChangeList):
     def url_for_result(self, result):
         return result.get_absolute_url()
-
-
-class DCHostSCMInfo(SCMCheckInfo):
-    url_name = "dchost_scm_info"
 
 
 @register(DCHost)
