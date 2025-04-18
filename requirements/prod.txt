@@ -20,8 +20,6 @@ babel==2.11.0
     #   debtcollector
     #   py-moneyed
     #   python-novaclient
-backports-zoneinfo==0.2.1
-    # via djangorestframework
 certifi==2025.1.31
     # via requests
 cffi==1.17.1
@@ -130,12 +128,6 @@ hiredis==3.1.0
     # via ralph (pyproject.toml)
 idna==2.7
     # via requests
-importlib-metadata==8.5.0
-    # via cliff
-importlib-resources==6.4.5
-    # via
-    #   jsonschema
-    #   jsonschema-specifications
 iso8601==0.1.11
     # via
     #   ralph (pyproject.toml)
@@ -249,8 +241,6 @@ pbr==6.1.1
     #   stevedore
 pillow==10.4.0
     # via ralph (pyproject.toml)
-pkgutil-resolve-name==1.3.10
-    # via jsonschema
 platformdirs==4.3.6
     # via python-ironicclient
 positional==1.0.1
@@ -299,8 +289,6 @@ pytz==2025.1
     #   ralph (pyproject.toml)
     #   babel
     #   django
-    #   oslo-serialization
-    #   oslo-utils
 pyyaml==6.0.2
     # via
     #   cliff
@@ -390,6 +378,10 @@ typing-extensions==4.13.2
     # via
     #   asgiref
     #   dogpile-cache
+tzdata==2025.2
+    # via
+    #   oslo-serialization
+    #   oslo-utils
 unidecode==0.4.18
     # via ralph (pyproject.toml)
 urllib3==1.24.3
@@ -404,7 +396,3 @@ xlrd==2.0.1
     # via tablib
 xlwt==1.3.0
     # via tablib
-zipp==3.20.2
-    # via
-    #   importlib-metadata
-    #   importlib-resources
