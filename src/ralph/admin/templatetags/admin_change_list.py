@@ -8,6 +8,7 @@ register = Library()
 DOT = "."
 DOTS = "…"
 
+
 @register.simple_tag
 def admin_paginator_number(cl, i):
     """
