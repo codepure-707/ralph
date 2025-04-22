@@ -54,7 +54,7 @@ defusedxml==0.7.1
     #   odfpy
 diff-match-patch==20241021
     # via django-import-export
-django==3.2.25
+django==4.0.10
     # via
     #   ralph (pyproject.toml)
     #   django-appconf
@@ -78,13 +78,13 @@ django-cryptography==1.0
     # via ralph (pyproject.toml)
 django-extensions==3.1.5
     # via ralph (pyproject.toml)
-django-filter==2.4.0
+django-filter==23.5
     # via ralph (pyproject.toml)
-django-import-export==2.5.0
+django-import-export==2.9.0
     # via ralph (pyproject.toml)
 django-js-asset==2.2.0
     # via django-mptt
-django-money==2.0.3
+django-money==3.4.1
     # via ralph (pyproject.toml)
 django-mptt==0.14.0
     # via ralph (pyproject.toml)
@@ -96,9 +96,9 @@ django-reversion==4.0.2
     # via ralph (pyproject.toml)
 django-rq==2.8.0
     # via ralph (pyproject.toml)
-django-sitetree==1.17.3
+django-sitetree==1.18.0
     # via ralph (pyproject.toml)
-django-taggit==1.5.1
+django-taggit==3.1.0
     # via ralph (pyproject.toml)
 django-threadlocals==0.8
     # via ralph (pyproject.toml)
@@ -254,10 +254,8 @@ prometheus-client==0.21.1
     # via django-prometheus
 psycopg2-binary==2.9.10
     # via ralph (pyproject.toml)
-py-moneyed==1.2
-    # via
-    #   ralph (pyproject.toml)
-    #   django-money
+py-moneyed==3.0
+    # via django-money
 pyasn1==0.6.1
     # via
     #   pyasn1-modules
@@ -266,7 +264,7 @@ pyasn1-modules==0.4.2
     # via python-ldap
 pycparser==2.22
     # via cffi
-pyhermes==0.3.0
+pyhermes==0.6.0
     # via ralph (pyproject.toml)
 pyparsing==3.1.4
     # via oslo-utils
@@ -288,7 +286,6 @@ pytz==2025.1
     # via
     #   ralph (pyproject.toml)
     #   babel
-    #   django
 pyyaml==6.0.2
     # via
     #   cliff
@@ -378,6 +375,7 @@ typing-extensions==4.13.2
     # via
     #   asgiref
     #   dogpile-cache
+    #   py-moneyed
 tzdata==2025.2
     # via
     #   oslo-serialization
