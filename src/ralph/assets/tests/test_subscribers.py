@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import unittest
 from unittest.mock import patch
 
 from django.conf import settings
@@ -13,6 +14,9 @@ from ralph.assets.tests.factories import ServiceEnvironmentFactory, ServiceFacto
 from ralph.data_center.tests.factories import DataCenterAssetFactory
 
 
+@unittest.skipUnless(
+    settings.ENABLE_HERMES_INTEGRATION, reason="Hermes integration is disabled"
+)
 class ServiceSubscribersTestCase(TestCase):
     def setUp(self):
         super().setUp()

@@ -97,6 +97,6 @@ class ThroughField(fields.Field):
 
 
 class PriceField(fields.Field):
-    def save(self, obj, data, is_m2m=False):
+    def save(self, obj, data, is_m2m=False, **kwargs):
         price = Money(data["price"], data.get("price_currency", DEFAULT_CURRENCY_CODE))
         setattr(obj, "price", price)
