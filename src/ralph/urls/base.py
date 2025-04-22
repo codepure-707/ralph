@@ -76,7 +76,7 @@ urlpatterns = [
 ]
 
 if getattr(settings, "ENABLE_HERMES_INTEGRATION", False):
-    urlpatterns += (re_path(r"^hermes/", include("pyhermes.apps.django.urls")),)
+    urlpatterns += (re_path(r"^hermes/", include("pyhermes_django.urls")),)
 
 if getattr(settings, "PROMETHEUS_METRICS_ENABLED", False):
     urlpatterns += [
