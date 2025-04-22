@@ -55,7 +55,7 @@ class SIMCardViewSet(RalphAPIViewSet):
     serializer_class = SIMCardSerializer
     select_related = ["carrier", "user", "owner"]
     prefetch_related = ["features"]
-    filter_fields = [
+    filterset_fields = [
         "user__username",
         "features__name",
         "owner__username",

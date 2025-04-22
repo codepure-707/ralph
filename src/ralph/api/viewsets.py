@@ -22,7 +22,7 @@ from ralph.lib.permissions.api import PermissionsForObjectFilter, RalphPermissio
 
 class AdminSearchFieldsMixin(object):
     """
-    Default `filter_fields` ViewSet are search and filter fields from model's
+    Default `filterset_fields` ViewSet are search and filter fields from model's
     related admin site.
     """
 
@@ -36,10 +36,10 @@ class AdminSearchFieldsMixin(object):
 
     def _set_admin_search_fields(self):
         admin_site = ralph_site._registry.get(self.queryset.model)
-        filter_fields = list(getattr(self, "filter_fields", None) or [])
+        filterset_fields = list(getattr(self, "filterset_fields", None) or [])
         exclude_fields = getattr(self, "exclude_filter_fields", [])
         if admin_site and not self._skip_admin_search_fields:
-            filter_fields.extend(admin_site.search_fields or [])
+            filterset_fields.extend(admin_site.search_fields or [])
         if admin_site and not self._skip_admin_list_filter:
             for f in admin_site.list_filter or []:
                 if isinstance(f, (tuple, list)):
@@ -52,8 +52,8 @@ class AdminSearchFieldsMixin(object):
                     if not hasattr(f, "field"):
                         continue
                     f_name = f.parameter_name
-                filter_fields.append(f_name)
-        setattr(self, "filter_fields", filter_fields)
+                filterset_fields.append(f_name)
+        setattr(self, "filterset_fields", filterset_fields)
 
 
 class RalphAPIViewSetMixin(QuerysetRelatedMixin, AdminSearchFieldsMixin):

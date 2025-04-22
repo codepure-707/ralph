@@ -22,7 +22,7 @@ class VulnerabilitySerializer(RalphAPISerializer):
 class VulnerabilityViewSet(RalphAPIViewSet):
     queryset = Vulnerability.objects.all().prefetch_related("tags")
     serializer_class = VulnerabilitySerializer
-    filter_fields = [
+    filterset_fields = [
         "external_vulnerability_id",
     ]
 

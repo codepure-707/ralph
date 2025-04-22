@@ -14,7 +14,7 @@ class SSLCertificateSerializer(BaseObjectSerializer):
 class SSLCertificateViewSet(RalphAPIViewSet):
     queryset = SSLCertificate.objects.all()
     serializer_class = SSLCertificateSerializer
-    filter_fields = [
+    filterset_fields = [
         "name",
         "domain_ssl",
         "date_from",

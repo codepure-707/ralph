@@ -65,7 +65,7 @@ class OperationViewSet(RalphAPIViewSet):
     save_serializer_class = OperationSerializer
     select_related = ["type", "assignee", "reporter", "status"]
     prefetch_related = ["tags", "base_objects__tags"]
-    filter_fields = [
+    filterset_fields = [
         "id",
         "title",
         "description",
