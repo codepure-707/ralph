@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
+from unittest.mock import MagicMock
 
 from django.contrib.admin.options import IncorrectLookupParameters
 from django.contrib.messages.storage.fallback import FallbackStorage
@@ -75,7 +76,8 @@ class AdminFiltersTestCase(TestCase):
 
     def add_session_to_request(self, request):
         """Annotate a request object with a session"""
-        middleware = SessionMiddleware()
+        get_response = MagicMock()
+        middleware = SessionMiddleware(get_response=get_response)
         middleware.process_request(request)
         request.session.save()
 
