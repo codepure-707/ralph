@@ -1,8 +1,6 @@
 ---
 name: CI
 
-# NOTE(romcheg): Controls when the action will run. Triggers the workflow on
-#                push or pull request events but only for the ng branch
 on:
   push:
   pull_request:
@@ -33,8 +31,6 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-      # NOTE(romcheg): Running mysql image of a more recent version will cause user
-      #                ralph_ng to not being able to create a test database.
       mysql:
         image: mysql:8.0
         env:
