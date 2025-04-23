@@ -60,7 +60,9 @@ class ObjectCustomFieldsViewSet(viewsets.ModelViewSet):
                 )
                 self.related_model = obj._meta.model
         except Exception as e:  # noqa
-            logging.getLogger().exception("Related model is BaseObject but couldn't find concrete model")
+            logging.getLogger().exception(
+                "Related model is BaseObject but couldn't find concrete model"
+            )
 
         assert self.related_model.__name__ != "BaseObject", (
             "related_model should not BaseObject since it would not work as expected"
