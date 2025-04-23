@@ -104,7 +104,6 @@ class VirtualServerLicencesView(RalphDetailViewAdmin):
     inlines = [VirtualServerLicenceInline]
 
 
-
 @register(VirtualServer)
 class VirtualServerAdmin(
     ActiveDeploymentMessageMixin,
