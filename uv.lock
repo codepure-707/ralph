@@ -1542,15 +1542,15 @@ wheels = [
 
 [[package]]
 name = "pyhermes"
-version = "0.3.0"
+version = "0.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "requests" },
     { name = "six" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/bf/f4/c59a169d81ded52ec30fb9a222b611d0293fd21834af851cec1796c636c2/pyhermes-0.3.0.tar.gz", hash = "sha256:29d93f52bff9fee62f3a884061eb94b9bbbb94eea3c7c4f527dfe1268c981f13", size = 11075 }
+sdist = { url = "https://files.pythonhosted.org/packages/37/60/ed9698593a1e4a752f7109d31ffb5b5c5b457de8398a9beb96ad5a87e22d/pyhermes-0.6.0.tar.gz", hash = "sha256:dfec53427e270196168b1efc7250520657a767c5c3c609742ad7ec494bafa01d", size = 12476 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/98/bc/207959fb8485d100dd3788fa632b10e689ba855a714548724a60474329fa/pyhermes-0.3.0-py2.py3-none-any.whl", hash = "sha256:d4d73623209ace8e7181e4936bbb3f87c96ff2e07c7d7cb7133455f05dc9bbe2", size = 13382 },
+    { url = "https://files.pythonhosted.org/packages/04/42/df4211879b4c3724f0d99cf21add642195342cd166dbbb0fcd691c604aed/pyhermes-0.6.0-py2.py3-none-any.whl", hash = "sha256:65a0a5b7804926f6306448162e7abbcc96615654bb1df620055ec5bfb273d59d", size = 14460 },
 ]
 
 [[package]]
@@ -1864,7 +1864,7 @@ requires-dist = [
     { name = "prettytable", specifier = "==0.7.2" },
     { name = "psycopg2-binary", specifier = ">=2.9.10" },
     { name = "py-moneyed", specifier = "==1.2" },
-    { name = "pyhermes", specifier = "==0.3.0" },
+    { name = "pyhermes", specifier = "==0.6.0" },
     { name = "python-dateutil", specifier = "==2.9.0" },
     { name = "python-ironicclient" },
     { name = "python-keystoneclient" },

@@ -302,7 +302,7 @@ pycparser==2.22
     # via cffi
 pygments==2.19.1
     # via mkdocs-material
-pyhermes==0.3.0
+pyhermes==0.6.0
     # via ralph (pyproject.toml)
 pymdown-extensions==10.4
     # via mkdocs-material

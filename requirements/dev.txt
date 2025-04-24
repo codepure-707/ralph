@@ -392,7 +392,7 @@ pygments==2.19.1
     #   mkdocs-material
     #   pudb
     #   sphinx
-pyhermes==0.3.0
+pyhermes==0.6.0
     # via ralph (pyproject.toml)
 pymdown-extensions==10.4
     # via mkdocs-material

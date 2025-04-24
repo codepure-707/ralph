@@ -354,7 +354,7 @@ pygments==2.19.1
     #   ipython
     #   pudb
     #   sphinx
-pyhermes==0.3.0
+pyhermes==0.6.0
     # via ralph (pyproject.toml)
 pyparsing==3.1.4
     # via oslo-utils
