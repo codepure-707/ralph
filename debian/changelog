@@ -1,3 +1,9 @@
+ralph (20250429.1) jammy; urgency=medium
+
+  * Remove security scans (#3902)
+
+ -- Olga Matyla <olga.matyla@allegro.com>  Tue, 29 Apr 2025 08:15:41 +0000
+
 ralph (20250424.2) jammy; urgency=medium
 
   * Fix collectings actions in frontend
