@@ -217,9 +217,10 @@ class CloudHostTestCase(RalphTestCase, NetworkableBaseObjectTestMixin):
         self.assertNetworksTheSame(nets, host._get_available_networks())
 
 
+
 class VirtualServerTestCase(RalphTestCase, NetworkableBaseObjectTestMixin):
     def setUp(self):
-        self.vs = VirtualServerFullFactory(securityscan=None)
+        self.vs = VirtualServerFullFactory()
         self.custom_field_str = CustomField.objects.create(
             name="test str", type=CustomFieldTypes.STRING, default_value="xyz"
         )
