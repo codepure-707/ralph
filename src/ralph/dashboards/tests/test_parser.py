@@ -285,8 +285,7 @@ class LabelGroupingTest(TestCase):
         for is_deprecated in [True, False]:
             for _ in range(3):
                 DataCenterAssetFactory(
-                    service_env=service_env,
-                    force_depreciation=is_deprecated
+                    service_env=service_env, force_depreciation=is_deprecated
                 )
 
         graph = GraphFactory(

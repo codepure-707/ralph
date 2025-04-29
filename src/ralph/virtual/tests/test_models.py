@@ -217,7 +217,6 @@ class CloudHostTestCase(RalphTestCase, NetworkableBaseObjectTestMixin):
         self.assertNetworksTheSame(nets, host._get_available_networks())
 
 
-
 class VirtualServerTestCase(RalphTestCase, NetworkableBaseObjectTestMixin):
     def setUp(self):
         self.vs = VirtualServerFullFactory()

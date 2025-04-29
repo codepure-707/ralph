@@ -17,7 +17,8 @@ class PublisherTests(RalphTestCase):
         self.assertEqual(old_hostname, host_data["_previous_state"]["hostname"])
         self.assertEqual(instance.hostname, host_data["hostname"])
         self.assertEqual(
-            ethernet.mac.upper(), host_data["ethernet"][0]["mac"],
+            ethernet.mac.upper(),
+            host_data["ethernet"][0]["mac"],
         )
 
         ethernet.delete()

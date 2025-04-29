@@ -211,7 +211,6 @@ class DateListFilter(BaseCustomFilter):
         }
 
 
-
 class NumberListFilter(DateListFilter):
     """Renders filter form with decimal field."""
 
