@@ -77,7 +77,7 @@ gulp.task('js', function() {
         './bower_components/angular-cookies/angular-cookies.min.js',
         './bower_components/angular/angular.min.js',
         './bower_components/angular-resource/angular-resource.min.js',
-        './bower_components/angular-route/angular-route.js',
+        './bower_components/angular-route/angular-route.min.js',
         './bower_components/angular-ui-router/release/angular-ui-router.min.js',
     ];
     return gulp.src(angularFiles)
