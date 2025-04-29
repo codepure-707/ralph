@@ -624,16 +624,16 @@ wheels = [
 
 [[package]]
 name = "dogpile-cache"
-version = "1.4.0"
+version = "1.3.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "decorator" },
     { name = "stevedore" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e8/07/2257f13f9cd77e71f62076d220b7b59e1f11a70b90eb1e3ef8bdf0f14b34/dogpile_cache-1.4.0.tar.gz", hash = "sha256:b00a9e2f409cf9bf48c2e7a3e3e68dac5fa75913acbf1a62f827c812d35f3d09", size = 937468 }
+sdist = { url = "https://files.pythonhosted.org/packages/cb/b7/2fa37f52b4f38bc8eb6d4923163dd822ca6f9e2f817378478a5de73b239e/dogpile_cache-1.3.4.tar.gz", hash = "sha256:4f0295575f5fdd3f7e13c84ba8e36656971d1869a2081b4737ec99ede378a8c0", size = 933234 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/fb/91/6191ee1b821a03ed2487f234b11c58b0390c305452cf31e1e33b4a53064d/dogpile_cache-1.4.0-py3-none-any.whl", hash = "sha256:f1581953afefd5f55743178694bf3b3ffb2782bba3d9537566a09db6daa48a63", size = 62881 },
+    { url = "https://files.pythonhosted.org/packages/3c/82/d118accb66f9048acbc4ff91592755c24d52f54cce40d6b0b2a0ce351cf5/dogpile.cache-1.3.4-py3-none-any.whl", hash = "sha256:a393412f93d24a8942fdf9248dc80678127d54c5e60a7be404027aa193cafe12", size = 62859 },
 ]
 
 [[package]]
@@ -1739,6 +1739,7 @@ dependencies = [
     { name = "django-threadlocals" },
     { name = "djangorestframework" },
     { name = "djangorestframework-xml" },
+    { name = "dogpile-cache" },
     { name = "drf-nested-routers" },
     { name = "faker" },
     { name = "funcsigs" },
@@ -1837,6 +1838,7 @@ requires-dist = [
     { name = "django-threadlocals", specifier = "==0.8" },
     { name = "djangorestframework", specifier = "==3.15.0" },
     { name = "djangorestframework-xml", specifier = "==2.0.0" },
+    { name = "dogpile-cache", specifier = "==1.3.4" },
     { name = "drf-nested-routers", specifier = "==0.92.5" },
     { name = "faker", specifier = "==0.9.0" },
     { name = "funcsigs", specifier = "==0.4" },
