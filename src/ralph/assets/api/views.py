@@ -137,7 +137,7 @@ class BaseObjectViewSet(PolymorphicViewSetMixin, RalphAPIViewSet):
     queryset = models.BaseObject.polymorphic_objects.all()
     serializer_class = serializers.BaseObjectPolymorphicSerializer
     http_method_names = ["get", "options", "head"]
-    filter_fields = [
+    filterset_fields = [
         "id",
         "service_env",
         "service_env",
@@ -175,7 +175,7 @@ class AssetHolderViewSet(RalphAPIViewSet):
 class EthernetViewSet(RalphAPIViewSet):
     queryset = models.Ethernet.objects.all()
     serializer_class = serializers.EthernetSerializer
-    filter_fields = ["base_object", "ipaddress__address"]
+    filterset_fields = ["base_object", "ipaddress__address"]
     prefetch_related = ["base_object", "base_object__tags"]
 
     def destroy(self, request, *args, **kwargs):
@@ -193,28 +193,28 @@ class EthernetViewSet(RalphAPIViewSet):
 class MemoryViewSet(RalphAPIViewSet):
     queryset = models.Memory.objects.all()
     serializer_class = serializers.MemorySerializer
-    filter_fields = ["base_object", "size"]
+    filterset_fields = ["base_object", "size"]
     prefetch_related = ["base_object", "base_object__tags"]
 
 
 class FibreChannelCardViewSet(RalphAPIViewSet):
     queryset = models.FibreChannelCard.objects.all()
     serializer_class = serializers.FibreChannelCardSerializer
-    filter_fields = ["base_object", "wwn"]
+    filterset_fields = ["base_object", "wwn"]
     prefetch_related = ["base_object", "base_object__tags"]
 
 
 class ProcessorViewSet(RalphAPIViewSet):
     queryset = models.Processor.objects.all()
     serializer_class = serializers.ProcessorSerializer
-    filter_fields = ["base_object", "cores"]
+    filterset_fields = ["base_object", "cores"]
     prefetch_related = ["base_object", "base_object__tags"]
 
 
 class DiskViewSet(RalphAPIViewSet):
     queryset = models.Disk.objects.all()
     serializer_class = serializers.DiskSerializer
-    filter_fields = ["base_object", "serial_number", "size"]
+    filterset_fields = ["base_object", "serial_number", "size"]
     prefetch_related = ["base_object", "base_object__tags"]
 
 
@@ -222,7 +222,7 @@ class ConfigurationModuleViewSet(RalphAPIViewSet):
     queryset = models.ConfigurationModule.objects.all()
     serializer_class = serializers.ConfigurationModuleSerializer
     save_serializer_class = serializers.ConfigurationModuleSimpleSerializer
-    filter_fields = ("parent", "name")
+    filterset_fields = ("parent", "name")
     # don't allow for ConfigurationModule updating or deleting as it might
     # dissrupt configuration of many hosts!
     http_method_names = ["get", "post", "options", "head"]
@@ -231,7 +231,7 @@ class ConfigurationModuleViewSet(RalphAPIViewSet):
 class ConfigurationClassViewSet(RalphAPIViewSet):
     queryset = models.ConfigurationClass.objects.all()
     serializer_class = serializers.ConfigurationClassSerializer
-    filter_fields = ("module", "module__name", "class_name", "path")
+    filterset_fields = ("module", "module__name", "class_name", "path")
     select_related = ["module"]
     prefetch_related = ["tags"]
     # don't allow for ConfigurationClass updating or deleting as it might
@@ -261,7 +261,7 @@ class DCHostViewSet(BaseObjectViewSetMixin, RalphAPIViewSet):
     serializer_class = ralph.assets.api.serializers_dchosts.DCHostSerializer
     renderer_classes = renderer_classes_without_form(RalphAPIViewSet.renderer_classes)
     http_method_names = ["get", "options", "head", "patch", "post"]
-    filter_fields = [
+    filterset_fields = [
         "id",
         "service_env",
         "service_env__service__uid",

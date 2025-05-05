@@ -49,7 +49,7 @@ class ExternalService(object):
             raise QueuedServiceError
         while job and not any([job.is_finished, job.is_failed]):
             time.sleep(0.1)
-        return job.result
+        return job.return_value()
 
     def run_async(self, **kwargs):
         job = self.queue.enqueue(self.method, kwargs=kwargs)

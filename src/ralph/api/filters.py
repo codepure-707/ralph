@@ -39,7 +39,7 @@ class BooleanFilter(Filter):
 class AdditionalDjangoFilterBackend(DjangoFilterBackend):
     """
     Allows to spcify additional FilterSet for viewset (besides standard one,
-    which uses fields from `filter_fields` property.
+    which uses fields from `filterset_fields` property.
     """
 
     def get_filterset_class(self, view, queryset=None):
@@ -255,7 +255,7 @@ class LookupFilterBackend(BaseFilterBackend):
         return result
 
     def _validate_query_lookups(
-        self, model, request, filter_fields, extended_filter_fields
+        self, model, request, filterset_fields, extended_filter_fields
     ):
         """
         Validates all lookups from query params.
@@ -263,7 +263,7 @@ class LookupFilterBackend(BaseFilterBackend):
         Args:
             model: Django model
             request: current request
-            filter_fields: list of fields available for filtering (ex. ['name'])
+            filterset_fields: list of fields available for filtering (ex. ['name'])
             extended_filter_fields: dict with extended filters for single field
                 name, ex. `{'name': ['asset__hostname', 'ip__address']}`.
                 Usefull especially with polymorphic models (when searching by
@@ -277,8 +277,8 @@ class LookupFilterBackend(BaseFilterBackend):
         result = []
         kw_result = {}
         logger.debug(
-            "Processing {} filters with filter fields={} and extended filter "
-            "fields={}".format(model, filter_fields, extended_filter_fields)
+            "Processing {} filters with filterset fields={} and extended filter "
+            "fields={}".format(model, filterset_fields, extended_filter_fields)
         )
         for field_name, value in request.query_params.items():
             logger.debug("Processing query param {}:{}".format(field_name, value))
@@ -306,7 +306,7 @@ class LookupFilterBackend(BaseFilterBackend):
                 )
 
             # skip if field is not available to filter for
-            if model_field_name in filter_fields:
+            if model_field_name in filterset_fields:
                 filters = self._validate_single_query_lookup(
                     model, model_field_name, lookup, value
                 )
@@ -322,7 +322,7 @@ class LookupFilterBackend(BaseFilterBackend):
         lookups, kw_lookups = self._validate_query_lookups(
             queryset.model,
             request,
-            view.filter_fields,
+            view.filterset_fields,
             getattr(view, "extended_filter_fields", {}),
         )
         if lookups or kw_lookups:
@@ -336,11 +336,11 @@ class PolymorphicDescendantsFilterBackend(LookupFilterBackend):
     Filter descendants of polymorphic models (especially by extended filters).
     """
 
-    def _process_model(self, model, request, filter_fields, extended_filter_fields):
+    def _process_model(self, model, request, filterset_fields, extended_filter_fields):
         ids = set()
         is_lookup_used = False
         lookups, kw_lookups = self._validate_query_lookups(
-            model, request, filter_fields, extended_filter_fields
+            model, request, filterset_fields, extended_filter_fields
         )
         if lookups or kw_lookups:
             is_lookup_used = True
@@ -375,24 +375,24 @@ class PolymorphicDescendantsFilterBackend(LookupFilterBackend):
         model_ids, model_is_lookup_used = self._process_model(
             base_model,
             request,
-            view.filter_fields,
+            view.filterset_fields,
             getattr(view, "extended_filter_fields", {}),
         )
         ids |= model_ids
         is_lookup_used |= model_is_lookup_used
         for model in polymorphic_models:
-            filter_fields = []
+            filterset_fields = []
             model_viewset = view._viewsets_registry.get(model)
             if model_viewset:
                 # get filters which are applicable to descdenant type
-                filter_fields = getattr(model_viewset, "filter_fields", [])
-            if not filter_fields:
-                # if not filter_fields from API viewset get fields
+                filterset_fields = getattr(model_viewset, "filterset_fields", [])
+            if not filterset_fields:
+                # if not filterset_fields from API viewset get fields
                 # from django model admin
-                filter_fields = ralph_site._registry[model].search_fields
+                filterset_fields = ralph_site._registry[model].search_fields
 
             model_ids, model_is_lookup_used = self._process_model(
-                model, request, filter_fields, {}
+                model, request, filterset_fields, {}
             )
             ids |= model_ids
             is_lookup_used |= model_is_lookup_used

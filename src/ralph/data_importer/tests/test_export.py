@@ -5,6 +5,7 @@ from django.db import connections
 from django.test import RequestFactory, TestCase
 from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
+from import_export.formats.base_formats import Format
 
 from ralph.accounts.tests.factories import UserFactory
 from ralph.admin.sites import ralph_site
@@ -26,8 +27,8 @@ from ralph.supports.tests.factories import (
 )
 
 
-class RawFormat(object):
-    def export_data(self, data):
+class RawFormat(Format):
+    def export_data(self, data, **kwargs):
         return data
 
 

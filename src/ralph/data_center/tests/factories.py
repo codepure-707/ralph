@@ -199,7 +199,6 @@ class DataCenterAssetFullFactory(DataCenterAssetFactory):
     disk1 = factory.RelatedFactory(DiskFactory, "base_object")
     disk2 = factory.RelatedFactory(DiskFactory, "base_object")
 
-
     @factory.post_generation
     def post_tags(self, create, extracted, **kwargs):
         self.tags.add("abc, cde", "xyz")

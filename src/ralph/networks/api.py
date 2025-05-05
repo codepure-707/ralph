@@ -92,7 +92,7 @@ class IPAddressViewSet(RalphAPIViewSet):
         "ethernet__base_object__tags",
         "network",
     ]
-    filter_fields = [
+    filterset_fields = [
         "hostname",
         "ethernet__base_object",
         "network",

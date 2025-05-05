@@ -95,7 +95,7 @@ class ManagerOfManager(_TaggableManager):
                     yield item
 
         flattened_tags = list(_flatten(tags))
-        super().set(*flattened_tags, **kwargs)
+        super().set(flattened_tags, **kwargs)
 
 
 class TaggableManager(TaggableManagerOriginal):

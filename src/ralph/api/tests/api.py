@@ -66,13 +66,13 @@ class ManufacturerViewSet(RalphAPIViewSet):
 class CarViewSet(RalphAPIViewSet):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
-    filter_fields = ["manufacturer__name"]
+    filterset_fields = ["manufacturer__name"]
 
 
 class BarViewSet(RalphAPIViewSet):
     queryset = Bar.objects.all()
     serializer_class = BarSerializer
-    filter_fields = ["id"]
+    filterset_fields = ["id"]
 
 
 app_name = "test-ralph-api"

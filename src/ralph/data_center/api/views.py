@@ -87,7 +87,7 @@ class DataCenterAssetViewSet(BaseObjectViewSetMixin, RalphAPIViewSet):
         "processor_set",
         "disk_set",
     ]
-    filter_fields = [
+    filterset_fields = [
         "service_env__service__uid",
         "service_env__service__name",
         "service_env__service__id",

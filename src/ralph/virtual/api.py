@@ -179,7 +179,7 @@ class CloudFlavorViewSet(RalphAPIViewSet):
     serializer_class = CloudFlavorSerializer
     save_serializer_class = SaveCloudFlavorSerializer
     prefetch_related = ["tags", "virtualcomponent_set__model"]
-    filter_fields = ["flavor_id"]
+    filterset_fields = ["flavor_id"]
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -227,7 +227,7 @@ class CloudProviderViewSet(RalphAPIViewSet):
 class CloudImageViewSet(RalphAPIViewSet):
     queryset = CloudImage.objects.all()
     serializer_class = CloudImageSerializer
-    filter_fields = ["image_id"]
+    filterset_fields = ["image_id"]
 
 
 class CloudHostViewSet(BaseObjectViewSetMixin, RalphAPIViewSet):
@@ -251,7 +251,7 @@ class CloudHostViewSet(BaseObjectViewSetMixin, RalphAPIViewSet):
         Prefetch("ethernet_set", queryset=Ethernet.objects.select_related("ipaddress")),
     ]
 
-    filter_fields = [
+    filterset_fields = [
         "service_env__service__uid",
         "service_env__service__name",
         "service_env__service__id",
@@ -275,7 +275,7 @@ class CloudProjectViewSet(RalphAPIViewSet):
 class VirtualServerTypeViewSet(RalphAPIViewSet):
     queryset = VirtualServerType.objects.all()
     serializer_class = VirtualServerTypeSerializer
-    filter_fields = ["name"]
+    filterset_fields = ["name"]
 
 
 class VirtualServerFilterSet(NetworkableObjectFilters):
@@ -303,7 +303,7 @@ class VirtualServerViewSet(BaseObjectViewSetMixin, RalphAPIViewSet):
         "disk_set",
         Prefetch("ethernet_set", queryset=Ethernet.objects.select_related("ipaddress")),
     ]
-    filter_fields = [
+    filterset_fields = [
         "service_env__service__uid",
         "service_env__service__name",
         "service_env__service__id",

@@ -36,6 +36,7 @@ from ralph.data_importer import resources
 from ralph.lib.custom_fields.admin import CustomFieldValueAdminMixin
 from ralph.lib.table.table import Table, TableWithUrl
 
+
 @register(ConfigurationClass)
 class ConfigurationClassAdmin(CustomFieldValueAdminMixin, RalphAdmin):
     fields = ["class_name", "module", "path"]
