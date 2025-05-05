@@ -1,3 +1,20 @@
+ralph (20250505.1) jammy; urgency=medium
+
+  * Initial django 4.0 compatibility
+  * Add missing requirements
+  * Add missing migrations
+  * Fix tests for changelist and fix tags behaviour
+  * Fix session middleware initialization in tests. Fix pyhermes usage
+  * Fix data importer. Skip hermes tests if hermes disabled
+  * reformat
+  * Fix missing ACTION_CHECKBOX_NAME. Generate requirements
+  * Fix dogpile cache version
+  * Use different static storage
+  * Fix page numbering from 2
+  * Fix sorting back office assets by user
+
+ -- Paweł Szulc <pawel.szulc@allegro.com>  Mon, 05 May 2025 10:19:42 +0000
+
 ralph (20250429.1) jammy; urgency=medium
 
   * Remove security scans (#3902)
