@@ -15,7 +15,7 @@
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "jshint": "^2.13.6",
-    "sass": "1.32.13"
+    "sass": "1.87.0"
   },
   "devDependencies": {
     "gulp-vulcanize": "^8.0.0",
