@@ -76,7 +76,7 @@ defusedxml==0.7.1
     #   odfpy
 diff-match-patch==20241021
     # via django-import-export
-django==4.0.10
+django==4.2.21
     # via
     #   ralph (pyproject.toml)
     #   django-appconf
@@ -406,7 +406,7 @@ python-ironicclient==5.10.1
     # via ralph (pyproject.toml)
 python-keystoneclient==5.6.0
     # via ralph (pyproject.toml)
-python-ldap==3.4.4
+python-ldap==3.4.5
     # via django-auth-ldap
 python-novaclient==3.2.0
     # via ralph (pyproject.toml)
