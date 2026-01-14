@@ -430,7 +430,7 @@ tzdata==2025.2
     #   oslo-utils
 unidecode==0.4.18
     # via ralph (pyproject.toml)
-urllib3==1.24.3
+urllib3==2.6.3
     # via requests
 watchdog==6.0.0
     # via mkdocs
